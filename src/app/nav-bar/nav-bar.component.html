@@ -3,22 +3,19 @@
   <div class="navbar-brand">
      <div class="navbar-item">
       <p>The Pet Pursuit </p>
-      <img src="https://images.unsplash.com/photo-1589441161120-8781d5644435?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" width="25" height="28">
+      <img src="https://images.unsplash.com/photo-1589441161120-8781d5644435?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" width="40" height="40">
      </div>
-    <!-- <h1 class="navbar-item">Testing</h1> -->
-    <!-- <h1>The Pet Pursuit</h1> -->
-    <!-- <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a> -->
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+
+
+    <a role="button" class="navbar-burger" (click)="toggleNav()" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div id="navbarCon" class="navbar-menu" [class.is-active]="isNavbarActive">
     <div class="navbar-start">
       <a class="navbar-item">
         Home

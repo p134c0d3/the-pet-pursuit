@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+  isNavbarActive=false
 
+
+
+
+  toggleNav(){
+    this.isNavbarActive=!this.isNavbarActive
+  }
 }
