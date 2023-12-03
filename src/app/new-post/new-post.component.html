@@ -1,71 +1,153 @@
+<form (ngSubmit)="newPost(f)" #f="ngForm">
 <div class="field">
   <label class="label">Pet Name</label>
   <div class="control">
-    <input class="input" type="text" required placeholder="e.g Bruno">
+    <input
+    class="input"
+    type="text"
+    required
+    placeholder="e.g. Bruno">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Pet Type</label>
   <div class="control">
-    <input class="input" type="text" required placeholder="e.g. Dog">
+    <input
+    class="input"
+    type="text"
+    required
+    placeholder="e.g. Dog">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Sex</label>
   <div class="control">
-    <input class="input" type="text" placeholder="e.g. Male">
+    <input
+    class="input"
+    type="text"
+    required
+    placeholder="e.g. Male">
   </div>
 </div>
 
-<div class="dropdown is-active">
-  <div class="dropdown-trigger">
-    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-      <span>Age of Pet</span>
-      <span class="icon is-small">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </div>
-  <div class="dropdown-menu" id="dropdown-menu" role="menu">
-    <div class="dropdown-content">
-      <a href="#" class="dropdown-item">
-        0-12 months
-      </a>
-      <a class="dropdown-item">
-        1-3 years
-      </a>
-      <a href="#" class="dropdown-item">
-        3-6 years
-      </a>
-      <a href="#" class="dropdown-item">
-        6-9 years
-      </a>
-      <a href="#" class="dropdown-item">
-        9+ years
-      </a>
+<div class="field">
+  <label class="label">Age</label>
+  <div class="control">
+    <div class="select">
+      <select>
+        <option>0-12 Months</option>
+        <option>1-3 Years</option>
+        <option>3-6 Years</option>
+        <option>6-9 Years</option>
+        <option>9+ Years</option>
+      </select>
     </div>
+  </div>
+</div>
+
+<div class="field">
+  <div class="control">
+    <label class="label">Is your pet spayed or neutered?</label>
+    <label class="radio">
+      <input
+      type="radio"
+      name="question">
+      Yes
+    </label>
+    <label class="radio">
+      <input
+      type="radio"
+      name="question">
+      No
+    </label>
+    <label class="radio">
+      <input
+      type="radio"
+      name="question">
+      N/A
+    </label>
   </div>
 </div>
 
 <div class="field">
   <label class="label">Location</label>
   <div class="control">
-    <input class="input" type="text" placeholder="e.g. St.Louis, MO ">
-  </div>
-</div>
-
-<div class="field">
-  <label class="label">Has the Pet been spayed/neutered?</label>
-  <div class="control">
-    <input class="input" type="text" placeholder="e.g. Yes">
+    <input
+    class="input"
+    type="text"
+    required
+    placeholder="e.g. St.Louis, MO">
   </div>
 </div>
 
 <div class="field">
   <label class="label">Please tell us more about your pet</label>
   <div class="control">
-    <textarea class="textarea is-small" placeholder="e.g. Bruno loves to play with his tennis ball. He is great with kids and other pets."></textarea>
+    <textarea
+    class="textarea"
+    placeholder="e.g. Bruno loves to play with his tennis ball. He is great with kids and other pets."></textarea>
   </div>
 </div>
+<br>
+<h2 class="is-size-4 has-text-weight-semibold">Please tell us about yourself:</h2>
+<br>
+<div class="field">
+  <label class="label">First Name</label>
+  <div class="control">
+    <input
+    class="input"
+    type="text"
+    required
+    placeholder="Enter your first name">
+  </div>
+</div>
+<div class="field">
+  <label class="label">Last Name</label>
+  <div class="control">
+    <input
+    class="input"
+    type="text"
+    required
+    placeholder="Enter your last name">
+  </div>
+</div>
+<div class="field">
+  <label class="label">Email</label>
+  <div class="control">
+    <input
+    class="input"
+    type="email"
+    required
+    placeholder="Enter a valid email">
+  </div>
+</div>
+<div class="field">
+  <label class="label">Phone Number</label>
+  <div class="control">
+    <input
+    class="input"
+    type="text"
+    placeholder="(123)456-7890">
+  </div>
+</div>
+
+<div class="field">
+  <div class="control">
+    <label class="checkbox">
+      <input type="checkbox">
+      I agree to the <a href="#">terms and conditions</a>
+    </label>
+  </div>
+</div>
+
+<div class="field is-grouped">
+  <div class="control">
+    <button class="button is-link">Submit</button>
+  </div>
+  <div class="control">
+    <button class="button is-link is-light">Cancel</button>
+  </div>
+</div>
+</form>
