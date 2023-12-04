@@ -6,3 +6,7 @@
 .control {
   max-width: 400px;
 }
+
+.ng-invalid .ng-touched {
+  border: 1px solid red;
+}
