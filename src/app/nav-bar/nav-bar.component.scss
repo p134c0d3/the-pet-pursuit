@@ -2,3 +2,28 @@
 // background-color: #A2D6F9;
 // }
 /* navbar.component.css */
+
+
+// .mx-2{
+//   border-radius: 50%;
+// }
+
+
+
+// .navbar-burger {
+//   span {
+//     &:first-child {
+//       transform-origin: top-left;
+//       transform: rotate(45deg) *ngIf="isNavbarActive";
+//     }
+
+//     &:nth-child(2) {
+//       opacity: 0 *ngIf="isNavbarActive";
+//     }
+
+//     &:last-child {
+//       transform-origin: bottom-left;
+//       transform: rotate(-45deg) *ngIf="isNavbarActive";
+//     }
+//   }
+// }
