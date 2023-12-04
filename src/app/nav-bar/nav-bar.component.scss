@@ -1,28 +1,29 @@
-
-.mx-3{
-  border-radius: 50%;
-
-}
-
+// .navbar{
+// background-color: #A2D6F9;
+// }
+/* navbar.component.css */
 
 
-.xSym {
-
-  span {
-    &:first-child {
-      transform: rotate(-45deg) translate(-10px, 5px);
-    }
-    &:nth-child(2) {
-      opacity: 0;
-    }
-    &:last-child {
-      transform: rotate(45deg) translate(-2px, 3px);
-    }
-  }
-}
+// .mx-2{
+//   border-radius: 50%;
+// }
 
 
-.access{
-  cursor: not-allowed;
 
-}
+// .navbar-burger {
+//   span {
+//     &:first-child {
+//       transform-origin: top-left;
+//       transform: rotate(45deg) *ngIf="isNavbarActive";
+//     }
+
+//     &:nth-child(2) {
+//       opacity: 0 *ngIf="isNavbarActive";
+//     }
+
+//     &:last-child {
+//       transform-origin: bottom-left;
+//       transform: rotate(-45deg) *ngIf="isNavbarActive";
+//     }
+//   }
+// }
