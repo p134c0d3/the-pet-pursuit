@@ -9,7 +9,8 @@ interface AuthResponseData{
   email:string;
   refreshToken:string;
   expiresIn:string;
-  localId:string
+  localId:string;
+  registered?:boolean
 }
 
 
@@ -28,6 +29,15 @@ export class AuthService{
      password:password,
      returnSecureToken: true
     }
+    )
+  }
+
+  login(email:string, password:string){
+   return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWBFOaq2Dsx2DqeEUDClLQ7bMV5HupJ-Y',
+    {email:email,
+      password:password,
+      returnSecureToken: true
+     }
     )
   }
 
