@@ -1,16 +1,15 @@
 <div class="container">
   <div class="title-header">
-    <h1 class="is-size-1 has-text-centered">Pets Looking for Their Furr-ever Home!</h1>
+    <h1 class="is-size-1 has-text-centered">
+      Pets Looking for Their Furr-ever Home!
+    </h1>
   </div>
-  <hr>
-  <div class="columns is-justify-content-space-evenly	">
+  <hr />
+  <div class="columns is-justify-content-space-evenly">
     <div class="card is-one-third column">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img
-            src="../../assets/img/cattle_dog.jpg"
-            alt="Placeholder image"
-          />
+          <img src="../../assets/img/cattle_dog.jpg" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
@@ -21,14 +20,19 @@
           </div>
         </div>
 
-        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
+        <div class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
           dolores totam pariatur deleniti voluptatem voluptate dolor labore
           laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
           sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
           iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
-          vitae officiis.</div>
-        <button class="button is-link pet-details-button" (click)="openModal = true">
+          vitae officiis.
+        </div>
+        <button
+          class="button is-link pet-details-button"
+          (click)="openModal = true"
+        >
           Details
         </button>
       </div>
@@ -36,10 +40,7 @@
     <div class="card is-one-third column">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img
-            src="../../assets/img/great_dane.jpg"
-            alt="Placeholder image"
-          />
+          <img src="../../assets/img/great_dane.jpg" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
@@ -50,14 +51,19 @@
           </div>
         </div>
 
-        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
+        <div class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
           dolores totam pariatur deleniti voluptatem voluptate dolor labore
           laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
           sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
           iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
-          vitae officiis.</div>
-        <button class="button is-link pet-details-button" (click)="openModal = true">
+          vitae officiis.
+        </div>
+        <button
+          class="button is-link pet-details-button"
+          (click)="openModal = true"
+        >
           Details
         </button>
       </div>
@@ -65,10 +71,7 @@
     <div class="card is-one-third column">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img
-            src="../../assets/img/rottweiler.jpg"
-            alt="Placeholder image"
-          />
+          <img src="../../assets/img/rottweiler.jpg" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
@@ -79,36 +82,83 @@
           </div>
         </div>
 
-        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
+        <div class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
           dolores totam pariatur deleniti voluptatem voluptate dolor labore
           laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
           sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
           iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
-          vitae officiis.</div>
-        <button class="button is-link pet-details-button" (click)="openModal = true">
+          vitae officiis.
+        </div>
+        <button
+          class="button is-link pet-details-button"
+          (click)="openModal = true"
+        >
           Details
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Pet-Clicked Header -->
+  <!-- petClicked Modal -->
+  <div class="is-clipped">
+    <div class="modal" [ngClass]="openModal ? 'is-active' : ''">
+      <div class="modal-background">
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Cowboy</p>
+            <button
+              class="delete"
+              aria-label="close"
+              (click)="openModal = false"
+            ></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="modal-content content">
+              <figure class="media-left">
+                <p class="image">
+                  <img
+                    src="../../assets/img/cattle_dog.jpg"
+                    class="clickedPetImage"
+                  />
+                </p>
+              </figure>
+              <h1><strong>A little bit about Cowboy</strong></h1>
+              <h3><strong>Cattle Dog</strong></h3>
+              <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+                velit dolores totam pariatur deleniti voluptatem voluptate dolor
+                labore laborum repudiandae, fugit perferendis eveniet iste
+                expedita, dolore sunt nam nisi rerum? Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Suscipit ex quod odit. Sed
+                blanditiis quia dolores iusto iure cum vel saepe, ad ducimus
+                inventore totam in nulla. Eius, vitae officiis.
+              </div>
+            </div>
+            <div class="column">
+              <div class="block">
+                Is Cowboy good with children?
+                <span class="tag is-pulled-right is-success">Yes</span>
+              </div>
+              <hr>
+              <div class="block">
+                Is Cowboy good with other dogs?
+                <span class="tag is-pulled-right is-danger">No</span>
+              </div>
+              <hr>
+            </div>
 
-  <div class="modal" [ngClass]="openModal ? 'is-active' : ''">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Modal title</p>
-        <button class="delete" aria-label="close" (click)="openModal = false"></button>
-      </header>
-      <section class="modal-card-body">
-        <!-- Content ... -->
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button is-success">Save changes</button>
-        <button class="button">Cancel</button>
-      </footer>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success">Apply to Adopt</button>
+            <button class="button is-info">Add to Favorites ❤️</button>
+            <button class="button is-danger" (click)="openModal = false">
+              Close
+            </button>
+          </footer>
+        </div>
+      </div>
     </div>
   </div>
 </div>
