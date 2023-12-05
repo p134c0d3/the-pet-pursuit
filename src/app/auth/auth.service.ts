@@ -35,7 +35,7 @@ export class AuthService{
 
 }
 
-
+///stoped at sending the signup request...need form
 
 
 
