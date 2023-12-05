@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+import { newPost } from './new-post.model';
+
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
@@ -8,19 +10,31 @@ import { NgForm } from '@angular/forms';
 })
 export class NewPostComponent implements OnInit {
 
-  ngOnInit(): void {}
 
-  newPost(form: NgForm) {
+  newPostForm: newPost = {
+    petName: "",
+    petType: "",
+    sex: "",
+    age: "",
+    spayedNeutered: "",
+    location: "",
+    petDescription: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: ""
+  };
 
-    const petName = form.value.petName;
-    const petType = form.value.petType;
-    const sex = form.value.sex;
-    const location = form.value.location;
-    const description = form.value.description;
-    const firstName = form.value.firstName;
-    const lastName = form.value.lastName;
-    const email = form.value.email;
-    const phone = form.value.phone;
+  ngOnInit(): void {
 
   }
+
+  onSubmit(formObj: NgForm) {
+
+    const { petName, petType, sex, age, spayedNeutered,  location, petDescription, firstName, lastName, email, phoneNumber } = formObj.value;
+
+    this.newPostForm = new newPost( petName, petType, sex, age, spayedNeutered, location, petDescription, firstName, lastName, email, phoneNumber );
+
+  };
+
 }

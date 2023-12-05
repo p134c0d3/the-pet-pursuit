@@ -1,42 +1,52 @@
-<form (ngSubmit)="newPost(f)" #f="ngForm">
+<form #newPostForm="ngForm" (ngSubmit)="onSubmit(newPostForm)">
+  <div class="field title">
+    <label class="label has-text-weight-bold is-size-4" for="title">New Post</label>
+  </div>
 <div class="field">
-  <label class="label">Pet Name</label>
+  <label class="label" for="petName">Pet Name</label>
   <div class="control">
     <input
     class="input"
     type="text"
+    id="petName"
+    name="petName"
     required
     placeholder="e.g. Bruno">
   </div>
 </div>
 
 <div class="field">
-  <label class="label">Pet Type</label>
+  <label class="label" for="petType">Pet Type</label>
   <div class="control">
     <input
     class="input"
     type="text"
+    id="petType"
+    name="petType"
     required
     placeholder="e.g. Dog">
   </div>
 </div>
 
 <div class="field">
-  <label class="label">Sex</label>
+  <label class="label" for="sex">Sex</label>
   <div class="control">
     <input
     class="input"
     type="text"
+    id="sex"
+    name="sex"
     required
     placeholder="e.g. Male">
   </div>
 </div>
 
 <div class="field">
-  <label class="label">Age</label>
+  <label class="label" for="age">Age</label>
   <div class="control">
-    <div class="select">
-      <select>
+    <div class="select is-link">
+      <select name="age" id="age">
+        <option disabled selected value>Select Age</option>
         <option>0-12 Months</option>
         <option>1-3 Years</option>
         <option>3-6 Years</option>
@@ -49,7 +59,7 @@
 
 <div class="field">
   <div class="control">
-    <label class="label">Is your pet spayed or neutered?</label>
+    <label class="label" for="spayedNeutered">Is your pet spayed or neutered?</label>
     <label class="radio">
       <input
       type="radio"
@@ -72,21 +82,25 @@
 </div>
 
 <div class="field">
-  <label class="label">Location</label>
+  <label class="label" for="location">Location</label>
   <div class="control">
     <input
     class="input"
     type="text"
+    id="location"
+    name="location"
     required
     placeholder="e.g. St.Louis, MO">
   </div>
 </div>
 
 <div class="field">
-  <label class="label">Please tell us more about your pet</label>
+  <label class="label" for="petDescription">Please tell us more about your pet</label>
   <div class="control">
     <textarea
     class="textarea"
+    id="petDescription"
+    name="petDescription"
     placeholder="e.g. Bruno loves to play with his tennis ball. He is great with kids and other pets."></textarea>
   </div>
 </div>
@@ -94,21 +108,25 @@
 <h2 class="is-size-4 has-text-weight-semibold">Please tell us about yourself:</h2>
 <br>
 <div class="field">
-  <label class="label">First Name</label>
+  <label class="label" for="firstName">First Name</label>
   <div class="control">
     <input
     class="input"
     type="text"
+    id="firstName"
+    name="firstName"
     required
     placeholder="Enter your first name">
   </div>
 </div>
 <div class="field">
-  <label class="label">Last Name</label>
+  <label class="label" for="lastName">Last Name</label>
   <div class="control">
     <input
     class="input"
     type="text"
+    id="lastName"
+    name="lastName"
     required
     placeholder="Enter your last name">
   </div>
@@ -119,6 +137,8 @@
     <input
     class="input"
     type="email"
+    id="email"
+    name="email"
     required
     placeholder="Enter a valid email">
   </div>
@@ -129,25 +149,35 @@
     <input
     class="input"
     type="text"
+    id="phoneNumber"
+    name="phoneNumber"
     placeholder="(123)456-7890">
   </div>
 </div>
 
-<div class="field">
+<!-- <div class="field">
   <div class="control">
     <label class="checkbox">
       <input type="checkbox">
       I agree to the <a href="#">terms and conditions</a>
     </label>
   </div>
-</div>
+</div> -->
 
 <div class="field is-grouped">
   <div class="control">
-    <button class="button is-link">Submit</button>
+    <button
+    type="submit"
+    class="button is-link"
+    id="submit"
+    [disabled]="!newPostForm.valid">Create Post</button>
   </div>
-  <div class="control">
-    <button class="button is-link is-light">Cancel</button>
+  <div class ="control">
+    <button
+    type ="reset"
+    class ="button is-link is-light"
+    id="clear"
+    >Clear</button>
   </div>
 </div>
 </form>
