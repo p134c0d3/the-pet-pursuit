@@ -1,0 +1,182 @@
+<div class="container">
+  <div class="title-header">
+    <h1 class="is-size-1 has-text-centered">
+      Pets Looking for Their Furr-ever Home!
+    </h1>
+  </div>
+  <hr />
+  <div class="columns is-justify-content-space-evenly">
+    <div class="card is-one-third column">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="../../assets/img/cattle_dog.jpg" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-size-1">Cowboy</p>
+            <p class="subtitle is-6">Cattle Dog</p>
+          </div>
+        </div>
+
+        <div class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
+          dolores totam pariatur deleniti voluptatem voluptate dolor labore
+          laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
+          sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
+          iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
+          vitae officiis.
+        </div>
+        <button
+          class="button is-link pet-details-button"
+          (click)="openModal = true"
+        >
+          Details
+        </button>
+      </div>
+    </div>
+    <div class="card is-one-third column">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="../../assets/img/great_dane.jpg" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-size-1">Lila</p>
+            <p class="subtitle is-6">Great Dane</p>
+          </div>
+        </div>
+
+        <div class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
+          dolores totam pariatur deleniti voluptatem voluptate dolor labore
+          laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
+          sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
+          iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
+          vitae officiis.
+        </div>
+        <button
+          class="button is-link pet-details-button"
+          (click)="openModal = true"
+        >
+          Details
+        </button>
+      </div>
+    </div>
+    <div class="card is-one-third column">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="../../assets/img/rottweiler.jpg" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-size-1">Brutus</p>
+            <p class="subtitle is-6">Rottweiler</p>
+          </div>
+        </div>
+
+        <div class="content">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
+          dolores totam pariatur deleniti voluptatem voluptate dolor labore
+          laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
+          sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
+          iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
+          vitae officiis.
+        </div>
+        <button
+          class="button is-link pet-details-button"
+          (click)="openModal = true"
+        >
+          Details
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- petClicked Modal -->
+    <div class="modal" [ngClass]="openModal ? 'is-active' : ''">
+      <div class="modal-background">
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Cowboy</p>
+            <button
+              class="delete"
+              aria-label="close"
+              (click)="openModal = false"
+            ></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="modal-content content">
+              <figure class="media-left">
+                <p class="image">
+                  <img
+                    src="../../assets/img/cattle_dog.jpg"
+                    class="clickedPetImage"
+                  />
+                </p>
+              </figure>
+              <h1><strong>A little bit about Cowboy</strong></h1>
+              <h3><strong>Cattle Dog Mix</strong></h3>
+              <div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+                velit dolores totam pariatur deleniti voluptatem voluptate dolor
+                labore laborum repudiandae, fugit perferendis eveniet iste
+                expedita, dolore sunt nam nisi rerum? Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Suscipit ex quod odit. Sed
+                blanditiis quia dolores iusto iure cum vel saepe, ad ducimus
+                inventore totam in nulla. Eius, vitae officiis.
+              </div>
+            </div>
+            <div class="column">
+              <div class="block">
+                Age
+                <span class="tag is-pulled-right is-info">2 years old</span>
+              </div>
+              <hr>
+              <div class="block">
+                Sex
+                <span class="tag is-pulled-right is-info">Male</span>
+              </div>
+              <hr>
+              <div class="block">
+                Good with children?
+                <span class="tag is-pulled-right is-success">Yes</span>
+              </div>
+              <hr>
+              <div class="block">
+                Good with other dogs?
+                <span class="tag is-pulled-right is-danger">No</span>
+              </div>
+              <hr>
+              <div class="block">
+                Good with cats?
+                <span class="tag is-pulled-right is-danger">No</span>
+              </div>
+              <hr>
+              <div class="block">
+                Spayed/neutered?
+                <span class="tag is-pulled-right is-success">Yes</span>
+              </div>
+              <hr>
+            </div>
+
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success">Apply to Adopt</button>
+            <button class="button is-info">Add to Favorites ⭐</button>
+            <button class="button is-danger" (click)="openModal = false">
+              Close
+            </button>
+          </footer>
+        </div>
+      </div>
+    </div>
+</div>

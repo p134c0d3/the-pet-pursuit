@@ -8,6 +8,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdoptionRequestFormComponent } from './adoptionRequests/adoption-request-form/adoption-request-form.component';
 import { RequestListComponent } from './adoptionRequests/request-list/request-list.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RequestListComponent } from './adoptionRequests/request-list/request-li
     NavBarComponent,
     SignUpComponent,
     AdoptionRequestFormComponent,
-    RequestListComponent
+    RequestListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
