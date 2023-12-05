@@ -1,37 +1,38 @@
 
-<nav class="navbar has-shadow is-info" role="navigation" aria-label="main navigation">
+<nav class="navbar has-shadow is-info py-1" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
      <div class="navbar-item">
-      <p>The Pet Pursuit </p>
-      <img src="https://images.unsplash.com/photo-1589441161120-8781d5644435?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" width="40" height="40">
+
+      <h1 class="is-size-3  has-text-weight-bold">The Pet Pursuit</h1>
+      <img class="mx-3" src="https://images.unsplash.com/photo-1583023297298-9c17fecb197e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTYxfHxwYXclMjBwcmludHxlbnwwfHwwfHx8MA%3D%3D" alt="" width="40" height="40">
      </div>
 
 
 
-    <a role="button" class="navbar-burger" (click)="toggleNav()" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span class="is-active" aria-hidden="true"></span>
-      <span class="is-active" aria-hidden="true"></span>
-      <span class="is-active" aria-hidden="true"></span>
+    <a role="button" class="navbar-burger" [ngClass]="{xSym:isNavbarActive===true}" (click)="toggleNav()" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span  aria-hidden="true"></span>
+      <span  aria-hidden="true"></span>
     </a>
   </div>
 
   <div id="navbarCon" class="navbar-menu" [class.is-active]="isNavbarActive">
     <div class="navbar-start">
-      <a class="navbar-item">
-        Home
+      <a routerLink="" class="navbar-item">
+        Home 🐾
       </a>
 
-      <a class="navbar-item">
-        Find a pet
+      <a routerLink="/accessories" class="navbar-item access">
+        Accessories 🛍️
       </a>
 
-      <a class="navbar-item">
-        Favorites
+      <a routerLink="/favorites" class="navbar-item">
+        Favorites ⭐
       </a>
 
-      <a class="navbar-item">
+      <!-- <a class="navbar-item">
         Accessories
-      </a>
+      </a> -->
     </div>
 
     <div class="navbar-end">
