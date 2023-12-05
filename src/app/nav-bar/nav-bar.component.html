@@ -17,7 +17,7 @@
 
   <div id="navbarCon" class="navbar-menu" [class.is-active]="isNavbarActive">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <a routerLink="/" class="navbar-item">
         Home
       </a>
 
@@ -32,6 +32,11 @@
       <a class="navbar-item">
         Accessories
       </a>
+
+      <a routerLink="/incomingApplications" class="navbar-item">
+        Incoming Applications
+      </a>
+
     </div>
 
     <div class="navbar-end">
