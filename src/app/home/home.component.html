@@ -102,81 +102,663 @@
   </div>
 
   <!-- petClicked Modal -->
-    <div class="modal" [ngClass]="openModal ? 'is-active' : ''">
-      <div class="modal-background">
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Cowboy</p>
-            <button
-              class="delete"
-              aria-label="close"
-              (click)="openModal = false"
-            ></button>
-          </header>
-          <section class="modal-card-body">
-            <div class="modal-content content">
-              <figure class="media-left">
-                <p class="image">
-                  <img
-                    src="../../assets/img/cattle_dog.jpg"
-                    class="clickedPetImage"
-                  />
-                </p>
-              </figure>
-              <h1><strong>A little bit about Cowboy</strong></h1>
-              <h3><strong>Cattle Dog Mix</strong></h3>
-              <div>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-                velit dolores totam pariatur deleniti voluptatem voluptate dolor
-                labore laborum repudiandae, fugit perferendis eveniet iste
-                expedita, dolore sunt nam nisi rerum? Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Suscipit ex quod odit. Sed
-                blanditiis quia dolores iusto iure cum vel saepe, ad ducimus
-                inventore totam in nulla. Eius, vitae officiis.
-              </div>
+  <div class="modal" [ngClass]="isApplyClicked ? 'is-active' : ''">
+    <!-- Modal for Adoption Request Form -->
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head has-background-info">
+        <p
+          class="modal-card-title has-text-weight-bold is-size-3 has-text-centered"
+        >
+          Adoption Request Form
+        </p>
+        <button
+          class="delete"
+          aria-label="close"
+          (click)="isApplyClicked = false"
+        ></button>
+      </header>
+      <section class="modal-card-body">
+        <!-- Form start -->
+        <form
+          [formGroup]="adoptionRequestForm"
+          (ngSubmit)="onSubmit(templateFormRef)"
+          #templateFormRef="ngForm"
+        >
+          <!-- Pet Name -->
+          <div class="field">
+            <label class="label">Pet Name:</label>
+            <!-- auto populate from the pet card they click on -->
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="petName"
+                placeholder="Pet Name"
+              />
             </div>
-            <div class="column">
-              <div class="block">
-                Age
-                <span class="tag is-pulled-right is-info">2 years old</span>
-              </div>
-              <hr>
-              <div class="block">
-                Sex
-                <span class="tag is-pulled-right is-info">Male</span>
-              </div>
-              <hr>
-              <div class="block">
-                Good with children?
-                <span class="tag is-pulled-right is-success">Yes</span>
-              </div>
-              <hr>
-              <div class="block">
-                Good with other dogs?
-                <span class="tag is-pulled-right is-danger">No</span>
-              </div>
-              <hr>
-              <div class="block">
-                Good with cats?
-                <span class="tag is-pulled-right is-danger">No</span>
-              </div>
-              <hr>
-              <div class="block">
-                Spayed/neutered?
-                <span class="tag is-pulled-right is-success">Yes</span>
-              </div>
-              <hr>
+          </div>
+
+          <label
+            class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+            style="margin: 50px"
+            >Contact Information</label
+          >
+          <!-- Applicant Name -->
+          <label class="label">Applicant Name:</label>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="firstName"
+                placeholder="First Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="lastName"
+                placeholder="Last Name"
+              />
+            </div>
+          </div>
+
+          <!-- Address -->
+          <label class="label">Address:</label>
+          <div class="field is-grouped is-grouped-multiline">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="streetNumber"
+                placeholder="Number"
+              />
             </div>
 
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success">Apply to Adopt</button>
-            <button class="button is-info">Add to Favorites ⭐</button>
-            <button class="button is-danger" (click)="openModal = false">
-              Close
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="streetName"
+                placeholder="Street"
+              />
+            </div>
+
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="city"
+                placeholder="City"
+              />
+            </div>
+
+            <div class="control">
+              <input
+                class="input"
+                style="width: 60px"
+                formControlName="state"
+                type="text"
+                placeholder="State"
+              />
+            </div>
+
+            <div class="control">
+              <input
+                class="input"
+                style="width: 133px"
+                type="text"
+                formControlName="zipCode"
+                placeholder="Zip code"
+              />
+            </div>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="field">
+            <label class="label">Phone Number:</label>
+            <div class="control">
+              <input
+                class="input"
+                type="tel"
+                formControlName="phoneNumber"
+                placeholder="555-555-5555"
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input
+                class="input"
+                type="email"
+                formControlName="email"
+                placeholder="Email@email.com"
+              />
+            </div>
+          </div>
+
+          <label
+            class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+            style="margin: 50px"
+            >Household Information</label
+          >
+
+          <!-- Residence Radio Buttons -->
+          <div style="margin-top: 30px">
+            <label class="label">Type of Residence:</label>
+            <div class="field is-grouped">
+              <div class="control is-flex is-align-items-center">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="housingType"
+                    formControlName="housingType"
+                  />
+                  House
+                </label>
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="housingType"
+                    formControlName="housingType"
+                  />> Apartment
+                </label>
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="housingType"
+                    formControlName="housingType"
+                  />> Duplex
+                </label>
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="housingType"
+                    formControlName="housingType"
+                  />> Other
+                </label>
+                <input
+                  class="input"
+                  style="width: 265px; margin-left: 15px"
+                  type="text"
+                  formControlName="housingType"
+                  placeholder=""
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Home Life Questions -->
+
+          <!-- Household members -->
+          <label class="label" style="margin-top: 25px"
+            >Name and age of all household members:</label
+          >
+
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhName"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="hhAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhName"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="hhAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhName"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="hhAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhName"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="hhAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhName"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="hhAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhName"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="hhAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+
+          <!-- Animals In Home -->
+          <label class="label" style="margin-top: 25px"
+            >Name, type, and age of all pets in the home:</label
+          >
+
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhPet"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="petType"
+                placeholder="Type"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="petAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhPet"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="petType"
+                placeholder="Type"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="petAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="hhPet"
+                placeholder="Name"
+              />
+            </div>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                formControlName="petType"
+                placeholder="Type"
+              />
+            </div>
+            <div class="control">
+              <input
+                style="width: 70px"
+                class="input"
+                type="text"
+                formControlName="petAge"
+                placeholder="Age"
+              />
+            </div>
+          </div>
+
+          <!-- Care for pet questions -->
+          <div class="field is-grouped" style="margin-top: 30px">
+            <label class="label is-flex is-align-items-center"
+              >Where will you keep this pet when you are home?</label
+            >
+            <div class="control">
+              <div class="select" style="margin-left: 15px">
+                <select style="width: 300px" formControlName="whenHome">
+                  <option>Select</option>
+                  <option>Inside residence only</option>
+                  <option>Outside only</option>
+                  <option>Inside and outside</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field is-grouped">
+            <label class="label is-flex is-align-items-center"
+              >Where will you keep this pet when you are not home?</label
+            >
+            <div class="control">
+              <div class="select" style="margin-left: 15px">
+                <select style="width: 300px" formControlName="whenNotHome">
+                  <option>Select</option>
+                  <option>Inside residence only</option>
+                  <option>In fenced yard</option>
+                  <option>Outside on chain/tether/lead</option>
+                  <option>Boarded/Pet Daycare</option>
+                  <option>Family/Friends</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Questions -->
+
+          <label
+            class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+            style="margin: 50px"
+            >Additional Information</label
+          >
+          <div>
+            <label class="label">Are you employed?</label>
+            <label class="radio">
+              <input
+                type="radio"
+                name="employment"
+                formControlName="employment"
+              />
+              Full-time
+            </label>
+            <label class="radio">
+              <input
+                type="radio"
+                name="employment"
+                formControlName="employment"
+              />
+              Part-time
+            </label>
+            <label class="radio">
+              <input
+                type="radio"
+                name="employment"
+                formControlName="employment"
+              />
+              Retired
+            </label>
+            <label class="radio">
+              <input
+                type="radio"
+                name="employment"
+                formControlName="employment"
+              />
+              No
+            </label>
+          </div>
+
+          <div>
+            <label class="label" style="margin-top: 10px"
+              >Can you commit to taking care of this pet for the entirety of its
+              life span?</label
+            >
+            <label class="radio">
+              <input
+                type="radio"
+                name="commitment"
+                formControlName="commitment"
+              />
+              Yes
+            </label>
+            <label class="radio">
+              <input
+                type="radio"
+                name="commitment"
+                formControlName="commitment"
+              />
+              No
+            </label>
+          </div>
+
+          <div>
+            <label class="label" style="margin-top: 10px"
+              >Have you ever surrendered a pet?</label
+            >
+            <label class="radio">
+              <input
+                type="radio"
+                name="surrender"
+                formControlName="surrender"
+              />
+              Yes
+            </label>
+            <label class="radio">
+              <input
+                type="radio"
+                name="surrender"
+                formControlName="surrender"
+              />
+              No
+            </label>
+          </div>
+
+          <!-- Message/Question Box -->
+          <div class="field" style="margin-top: 30px">
+            <label class="label">Message</label>
+            <div class="control">
+              <textarea
+                class="textarea"
+                placeholder="I am interested in adopting..."
+                formControlName="message"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Terms Checkboxes -->
+          <div class="field" style="margin-top: 30px">
+            <div class="control">
+              <label class="checkbox">
+                <input type="checkbox" formControlName="ageCheck" />
+                I am 18 years old or older.
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input type="checkbox" formControlName="termsConditions" />
+                I agree to the <a>Pet Pursuit Terms and Conditions.</a>
+              </label>
+            </div>
+          </div>
+        </form>
+        <!-- Form end -->
+      </section>
+      <footer class="modal-card-foot has-background-info">
+        <div class="field is-grouped">
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-success"
+              (click)="onSubmit(templateFormRef)"
+            >
+              Submit
             </button>
-          </footer>
+          </div>
+          <div class="control">
+            <button
+              class="button is-danger"
+              (click)="isApplyClicked = false"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
+      </footer>
+    </div>
+    <!-- Modal End for Adoption Request Form -->
+  </div>
+
+  <div class="modal" [ngClass]="openModal ? 'is-active' : ''">
+    <div class="modal-background">
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Cowboy</p>
+          <button
+            class="delete"
+            aria-label="close"
+            (click)="openModal = false"
+          ></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="modal-content content">
+            <figure class="media-left">
+              <p class="image">
+                <img
+                  src="../../assets/img/cattle_dog.jpg"
+                  class="clickedPetImage"
+                />
+              </p>
+            </figure>
+            <h1><strong>A little bit about Cowboy</strong></h1>
+            <h3><strong>Cattle Dog Mix</strong></h3>
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
+              velit dolores totam pariatur deleniti voluptatem voluptate dolor
+              labore laborum repudiandae, fugit perferendis eveniet iste
+              expedita, dolore sunt nam nisi rerum? Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Suscipit ex quod odit. Sed
+              blanditiis quia dolores iusto iure cum vel saepe, ad ducimus
+              inventore totam in nulla. Eius, vitae officiis.
+            </div>
+          </div>
+          <div class="column">
+            <div class="block">
+              AgeapplyButtonClicked
+              <span class="tag is-pulled-right is-info">2 years old</span>
+            </div>
+            <hr />
+            <div class="block">
+              Sex
+              <span class="tag is-pulled-right is-info">Male</span>
+            </div>
+            <hr />
+            <div class="block">
+              Good with children?
+              <span class="tag is-pulled-right is-success">Yes</span>
+            </div>
+            <hr />
+            <div class="block">
+              Good with other dogs?
+              <span class="tag is-pulled-right is-danger">No</span>
+            </div>
+            <hr />
+            <div class="block">
+              Good with cats?
+              <span class="tag is-pulled-right is-danger">No</span>
+            </div>
+            <hr />
+            <div class="block">
+              Spayed/neutered?
+              <span class="tag is-pulled-right is-success">Yes</span>
+            </div>
+            <hr />
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" (click)="applyButtonClicked()">
+            Apply to Adopt
+          </button>
+          <button class="button is-info">Add to Favorites ⭐</button>
+          <button class="button is-danger" (click)="openModal = false">
+            Close
+          </button>
+        </footer>
       </div>
     </div>
+  </div>
 </div>
