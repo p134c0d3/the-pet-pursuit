@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { AdoptionRequestFormComponent } from './adoptionRequests/adoption-request-form/adoption-request-form.component';
+import { AdoptionRequestFormComponent } from './adoption-request-form/adoption-request-form.component';
 import { RequestListComponent } from './adoptionRequests/request-list/request-list.component';
 import { HomeComponent } from './home/home.component';
 

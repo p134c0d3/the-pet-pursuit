@@ -1,17 +1,20 @@
 
 
 <!-- Modal for Adoption Request Form -->
-<div class="modal is-active">
+<div class="modal" [ngClass]="openApplicationModal ? 'is-active' : ''">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head has-background-info">
       <p class="modal-card-title has-text-weight-bold is-size-3 has-text-centered">Adoption Request Form</p>
-      <button class="delete" aria-label="close"></button>
+      <button
+      class="delete"
+      aria-label="close"
+      (click)="openApplicationModal = false"></button>
     </header>
     <section class="modal-card-body">
 
     <!-- Form start -->
-      <form [formGroup]="adoptionRequestForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="adoptionRequestForm" (ngSubmit)="onSubmit(templateFormRef)" #templateFormRef="ngForm">
     <!-- Pet Name -->
     <div class="field">
       <label class="label">Pet Name:</label> <!-- auto populate from the pet card they click on -->
@@ -488,21 +491,22 @@
         </label>
       </div>
     </div>
+
+
+
   </form>
-    <!-- Form end -->
-
-
+  <!-- Form end -->
   </section>
-    <footer class="modal-card-foot has-background-info">
-      <div class="field is-grouped">
-        <div class="control">
-          <button type="submit" class="button is-success">Submit</button>
-        </div>
-        <div class="control">
-          <button class="button is-danger">Cancel</button>
-        </div>
-     </div>
-    </footer>
+  <footer class="modal-card-foot has-background-info">
+    <div class="field is-grouped">
+      <div class="control">
+        <button type="submit" class="button is-success" (click)="onSubmit(templateFormRef)">Submit</button>
+      </div>
+      <div class="control">
+        <button class="button is-danger" (click)="openApplicationModal = false">Cancel</button>
+      </div>
+   </div>
+  </footer>
 
   </div>
 </div>
