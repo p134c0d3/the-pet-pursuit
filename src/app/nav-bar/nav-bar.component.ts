@@ -15,3 +15,6 @@ export class NavBarComponent {
     this.isNavbarActive=!this.isNavbarActive
   }
 }
+
+
+
