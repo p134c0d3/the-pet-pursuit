@@ -5,7 +5,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch:"full"},
+
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'nav-bar', component: NavBarComponent},
   { path: 'sign-up', component: SignUpComponent}
