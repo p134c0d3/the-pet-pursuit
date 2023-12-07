@@ -16,15 +16,16 @@ export class SignUpComponent implements OnInit {
 
   onSignup(form: NgForm) {
 
-    console.log(form)
-
     const fullname = form.value.fullname;
     const phone = form.value.phone;
     const username = form.value.username;
     const email = form.value.email;
     const password = form.value.password;
 
-    this.router.navigate(['/nav-bar']);
+    console.log(form.value)
+
+    this.router.navigate(['nav-bar']);
+    // this.router.navigate(['sign-in']);
 
     // this.authService.signupUser(email, password);
     // form.reset();
@@ -32,7 +33,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['/nav-bar']);
+    this.router.navigate(['home']);
   }
 
 }
