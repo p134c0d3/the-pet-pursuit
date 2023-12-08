@@ -34,6 +34,7 @@ export class SignUpComponent implements OnInit {
     this.isLoading=true
 
     console.log(form.value)
+
     this.authService.signup(fullname, phone, username,email,password).subscribe(resData=>{
       console.log(resData);
       this.isLoading=false

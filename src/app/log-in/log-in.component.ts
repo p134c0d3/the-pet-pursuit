@@ -8,13 +8,15 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss']
 })
+
+
 export class LogInComponent implements OnInit {
-  error:string=null
   constructor(private router: Router, private authService:AuthService) { }
   ngOnInit() {
 
   }
 
+  error:string=null
   onLogin(form: NgForm) {
 
     if(!form.valid){
@@ -23,6 +25,7 @@ export class LogInComponent implements OnInit {
 
     const email = form.value.email;
     const password = form.value.password;
+
     this.authService.login(email, password).subscribe(
       resData => {
         this.router.navigate(['home']);
