@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
       this.isLoading=false
     }, error =>{
       console.log(error)
-      this.error="An error occured"
+      this.error='An Error Occurred'
       this.isLoading=false
 
     }

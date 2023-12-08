@@ -31,7 +31,7 @@ export class LogInComponent implements OnInit {
        },
        error =>{
         console.log(error)
-        this.error='an error occured'
+        this.error='An Error Occurred'
        }
        )
 

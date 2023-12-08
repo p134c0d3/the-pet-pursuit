@@ -9,7 +9,9 @@
     </header>
     <section class="modal-card-body">
       <!-- Form start -->
-
+      <div class="notification is-danger" *ngIf="error">
+        <p>{{error}}</p>
+      </div>
       <form (ngSubmit)="onLogin(fLogin)" #fLogin="ngForm">
         <div class="field">
           <label class="label">Email</label>
