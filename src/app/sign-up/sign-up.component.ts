@@ -21,9 +21,10 @@ export class SignUpComponent implements OnInit {
   error:string=null
 
   onSignup(form: NgForm) {
-     if(!form.valid){
-      return
-     }
+    //  if(!form.valid){
+    //   return
+    //  }
+
     const fullname = form.value.fullname;
     const phone = form.value.phone;
     const username = form.value.username;
@@ -36,6 +37,8 @@ export class SignUpComponent implements OnInit {
     this.authService.signup(fullname, phone, username,email,password).subscribe(resData=>{
       console.log(resData);
       this.isLoading=false
+      this.router.navigate(['home']);
+      form.reset()
     }, error =>{
       console.log(error)
       this.error='An Error Occurred'
@@ -43,8 +46,6 @@ export class SignUpComponent implements OnInit {
 
     }
     )
-    form.reset()
-    this.router.navigate(['home']);
 
 
     // this.router.navigate(['sign-in']);
