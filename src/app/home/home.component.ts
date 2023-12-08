@@ -11,6 +11,7 @@ export class HomeComponent {
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   adoptionRequestFormHasBeenSubmitted = false;
+  
 
   constructor() {}
 
