@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { AdoptionApplicationListComponent } from './adoption-application-list/adoption-application-list.component';
 
 import { AuthComponent } from './auth/auth.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,11 +20,9 @@ import { AuthComponent } from './auth/auth.component';
     AppComponent,
     NavBarComponent,
     SignUpComponent,
-
     HomeComponent,
     AdoptionApplicationListComponent,
     LogInComponent,
-
     AuthComponent
 
   ],
@@ -31,7 +30,8 @@ import { AuthComponent } from './auth/auth.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
