@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { AdoptionApplicationListComponent } from './adoption-application-list/adoption-application-list.component';
 
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { AuthComponent } from './auth/auth.component';
     HomeComponent,
     AdoptionApplicationListComponent,
     LogInComponent,
-
+    LoadingSpinnerComponent,
     AuthComponent
 
   ],
