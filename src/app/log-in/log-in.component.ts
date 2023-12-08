@@ -3,22 +3,19 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss']
+  selector: 'app-log-in',
+  templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class LogInComponent implements OnInit {
 
   constructor(private router: Router) { }
   ngOnInit() {
 
   }
 
-  onSignup(form: NgForm) {
+  onLogin(form: NgForm) {
 
-    const fullname = form.value.fullname;
-    const phone = form.value.phone;
-    const username = form.value.username;
     const email = form.value.email;
     const password = form.value.password;
 
