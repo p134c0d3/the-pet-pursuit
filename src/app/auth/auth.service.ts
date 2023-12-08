@@ -1,7 +1,8 @@
 import {Injectable } from "@angular/core";
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpErrorResponse} from '@angular/common/http'
 import { Router } from "@angular/router";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, catchError, tap, throwError } from "rxjs";
+import { User } from "./user.model";
 
 
 //this is optional but may need it
@@ -21,7 +22,7 @@ interface AuthResponseData{
 
 
 export class AuthService{
-  // user=new BehaviorSubject <User>(null)
+  user=new BehaviorSubject <User>(null)
   constructor(private http:HttpClient, private router:Router) {}
 
 
@@ -35,7 +36,15 @@ export class AuthService{
       email:email,
       password:password,
      returnSecureToken: true
-    }) }
+    },
+
+
+    ).pipe(catchError(this.handleError), tap(resData=>{
+      this.handleAuthentication(resData.email, resData.localId, resData.idToken)
+    }))
+
+  }
+
 
 
 
@@ -43,16 +52,87 @@ export class AuthService{
    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWBFOaq2Dsx2DqeEUDClLQ7bMV5HupJ-Y',
     {email:email,
       password:password,
-      returnSecureToken: true
+      returnSecureToken: true,
+      
      }
+    ).pipe(
+      catchError(this.handleError),
+      tap(resData=>{
+      this.handleAuthentication(
+        resData.email,
+        resData.localId,
+        resData.idToken
+        )
+  })
     )
+}
+
+  private handleAuthentication(
+
+    email:string,
+    userId:string,
+    token:string
+    ){
+    const user =new User(email, userId, token)
+
+    this.user.next(user)
+    localStorage.setItem("userData", JSON.stringify(user))
+
+
   }
+
+  logout(){
+    this.user.next(null)
+    // this.router.navigate([''])//need to finish
+  }
+
+
+
+  private handleError(errorRes: HttpErrorResponse){
+    let errorMessage='an unknown eror occured';
+    if(!errorRes.error || !errorRes.error.error){
+      return throwError(errorMessage)
+    }
+    switch (errorRes.error.error.message){
+      case 'Email_Exits':
+        errorMessage="this email exist already"
+        break;
+        case 'email_not_found':
+        errorMessage='this email does not exist'
+        break;
+        case 'inavalid_passowrd':
+          errorMessage='this password is not correct'
+          break;
+        }
+        return throwError(errorMessage)
+
+      }
+
+
 
 
 
 }
 
-///stoped at sending the signup request...need form
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
