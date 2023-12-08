@@ -17,6 +17,9 @@ export class SignUpComponent implements OnInit {
 
   }
 
+  isLoading=false
+  error:string=null
+
   onSignup(form: NgForm) {
      if(!form.valid){
       return
@@ -27,11 +30,16 @@ export class SignUpComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
+    this.isLoading=true
+
     console.log(form.value)
     this.authService.signup(fullname, phone, username,email,password).subscribe(resData=>{
       console.log(resData);
+      this.isLoading=false
     }, error =>{
       console.log(error)
+      this.error="An error occured"
+      this.isLoading=false
 
     }
     )
