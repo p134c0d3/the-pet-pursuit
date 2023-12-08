@@ -8,6 +8,8 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
+
+
 export class SignUpComponent implements OnInit {
 
   constructor(private router: Router, private authService:AuthService) { }
@@ -16,9 +18,9 @@ export class SignUpComponent implements OnInit {
   }
 
   onSignup(form: NgForm) {
-    //  if(!form.valid){
-    //   return
-    //  }
+     if(!form.valid){
+      return
+     }
     const fullname = form.value.fullname;
     const phone = form.value.phone;
     const username = form.value.username;
@@ -30,10 +32,11 @@ export class SignUpComponent implements OnInit {
       console.log(resData);
     }, error =>{
       console.log(error)
+
     }
     )
     form.reset()
-    // this.router.navigate(['home']);
+    this.router.navigate(['home']);
 
 
     // this.router.navigate(['sign-in']);

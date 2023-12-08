@@ -1,5 +1,6 @@
 import {Injectable } from "@angular/core";
 import {HttpClient} from '@angular/common/http'
+import { Router } from "@angular/router";
 
 
 //this is optional but may need it
@@ -19,22 +20,22 @@ interface AuthResponseData{
 
 
 export class AuthService{
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient, private router:Router) {}
 
 
   signup(fullname:string, phone:number, email:string, username:string, password:string){
     return this.http.post<AuthResponseData>(
-      ' https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWBFOaq2Dsx2DqeEUDClLQ7bMV5HupJ-Y',
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWBFOaq2Dsx2DqeEUDClLQ7bMV5HupJ-Y',
     {
-      fullname:String,
-      phone:Number,
+      fullname:fullname,
+      phone:phone,
       email:email,
-      username:String,
+      username:username,
       password:password,
      returnSecureToken: true
-    }
-    )
-  }
+    }) }
+
+
 
   login(email:string, password:string){
    return this.http.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWBFOaq2Dsx2DqeEUDClLQ7bMV5HupJ-Y',
