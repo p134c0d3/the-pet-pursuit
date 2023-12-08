@@ -82,13 +82,14 @@ export class AuthService{
 
 
   private handleError(errorRes: HttpErrorResponse){
-    let errorMessage='An unknown eror occured! 😿';
+    // let errorMessage='An unknown eror occured! 😿';
+    let errorMessage='This email/password is not correct or does not exist! 😿'
     if(!errorRes.error || !errorRes.error.error){
       return throwError(errorMessage)
     }
     switch (errorRes.error.error.message){
       case 'EMAIL_EXISTS':
-        errorMessage="This email already exists! 😿"
+        errorMessage="This email already exists! 😿";
         break;
         case 'EMAIL_NOT_FOUND':
         errorMessage='This email does not exist! 😿 '
