@@ -33,7 +33,7 @@ export class LogInComponent implements OnInit {
         // isSuccessful=true
        },
        errorRes =>{
-         console.log(errorRes)
+        //  console.log(errorRes)
          this.error=errorRes
        }
        )
