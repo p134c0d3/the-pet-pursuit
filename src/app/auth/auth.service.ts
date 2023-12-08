@@ -53,7 +53,7 @@ export class AuthService{
     {email:email,
       password:password,
       returnSecureToken: true,
-      
+
      }
     ).pipe(
       catchError(this.handleError),
@@ -94,13 +94,13 @@ export class AuthService{
       return throwError(errorMessage)
     }
     switch (errorRes.error.error.message){
-      case 'Email_Exits':
+      case 'EMAIL_EXISTS':
         errorMessage="this email exist already"
         break;
-        case 'email_not_found':
+        case 'EMAIL_NOT_FOUND':
         errorMessage='this email does not exist'
         break;
-        case 'inavalid_passowrd':
+        case 'INVALID_PASSWORD':
           errorMessage='this password is not correct'
           break;
         }
