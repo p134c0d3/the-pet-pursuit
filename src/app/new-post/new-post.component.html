@@ -1,62 +1,72 @@
-<div class="modal">
+<!-- Modal for Creating a New Post Form-->
+
+<div class="modal" [ngClass]="isApplyClicked ? 'is-active' : ''">
   <div class="modal-background"></div>
   <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
-      <button class="delete" aria-label="close"></button>
+    <header class="modal-card-head has-background-info">
+      <p
+      class="modal-card-title has-text-weight-bold is-size-4 has-text-centered"
+      >Create New Post</p>
+      <button
+      class="delete"
+      aria-label="close"
+      (click)="isApplyClicked = false"></button>
     </header>
     <section class="modal-card-body">
-      <!-- Content ... -->
-    </section>
+      <!-- Form start ... -->
 
-<form #newPostForm="ngForm" (ngSubmit)="onSubmit(newPostForm)">
-  <div class="field title">
-    <label class="label has-text-weight-bold is-size-4" for="title">New Post</label>
-  </div>
+
+<form
+[formGroup]="newPostForm"
+(ngSubmit)="onSubmit(templateFormRef)"
+#templateFormRef="ngForm">
+
 <div class="field">
-  <label class="label" for="petName">Pet Name</label>
+  <label
+  class="label"
+  >Pet Name</label>
   <div class="control">
     <input
     class="input"
     type="text"
-    id="petName"
-    name="petName"
-    required
+    formControlName="petName"
     placeholder="e.g. Bruno">
   </div>
 </div>
 
 <div class="field">
-  <label class="label" for="petType">Pet Type</label>
+  <label
+  class="label"
+  >Pet Type</label>
   <div class="control">
     <input
     class="input"
     type="text"
-    id="petType"
-    name="petType"
-    required
+    formControlName="petType"
     placeholder="e.g. Dog">
   </div>
 </div>
 
 <div class="field">
-  <label class="label" for="sex">Sex</label>
+  <label
+  class="label"
+  >Sex</label>
   <div class="control">
     <input
     class="input"
     type="text"
-    id="sex"
-    name="sex"
-    required
+    formControlName="petGender"
     placeholder="e.g. Male">
   </div>
 </div>
 
 <div class="field">
-  <label class="label" for="age">Age</label>
+  <label
+  class="label"
+  >Age</label>
   <div class="control">
     <div class="select is-link">
-      <select name="age" id="age">
+      <select formControlName="petAge">
         <option disabled selected value>Select Age</option>
         <option>0-12 Months</option>
         <option>1-3 Years</option>
@@ -70,37 +80,42 @@
 
 <div class="field">
   <div class="control">
-    <label class="label" for="spayedNeutered">Is your pet spayed or neutered?</label>
+    <label
+    class="label"
+    >Is your pet spayed or neutered?</label>
     <label class="radio">
       <input
       type="radio"
-      name="question">
+      formControlName="spayedNeutered"
+      value="Yes">
       Yes
     </label>
     <label class="radio">
       <input
       type="radio"
-      name="question">
+      formControlName="spayedNeutered"
+      value="No">
       No
     </label>
     <label class="radio">
       <input
       type="radio"
-      name="question">
+      formControlName="spayedNeutered"
+      value="N/A">
       N/A
     </label>
   </div>
 </div>
 
 <div class="field">
-  <label class="label" for="location">Location</label>
+  <label
+  class="label"
+  >Location</label>
   <div class="control">
     <input
     class="input"
     type="text"
-    id="location"
-    name="location"
-    required
+    formControlName="petLocation"
     placeholder="e.g. St.Louis, MO">
   </div>
 </div>
@@ -108,93 +123,103 @@
 <br>
 
 <div class="field">
-  <label class="label is-size-5 has-text-weight-bold" for="petDescription">Please tell us more about your pet</label>
+  <label
+  class="label is-size-5 has-text-weight-bold"
+  >Please tell us more about your pet</label>
   <div class="control">
 
-        <label class="label" for="otherQuestions">Select all that apply</label>
+        <label
+        class="label"
+        >Select all that apply</label>
         <label class="radio">
           <input
           type="radio"
-          name="question">
+          formControlName="petDescription"
+          value="Children?">
           Good with children?
         </label>
         <label class="radio">
           <input
           type="radio"
-          name="question">
+          formControlName="petDescription"
+          value="Trained?">
           House trained or litter box trained?
         </label>
         <label class="radio">
           <input
           type="radio"
-          name="question">
+          formControlName="petDescription"
+          value="Good with dogs?">
           Good with dogs?
         </label>
         <label class="radio">
           <input
           type="radio"
-          name="question">
+          formControlName="petDescription"
+          value="Good with cats?">
           Good with cats?
         </label>
         <br>
         <br>
         <label
-        class="label has-text-weight-bold" for="petDescription">Additional information</label>
+        class="label has-text-weight-bold"
+        >Additional information</label>
 
     <textarea
     class="textarea"
-    id="petDescription"
-    name="petDescription"
+    formControlName="message"
     placeholder="e.g. Bruno loves to play with his tennis ball. He is great with kids and other pets."></textarea>
   </div>
 </div>
 <br>
-<h2 class="is-size-4 has-text-weight-bold">Please tell us about yourself:</h2>
+<h2 class="is-size-4 has-text-weight-bold"
+>Please tell us about yourself:</h2>
 <br>
 <div class="field">
-  <label class="label" for="firstName">First Name</label>
+  <label
+  class="label"
+  >First Name</label>
   <div class="control">
     <input
     class="input"
     type="text"
-    id="firstName"
-    name="firstName"
-    required
+    formControlName="firstName"
     placeholder="Enter your first name">
   </div>
 </div>
 <div class="field">
-  <label class="label" for="lastName">Last Name</label>
+  <label
+  class="label"
+  >Last Name</label>
   <div class="control">
     <input
     class="input"
     type="text"
-    id="lastName"
-    name="lastName"
-    required
+    formControlName="lastName"
     placeholder="Enter your last name">
   </div>
 </div>
 <div class="field">
-  <label class="label">Email</label>
+  <label
+  class="label"
+  >Email</label>
   <div class="control">
     <input
     class="input"
     type="email"
-    id="email"
-    name="email"
-    required
+    formControlName="email"
     placeholder="Enter a valid email">
   </div>
 </div>
 <div class="field">
-  <label class="label">Phone Number</label>
+  <label
+  class="label"
+  >Phone Number</label>
   <div class="control">
     <input
     class="input"
-    type="text"
-    id="phoneNumber"
-    name="phoneNumber"
+    type="tel"
+    formControlName="phoneNumber"
     placeholder="(123)456-7890">
   </div>
 </div>
@@ -207,28 +232,24 @@
     </label>
   </div>
 </div> -->
-
+</form>
+</section>
+<footer class="modal-card-foot has-background-info">
 <div class="field is-grouped">
   <div class="control">
     <button
     type="submit"
-    class="button is-link"
-    id="submit"
-    [disabled]="!newPostForm.valid">Create Post</button>
+    class="button is-success"
+    (click)="onSubmit(templateFormRef)"
+    >Submit Post</button>
   </div>
   <div class ="control">
     <button
-    type ="reset"
-    class ="button is-link is-light"
-    id="clear"
-    >Clear</button>
+    class ="button is-danger"
+    (click)="isApplyClicked = false"
+    >Cancel</button>
   </div>
 </div>
-</form>
-
-<footer class="modal-card-foot">
-  <button class="button is-success">Save changes</button>
-  <button class="button">Cancel</button>
 </footer>
 </div>
 </div>

@@ -1,40 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { NgForm, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { newPost } from './new-post.model';
+import { newPost } from '../models/new-post.model';
 
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.scss']
 })
-export class NewPostComponent implements OnInit {
 
+export class NewPostComponent {
+  openModal = false;
+  isApplyClicked = false;
+  newPostForm: FormGroup;
+  newPostFormHasBeenSubmitted = false;
 
-  newPostForm: newPost = {
-    petName: "",
-    petType: "",
-    sex: "",
-    age: "",
-    spayedNeutered: "",
-    location: "",
-    petDescription: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: ""
-  };
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.newPostForm = new FormGroup({
+    petName: new FormControl(null, Validators.required),
+    petType: new FormControl(null, Validators.required),
+    petGender: new FormControl(null, Validators.required),
+    petAge: new FormControl(null, Validators.required),
+    spayedNeutered: new FormControl(null, Validators.required),
+    location: new FormControl(null, Validators.required),
+    petDescription: new FormControl(null, Validators.required),
+    message: new FormControl(),
+    firstName: new FormControl(null, Validators.required),
+    lastName: new FormControl(null, Validators.required),
+    email: new FormControl(null, Validators.required),
+    phoneNumber: new FormControl(null, Validators.required),
 
-  }
+  })
+}
 
-  onSubmit(formObj: NgForm) {
+onSubmit(formObj: NgForm) {
+  console.log('Form Submitted', formObj.value);
+  this.newPostFormHasBeenSubmitted = true;
+}
 
-    const { petName, petType, sex, age, spayedNeutered,  location, petDescription, firstName, lastName, email, phoneNumber } = formObj.value;
-
-    this.newPostForm = new newPost( petName, petType, sex, age, spayedNeutered, location, petDescription, firstName, lastName, email, phoneNumber );
-
-  };
+applyButtonClicked(): void {
+  this.isApplyClicked = true;
+  this.openModal = false;
+}
 
 }
