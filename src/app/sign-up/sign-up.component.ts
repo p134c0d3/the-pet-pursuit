@@ -21,9 +21,9 @@ export class SignUpComponent implements OnInit {
   error:string=null
 
   onSignup(form: NgForm) {
-    //  if(!form.valid){
-    //   return
-    //  }
+     if(!form.valid){
+      return
+     }
 
     const fullname = form.value.fullname;
     const phone = form.value.phone;

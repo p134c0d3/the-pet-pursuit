@@ -29,9 +29,9 @@ export class LogInComponent implements OnInit {
         console.log(resData);
         // isSuccessful=true
        },
-       error =>{
-        console.log(error)
-        this.error='An Error Occurred'
+       errorRes =>{
+         console.log(errorRes)
+         this.error=errorRes
        }
        )
 
