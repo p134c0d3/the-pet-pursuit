@@ -1,6 +1,7 @@
 import {Injectable } from "@angular/core";
 import {HttpClient} from '@angular/common/http'
 import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
 
 
 //this is optional but may need it
@@ -20,6 +21,7 @@ interface AuthResponseData{
 
 
 export class AuthService{
+  // user=new BehaviorSubject <User>(null)
   constructor(private http:HttpClient, private router:Router) {}
 
 
