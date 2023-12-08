@@ -16,7 +16,7 @@ import { AdoptionApplicationListComponent } from './adoption-application-list/ad
     NavBarComponent,
     SignUpComponent,
     HomeComponent,
-    AdoptionApplicationListComponent
+    AdoptionApplicationListComponent,
     LogInComponent,
   ],
   imports: [
