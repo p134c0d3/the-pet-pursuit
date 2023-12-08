@@ -39,8 +39,8 @@ export class SignUpComponent implements OnInit {
       this.isLoading=false
       this.router.navigate(['home']);
       form.reset()
-    }, error =>{
-      console.log(error)
+    }, errorRes =>{
+      console.log(errorRes)
       this.error='An Error Occurred'
       this.isLoading=false
 
