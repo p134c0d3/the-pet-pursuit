@@ -41,7 +41,7 @@ export class SignUpComponent implements OnInit {
       form.reset()
     }, errorRes =>{
       console.log(errorRes)
-      this.error='An Error Occurred'
+      this.error=errorRes
       this.isLoading=false
 
     }
