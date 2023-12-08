@@ -128,14 +128,13 @@
         >
           <!-- Pet Name -->
           <div class="field">
-            <label class="label">Pet Name:</label>
-            <!-- auto populate from the pet card they click on -->
+            <label class="label">Pet Name:</label> <!-- auto populate from the pet card they click on -->
             <div class="control">
               <input
                 class="input"
                 type="text"
                 formControlName="petName"
-                placeholder="Pet Name"
+                placeholder=""
               />
             </div>
           </div>
@@ -257,31 +256,31 @@
                 <label class="radio">
                   <input
                     type="radio"
-                    name="housingType"
                     formControlName="housingType"
+                    value="House"
                   />
                   House
                 </label>
                 <label class="radio">
                   <input
                     type="radio"
-                    name="housingType"
                     formControlName="housingType"
-                  />> Apartment
+                    value="Apartment"
+                  /> Apartment
                 </label>
                 <label class="radio">
                   <input
                     type="radio"
-                    name="housingType"
                     formControlName="housingType"
-                  />> Duplex
+                    value="Duplex"
+                  /> Duplex
                 </label>
                 <label class="radio">
                   <input
                     type="radio"
-                    name="housingType"
                     formControlName="housingType"
-                  />> Other
+                    value="Other"
+                  /> Other
                 </label>
                 <input
                   class="input"
@@ -550,32 +549,32 @@
             <label class="radio">
               <input
                 type="radio"
-                name="employment"
                 formControlName="employment"
+                value="Full-time"
               />
               Full-time
             </label>
             <label class="radio">
               <input
                 type="radio"
-                name="employment"
                 formControlName="employment"
+                value="Part-time"
               />
               Part-time
             </label>
             <label class="radio">
               <input
                 type="radio"
-                name="employment"
                 formControlName="employment"
+                value="Retired"
               />
               Retired
             </label>
             <label class="radio">
               <input
                 type="radio"
-                name="employment"
                 formControlName="employment"
+                value="No"
               />
               No
             </label>
@@ -589,16 +588,16 @@
             <label class="radio">
               <input
                 type="radio"
-                name="commitment"
                 formControlName="commitment"
+                value="Yes"
               />
               Yes
             </label>
             <label class="radio">
               <input
                 type="radio"
-                name="commitment"
                 formControlName="commitment"
+                value="No"
               />
               No
             </label>
@@ -611,16 +610,16 @@
             <label class="radio">
               <input
                 type="radio"
-                name="surrender"
                 formControlName="surrender"
+                value="Yes"
               />
               Yes
             </label>
             <label class="radio">
               <input
                 type="radio"
-                name="surrender"
                 formControlName="surrender"
+                value="No"
               />
               No
             </label>
