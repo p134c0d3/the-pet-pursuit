@@ -24,6 +24,8 @@ export class SignUpComponent implements OnInit {
 
     console.log(form.value)
 
+    form.reset;
+
     this.router.navigate(['home']);
     // this.router.navigate(['sign-in']);
 
@@ -31,6 +33,7 @@ export class SignUpComponent implements OnInit {
     // form.reset();
 
   }
+
 
   onCancel() {
     this.router.navigate(['home']);

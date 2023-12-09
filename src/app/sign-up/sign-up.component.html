@@ -5,7 +5,7 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Create An Account</p>
-      <button class="delete" aria-label="close"></button>
+      <button class="delete" aria-label="close" (click)="onCancel()"></button>
     </header>
     <section class="modal-card-body">
       <!-- Form start -->
@@ -89,7 +89,6 @@
               placeholder="Input your email"
               required
               email
-              minlength="6"
             />
             <!-- <span class="icon is-small is-left">
         <i class="fas fa-envelope"></i>
