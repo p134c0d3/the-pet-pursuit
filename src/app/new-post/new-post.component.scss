@@ -1,11 +1,23 @@
-#submit {
+header {
+  background-color: #a2d6f9;
+}
+
+p.modal-card-title {
+  color: #2b3a67;
+}
+
+footer {
+  background-color: #a2d6f9;
+}
+
+#submitNewPost {
   background-color: #2b3a67;
 }
 
-#submit:hover {
-  background-color: #1f3061;
+#submitNewPost:hover {
+  background-color: #162245;
 }
 
-#clear {
+#cancelNewPost {
   color: #2b3a67;
 }

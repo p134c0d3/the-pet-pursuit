@@ -1,11 +1,7 @@
-<!-- Modal for Creating a New Post Form-->
-
-<div class="modal" [ngClass]="isApplyClicked ? 'is-active' : ''">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head has-background-info">
+<div>
+    <header class="modal-card-head">
       <p
-      class="modal-card-title has-text-weight-bold is-size-4 has-text-centered"
+      class="modal-card-title has-text-weight-bold is-size-3 has-text-centered"
       >Create New Post</p>
       <button
       class="delete"
@@ -67,7 +63,6 @@
   <div class="control">
     <div class="select is-link">
       <select formControlName="petAge">
-        <option disabled selected value>Select Age</option>
         <option>0-12 Months</option>
         <option>1-3 Years</option>
         <option>3-6 Years</option>
@@ -131,30 +126,33 @@
         <label
         class="label"
         >Select all that apply</label>
-        <label class="radio">
+        <label class="checkbox">
           <input
-          type="radio"
+          type="checkbox"
           formControlName="petDescription"
           value="Children?">
           Good with children?
         </label>
-        <label class="radio">
+        <br>
+        <label class="checkbox">
           <input
-          type="radio"
+          type="checkbox"
           formControlName="petDescription"
           value="Trained?">
           House trained or litter box trained?
         </label>
-        <label class="radio">
+        <br>
+        <label class="checkbox">
           <input
-          type="radio"
+          type="checkbox"
           formControlName="petDescription"
           value="Good with dogs?">
           Good with dogs?
         </label>
-        <label class="radio">
+        <br>
+        <label class="checkbox">
           <input
-          type="radio"
+          type="checkbox"
           formControlName="petDescription"
           value="Good with cats?">
           Good with cats?
@@ -234,22 +232,23 @@
 </div> -->
 </form>
 </section>
-<footer class="modal-card-foot has-background-info">
+<footer class="modal-card-foot">
 <div class="field is-grouped">
   <div class="control">
     <button
     type="submit"
-    class="button is-success"
+    class="button is-link"
+    id="submitNewPost"
     (click)="onSubmit(templateFormRef)"
     >Submit Post</button>
   </div>
   <div class ="control">
     <button
-    class ="button is-danger"
+    class ="button is-link is-light"
+    id="cancelNewPost"
     (click)="isApplyClicked = false"
     >Cancel</button>
   </div>
 </div>
 </footer>
-</div>
-</div>
+

@@ -10,7 +10,6 @@ import { newPost } from '../models/new-post.model';
 })
 
 export class NewPostComponent {
-  openModal = false;
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
@@ -42,7 +41,6 @@ onSubmit(formObj: NgForm) {
 
 applyButtonClicked(): void {
   this.isApplyClicked = true;
-  this.openModal = false;
 }
 
 }
