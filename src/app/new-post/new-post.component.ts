@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 import { newPost } from '../models/new-post.model';
 
@@ -13,13 +15,17 @@ export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
+  // onLogin: any;
 
-  constructor() {}
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.newPostForm = new FormGroup({
     petName: new FormControl(null, Validators.required),
     petType: new FormControl(null, Validators.required),
+    petBreed: new FormControl(),
+    petImage: new FormControl(),
     petGender: new FormControl(null, Validators.required),
     petAge: new FormControl(null, Validators.required),
     spayedNeutered: new FormControl(null, Validators.required),
@@ -39,8 +45,12 @@ onSubmit(formObj: NgForm) {
   this.newPostFormHasBeenSubmitted = true;
 }
 
-applyButtonClicked(): void {
-  this.isApplyClicked = true;
+onCancel() {
+  this.router.navigate(['home']);
 }
+
+// applyButtonClicked(): void {
+//   this.isApplyClicked = true;
+// }
 
 }

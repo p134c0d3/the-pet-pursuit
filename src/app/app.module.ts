@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { AdoptionApplicationListComponent } from './adoption-application-list/adoption-application-list.component';
 
 import { AuthComponent } from './auth/auth.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AuthComponent } from './auth/auth.component';
     AdoptionApplicationListComponent,
     LogInComponent,
 
-    AuthComponent
+    AuthComponent,
+      FileUploadComponent
 
   ],
   imports: [

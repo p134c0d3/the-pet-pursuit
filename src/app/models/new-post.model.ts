@@ -2,7 +2,9 @@ export class newPost {
   constructor(
     public petName: string,
     public petType: string,
-    public sex: string,
+    public petBreed: string,
+    public petImage: string,
+    public petGender: string,
     public age: string,
     public spayedNeutered: string,
     public location: string,
