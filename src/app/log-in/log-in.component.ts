@@ -41,18 +41,7 @@ export class LogInComponent implements OnInit {
 
 //test
 
-
-
     console.log(form.value)
-
-
-
-
-
-    // this.router.navigate(['sign-in']);
-
-    // this.authService.signupUser(email, password);
-    // form.reset();
 
   }
 
