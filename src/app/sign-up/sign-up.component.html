@@ -12,9 +12,9 @@
       <div class="notification is-danger" *ngIf="error">
         <p>{{error}}</p>
       </div>
-      <!-- <div *ngIf="isLoading" style="text-align: center;">
+      <div *ngIf="isLoading" style="text-align: center;">
         <app-loading-spinner></app-loading-spinner>
-      </div> -->
+      </div>
       <!-- Form start -->
 
       <form (ngSubmit)="onSignup(f)" #f="ngForm" *ngIf="!isLoading">
