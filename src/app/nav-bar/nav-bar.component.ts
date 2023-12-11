@@ -15,6 +15,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   isAuthenticated=false
   isNavbarActive=false
+  isLoading=false
 
 
 
@@ -30,8 +31,13 @@ export class NavBarComponent implements OnInit, OnDestroy {
     })
   }
 
-  onLogout(){
 
+
+  onLogout(){
+    this.isLoading=true
+    setTimeout(() => {
+      this.isLoading = false; // Set loading to false after the timeout
+    }, 300);
     this.authService.logout()
 
    }

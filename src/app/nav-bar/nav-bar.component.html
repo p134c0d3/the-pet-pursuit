@@ -47,8 +47,12 @@
       </a>
 
       <div *ngIf="isAuthenticated" class="navbar-item">
-        <h3 class="is-family-monospace is-italic is-size-3 ml-2">Furry Greetings!</h3>
+        <h3 class="is-family-monospace is-italic is-size-3 ml-2">Whiskery Welcomes!</h3>
         </div>
+        <div *ngIf="isLoading" style="text-align: center;">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+
       <!-- <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="navbar-item">
         Logout 🚪
       </a> -->
