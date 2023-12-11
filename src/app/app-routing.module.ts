@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'nav-bar', component: NavBarComponent},
   { path: 'sign-up', component: SignUpComponent},
   { path: 'log-in', component: LogInComponent},
-  { path: 'incomingApplications', component: AdoptionApplicationListComponent }
+  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent }
 ];
 
 @NgModule({
