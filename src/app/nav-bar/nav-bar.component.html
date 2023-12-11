@@ -46,6 +46,10 @@
         Incoming Applications
       </a>
 
+      <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="navbar-item">
+        Logout 🚪
+      </a>
+
       <!-- <a class="navbar-item">
         Accessories
       </a> -->
