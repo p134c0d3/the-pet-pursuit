@@ -46,9 +46,9 @@
         Incoming Applications
       </a>
 
-      <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="navbar-item">
+      <!-- <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="navbar-item">
         Logout 🚪
-      </a>
+      </a> -->
 
       <!-- <a class="navbar-item">
         Accessories
@@ -61,8 +61,11 @@
           <a class="button is-grey-dark" routerLink="/sign-up">
             <strong>Sign up</strong>
           </a>
-          <a routerLink="/log-in" class="button is-grey-dark">
+          <a *ngIf="!isAuthenticated" routerLink="/log-in" class="button is-grey-dark">
             <strong>Log In</strong>
+          </a>
+          <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="button is-grey-dark">
+            <strong>Log Out</strong>
           </a>
         </div>
       </div>
