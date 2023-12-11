@@ -46,6 +46,9 @@
         Incoming Applications
       </a>
 
+      <div *ngIf="isAuthenticated" class="navbar-item">
+        <h3 class="is-family-monospace is-italic is-size-3 ml-2">Furry Greetings!</h3>
+        </div>
       <!-- <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="navbar-item">
         Logout 🚪
       </a> -->
