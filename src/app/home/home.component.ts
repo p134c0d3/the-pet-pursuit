@@ -17,7 +17,7 @@ export class HomeComponent {
     new Pet(
       'Cowboy',
       'Cattle Dog',
-      'https://dog.ceo/api/breed/Australian Cattledog/images/random',
+      'http://source.unsplash.com/200x200/?puppy',
       'Cowboy is an energetic dog...'
     ),
     new Pet(
