@@ -53,7 +53,7 @@
         <!-- Form start -->
         <form
           [formGroup]="adoptionRequestForm"
-          (ngSubmit)="onSubmit(templateFormRef)"
+          (ngSubmit)="onSubmit()"
           #templateFormRef="ngForm"
         >
           <!-- Pet Name -->
@@ -578,7 +578,7 @@
             <button
               type="submit"
               class="button is-success"
-              (click)="onSubmit(templateFormRef)"
+              (click)="onSubmit()"
             >
               Submit
             </button>
