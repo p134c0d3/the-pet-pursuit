@@ -9,7 +9,7 @@
     <div class="card is-one-third column" *ngFor="let pet of pets">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img [src]="pets.imagePath" alt="Placeholder image" />
+          <img src="{{ pet.imagePath }}" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <div class="content"> {{ pet.description }} </div>
+        <div class="content">{{ pet.description }}</div>
         <button
           class="button is-link pet-details-button"
           (click)="openModal = true"
@@ -51,11 +51,7 @@
       </header>
       <section class="modal-card-body">
         <!-- Form start -->
-        <form
-          [formGroup]="adoptionRequestForm"
-          (ngSubmit)="onSubmit()"
-          #templateFormRef="ngForm"
-        >
+        <form [formGroup]="adoptionRequestForm" (ngSubmit)="onSubmit()">
           <!-- Pet Name -->
           <div class="field">
             <label class="label">Pet Name:</label>
