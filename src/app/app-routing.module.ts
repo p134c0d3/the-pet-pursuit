@@ -5,6 +5,7 @@ import { AdoptionApplicationListComponent } from './adoption-application-list/ad
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
 
@@ -12,8 +13,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'nav-bar', component: NavBarComponent},
   { path: 'sign-up', component: SignUpComponent},
-  { path: 'log-in', component: LogInComponent}, 
-  { path: 'incomingApplications', component: AdoptionApplicationListComponent }
+  { path: 'log-in', component: LogInComponent},
+  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent }
 ];
 
 @NgModule({

@@ -46,6 +46,17 @@
         Incoming Applications
       </a>
 
+      <div *ngIf="isAuthenticated" class="navbar-item">
+        <h3 class="is-family-monospace is-italic is-size-3 ml-2">Whiskery Welcomes!</h3>
+        </div>
+        <div *ngIf="isLoading" style="text-align: center;">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+
+      <!-- <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="navbar-item">
+        Logout 🚪
+      </a> -->
+
       <!-- <a class="navbar-item">
         Accessories
       </a> -->
@@ -57,8 +68,11 @@
           <a class="button is-grey-dark" routerLink="/sign-up">
             <strong>Sign up</strong>
           </a>
-          <a routerLink="/log-in" class="button is-grey-dark">
+          <a *ngIf="!isAuthenticated" routerLink="/log-in" class="button is-grey-dark">
             <strong>Log In</strong>
+          </a>
+          <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="button is-grey-dark">
+            <strong>Log Out</strong>
           </a>
         </div>
       </div>
