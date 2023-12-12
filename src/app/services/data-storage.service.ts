@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
-import { NewPostComponent } from "../new-post/new-post.component";
-import { FormControl, FormGroup } from "@angular/forms";
+import { NewPost } from "../models/new-post.model";
 
 
 @Injectable ({providedIn: 'root'})
 export class DataStorageService {
-  newPostForm: any;
+
   firebaseURL = 'https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost.json'
-  private newPost =[];
+  private newPost: NewPost[] = [];
+
 
   constructor(
     private http: HttpClient,
@@ -18,6 +18,7 @@ export class DataStorageService {
   ) {}
 
   storeNewPost(newPost) {
+
 
     this.http.put(this.firebaseURL, newPost)
     .subscribe(response => {
