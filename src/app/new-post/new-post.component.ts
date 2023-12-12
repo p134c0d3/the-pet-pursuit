@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NgForm, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataStorageService } from '../services/data-storage.service';
 
 
-import { newPost } from '../models/new-post.model';
+
+import { NewPost } from '../models/new-post.model';
 
 @Component({
   selector: 'app-new-post',
@@ -18,7 +20,7 @@ export class NewPostComponent {
   // onLogin: any;
 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dataStorageService: DataStorageService) {}
 
   ngOnInit() {
     this.newPostForm = new FormGroup({
@@ -41,8 +43,11 @@ export class NewPostComponent {
 }
 
 onSubmit() {
+  const newPost = new
   console.log(this.newPostForm.value);
   this.newPostFormHasBeenSubmitted = true;
+  this.dataStorageService.storeNewPost(newPostForm);
+
 }
 
 onCancel() {
