@@ -1,4 +1,5 @@
 export class User {
+  token: string | number | boolean; //have to look into this later if issues
   constructor(
     // public fullname?:string,
     public email:string,

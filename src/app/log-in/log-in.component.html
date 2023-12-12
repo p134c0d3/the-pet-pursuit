@@ -8,6 +8,9 @@
       <button class="delete" aria-label="close" (click)="onCancel()"></button>
     </header>
     <section class="modal-card-body">
+      <div *ngIf="isLoading" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
       <!-- Form start -->
       <div class="notification is-danger" *ngIf="error">
         <p>{{error}}</p>

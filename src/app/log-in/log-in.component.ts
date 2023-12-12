@@ -16,6 +16,8 @@ export class LogInComponent implements OnInit {
 
   }
 
+
+  isLoading=false
   error:string=null
   onLogin(form: NgForm) {
 
@@ -25,6 +27,7 @@ export class LogInComponent implements OnInit {
 
     const email = form.value.email;
     const password = form.value.password;
+    this.isLoading=true
 
     this.authService.login(email, password).subscribe(
       resData => {
@@ -35,6 +38,7 @@ export class LogInComponent implements OnInit {
        errorRes =>{
         //  console.log(errorRes)
          this.error=errorRes
+         this.isLoading=false
        }
        )
 
