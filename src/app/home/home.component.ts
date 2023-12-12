@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Pet } from '../models/home.model';
+import { HttpClient } from '@angular/common/http';
 import { HTTPService } from '../services/HTTPService';
 import { adoptionApplication } from '../models/adoption-application.model';
+
 
 
 @Component({
@@ -14,6 +17,31 @@ export class HomeComponent {
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   adoptionRequestFormHasBeenSubmitted = false;
+
+  pets: Pet[] = [
+    new Pet(
+      'Cowboy',
+      'Cattle Dog',
+      'https://dog.ceo/api/breed/Australian Cattledog/images/random',
+      'Cowboy is an energetic dog...'
+    ),
+    new Pet(
+      'Lila',
+      'Great Dane',
+      'http://source.unsplash.com/200x200/?puppy',
+      'Lila loves long walks on the beach...'
+    ),
+    new Pet(
+      'Brutus',
+      'Rottweiler',
+      'http://source.unsplash.com/200x200/?puppy',
+      'Brutus loves to be buried in plush toys...'
+    ),
+  ];
+
+
+
+
   allApplications: adoptionApplication[] = [];
 
 
@@ -47,6 +75,7 @@ export class HomeComponent {
     termsConditions: new FormControl(null, Validators.required),
 
     })
+
   }
 
   onSubmit() {
@@ -58,10 +87,14 @@ export class HomeComponent {
     this.openModal = true; // open detail modal
   }
 
-
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
   }
-}
 
+  petPicsPost() {
+
+  }
+
+  getPetPics;
+}
