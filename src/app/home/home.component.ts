@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { HTTPService } from '../services/HTTPService';
+import { adoptionApplication } from '../models/adoption-application.model';
+
 
 @Component({
   selector: 'app-home',
@@ -11,13 +14,14 @@ export class HomeComponent {
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   adoptionRequestFormHasBeenSubmitted = false;
-  
+  allApplications: adoptionApplication[] = [];
 
-  constructor() {}
+
+  constructor(private httpService: HTTPService) {}
 
   ngOnInit() {
     this.adoptionRequestForm = new FormGroup({
-    petName: new FormControl(),
+    petName: new FormControl(null, Validators.required),
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
     streetNumber: new FormControl(null, Validators.required),
@@ -29,7 +33,7 @@ export class HomeComponent {
     email: new FormControl(null, Validators.required),
     housingType: new FormControl(null, Validators.required),
     hhName: new FormControl(),
-    hhAge: new FormControl,
+    hhAge: new FormControl(),
     hhPet: new FormControl(),
     petType: new FormControl(),
     petAge: new FormControl(),
@@ -45,9 +49,13 @@ export class HomeComponent {
     })
   }
 
-  onSubmit(formObj: NgForm) {
-    console.log('Form Submitted', formObj.value);
+  onSubmit() {
+    console.log('Form Submitted', this.adoptionRequestForm.value);
     this.adoptionRequestFormHasBeenSubmitted = true;
+    this.httpService.saveApplicationsToFirebase(this.adoptionRequestForm.value);
+    this.adoptionRequestForm.reset();  // clear form
+    this.isApplyClicked = false; // Close form
+    this.openModal = true; // open detail modal
   }
 
 
