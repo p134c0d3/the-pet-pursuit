@@ -25,11 +25,11 @@ export class NewPostComponent {
     petName: new FormControl(null, Validators.required),
     petType: new FormControl(null, Validators.required),
     petBreed: new FormControl(),
-    petImage: new FormControl(),
+
     petGender: new FormControl(null, Validators.required),
     petAge: new FormControl(null, Validators.required),
     spayedNeutered: new FormControl(null, Validators.required),
-    location: new FormControl(null, Validators.required),
+    petLocation: new FormControl(null, Validators.required),
     petDescription: new FormControl(null, Validators.required),
     message: new FormControl(),
     firstName: new FormControl(null, Validators.required),
@@ -40,8 +40,8 @@ export class NewPostComponent {
   })
 }
 
-onSubmit(formObj: NgForm) {
-  console.log('Form Submitted', formObj.value);
+onSubmit() {
+  console.log(this.newPostForm.value);
   this.newPostFormHasBeenSubmitted = true;
 }
 
