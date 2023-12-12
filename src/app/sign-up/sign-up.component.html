@@ -8,9 +8,16 @@
       <button class="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
+      <!-- may try get errror message and spinny to work -->
+      <div class="notification is-danger" *ngIf="error">
+        <p>{{error}}</p>
+      </div>
+      <div *ngIf="isLoading" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
       <!-- Form start -->
 
-      <form (ngSubmit)="onSignup(f)" #f="ngForm">
+      <form (ngSubmit)="onSignup(f)" #f="ngForm" *ngIf="!isLoading">
         <div class="field">
           <!-- <p
             style="
