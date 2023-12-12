@@ -5,7 +5,7 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">Log In</p>
-      <button class="delete" aria-label="close"></button>
+      <button class="delete" aria-label="close" (click)="onCancel()"></button>
     </header>
     <section class="modal-card-body">
       <div *ngIf="isLoading" style="text-align: center;">
@@ -28,7 +28,6 @@
               placeholder="Input your email"
               required
               email
-              minlength="6"
             />
           </div>
           <p class="help is-danger" *ngIf="!email.valid && email.touched">
@@ -45,14 +44,13 @@
               type="password"
               name="password"
               ngModel
-              placeholder="Input your password - require at least 8 characters"
+              placeholder="Input your password"
               required
-              minlength="8"
             />
           </div>
-          <p class="help is-danger" *ngIf="!password.valid && password.touched">
+          <!-- <p class="help is-danger" *ngIf="!password.valid && password.touched">
             Please enter a valid password - require at least 8 characters long
-          </p>
+          </p> -->
         </div>
 
         <div class="field is-grouped">

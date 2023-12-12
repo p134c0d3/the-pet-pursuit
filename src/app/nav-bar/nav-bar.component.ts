@@ -9,15 +9,30 @@ import { Subscription } from 'rxjs';
 })
 export class NavBarComponent implements OnInit, OnDestroy {
 
-  private userSub: Subscription
-
-  constructor(private authService:AuthService) {}
-
-  isAuthenticated=false
-  isNavbarActive=false
-  isLoading=false
 
 
+  isNavbarActive=false;
+  isLogin = false;
+  private sub: Subscription;
+
+  constructor (private authService: AuthService) {}
+
+  //user object is not null when user is logged in
+
+  ngOnInit() {
+    this.sub = this.authService.user
+    .subscribe(user => {
+      this.isLogin = !!user;
+    });
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 
 
   toggleNav(){

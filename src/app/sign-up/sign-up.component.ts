@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
@@ -11,6 +11,8 @@ import { AuthService } from '../auth/auth.service';
 
 
 export class SignUpComponent implements OnInit {
+
+  form: FormGroup;
 
   constructor(private router: Router, private authService:AuthService) { }
   ngOnInit() {
@@ -35,6 +37,7 @@ export class SignUpComponent implements OnInit {
 
     console.log(form.value)
 
+
     this.authService.signup(fullname, phone, username,email,password).subscribe(resData=>{
       console.log(resData);
       this.isLoading=false
@@ -49,15 +52,24 @@ export class SignUpComponent implements OnInit {
     )
 
 
-    // this.router.navigate(['sign-in']);
+  this.form = new FormGroup ({
 
-    // this.authService.signupUser(fullname, phone, username, email, password);
-    // form.reset();
+    'fullname': new FormGroup(fullname),
+    'phone': new FormGroup(phone),
+    'username': new FormGroup(username),
+    'email': new FormGroup(email),
+    'password': new FormGroup(password)
+
+  })
+
+    form.reset();
 
   }
+
 
   onCancel() {
     this.router.navigate(['home']);
   }
+
 
 }
