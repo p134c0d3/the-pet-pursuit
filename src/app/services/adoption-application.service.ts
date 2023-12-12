@@ -6,25 +6,22 @@ import { HTTPService } from './HTTPService';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdoptionApplicationService {
-  firebaseApplicationsURL = "https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications.json"
+  firebaseApplicationsURL =
+    'https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications.json';
 
   private allApplications: adoptionApplication[] = [];
 
-  constructor(private http: HttpClient,
-              private httpService: HTTPService) { }
+  constructor(private http: HttpClient) {}
 
- /*  getApplications(): Observable<adoptionApplication[]> {
+  /*  getApplications(): Observable<adoptionApplication[]> {
     return this.http.get<adoptionApplication[]>(this.firebaseApplicationsURL)
 
   } */
 
-
   setApplications() {
     /* this.allApplications = data || []; */
-
   }
-
 }
