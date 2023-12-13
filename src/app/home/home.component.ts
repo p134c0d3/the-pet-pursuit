@@ -93,4 +93,10 @@ export class HomeComponent {
   petPicsPost() {}
 
   getPetPics;
+
+
+
+  fav(){
+    console.log("hey")
+  }
 }
