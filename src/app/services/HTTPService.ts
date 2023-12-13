@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdoptionApplicationService } from './adoption-application.service';
 import { adoptionApplication } from '../models/adoption-application.model';
@@ -41,7 +41,10 @@ export class HTTPService {
     take(1),
     exhaustMap(user =>{
     return this.http.get(
-      this.firebaseApplicationsURL
+      this.firebaseApplicationsURL,
+      {
+        params:new HttpParams().set('auth', user.token)
+      }
       )
    }),  tap((res: adoptionApplication) => {
     console.log(res, 'res');
