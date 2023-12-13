@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdoptionApplicationService } from './adoption-application.service';
 import { adoptionApplication } from '../models/adoption-application.model';
-import { tap } from 'rxjs';
+import { exhaustMap, take, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -33,7 +33,29 @@ export class HTTPService {
     );
   }
 
+
+
+
   fetchApplicationsFromFirebase() {
+   return this.auth.user.pipe(
+    take(1),
+    exhaustMap(user =>{
+    return this.http.get(
+      this.firebaseApplicationsURL
+      )
+   }),  tap((res: adoptionApplication) => {
+    console.log(res, 'res');
+    this.applicationService.setApplications();
+  }))
+
+}
+
+
+
+
+
+
+
     /* return this.http
       .get(this.firebaseApplicationsURL, {})
         .subscribe((res) => {
@@ -44,17 +66,21 @@ export class HTTPService {
         ); */
     /*  return this.http.get(this.firebaseApplicationsURL, {}) */
 
-    return this.http.get(this.firebaseApplicationsURL, {}).pipe(
-      tap((res: adoptionApplication) => {
-        console.log(res, 'res');
-        this.applicationService.setApplications();
-      })
-    );
-  }
 
-  storeApplications(results) {
-    results.map((result) => {
-      console.log('result', result);
-    });
-  }
+
+    //last known work
+
+    // return this.http.get(this.firebaseApplicationsURL, {}).pipe(
+    //   tap((res: adoptionApplication) => {
+    //     console.log(res, 'res');
+    //     this.applicationService.setApplications();
+    //   })
+    // );
+
+
+  // storeApplications(results) {
+  //   results.map((result) => {
+  //     console.log('result', result);
+  //   });
+  // }
 }
