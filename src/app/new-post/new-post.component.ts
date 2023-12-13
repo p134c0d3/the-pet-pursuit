@@ -15,7 +15,6 @@ export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
-  // onLogin: any;
 
 
   constructor(private router: Router) {}
@@ -25,17 +24,16 @@ export class NewPostComponent {
     petName: new FormControl(null, Validators.required),
     petType: new FormControl(null, Validators.required),
     petBreed: new FormControl(),
-
     petGender: new FormControl(null, Validators.required),
     petAge: new FormControl(null, Validators.required),
-    spayedNeutered: new FormControl(null, Validators.required),
     petLocation: new FormControl(null, Validators.required),
-    petDescription: new FormControl(null, Validators.required),
+    spayedNeutered: new FormControl(null, Validators.required),
+    petDescription: new FormControl(),
     message: new FormControl(),
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
     email: new FormControl(null, Validators.required),
-    phoneNumber: new FormControl(null, Validators.required),
+    phoneNumber: new FormControl(),
 
   })
 }
