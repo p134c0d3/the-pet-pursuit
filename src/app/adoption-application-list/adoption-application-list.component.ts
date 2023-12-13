@@ -48,6 +48,10 @@ export class AdoptionApplicationListComponent implements OnInit {
   }
 
 
+  //  get(){
+  //   this.httpService.fetchApplicationsFromFirebase();
+  //  }
+
 
   /* delete(): void {
     this.applicationService.deleteApplication().subscribe();

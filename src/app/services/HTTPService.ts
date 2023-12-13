@@ -35,55 +35,72 @@ export class HTTPService {
 
 
 
-
   fetchApplicationsFromFirebase() {
-   return this.auth.user.pipe(
-    take(1),
-    exhaustMap(user =>{
-    return this.http.get(
-      this.firebaseApplicationsURL,
-      {
-        params:new HttpParams().set('auth', user.token)
-      }
-      )
-   }),  tap((res: adoptionApplication) => {
-    console.log(res, 'res');
-    this.applicationService.setApplications();
-  }))
+  const authToken = this.auth.getToken();
 
+  if (!authToken) {
+    console.error('No auth token found');
+    return;
+  }
+
+  const urlWithAuth = `${this.firebaseApplicationsURL}?auth=${authToken}`;
+
+  this.http.get(urlWithAuth).subscribe(
+    (data) => {
+      console.log(data);
+      // Handle the fetched data as needed
+    },
+    (error) => {
+      console.error('Error fetching applications:', error);
+    }
+  );
 }
 
 
+//from max code
+//   fetchApplicationsFromFirebase() {
+//    return this.auth.user.pipe(
+//     take(1),
+//     exhaustMap(user =>{
+//     return this.http.get(
+//       this.firebaseApplicationsURL,
+//       {
+//         params:new HttpParams().set('auth', user.token)
+//       }
+//       )
+//    }),  tap((res: adoptionApplication) => {
+//     console.log(res, 'res');
+//     // this.applicationService.setApplications();
+//   }))
+
+// }
 
 
 
 
 
-    /* return this.http
-      .get(this.firebaseApplicationsURL, {})
-        .subscribe((res) => {
-          console.log("app results", res)
-          this.applicationData = res;
-          console.log("applicationData", this.applicationData)
-        }
-        ); */
-    /*  return this.http.get(this.firebaseApplicationsURL, {}) */
 
 
 
-    //last known work
+// fetchApplicationsFromFirebase() {
+//   this.http.get(this.firebaseApplicationsURL).subscribe(data =>{
+//     console.log(data)
+//   })
 
-    // return this.http.get(this.firebaseApplicationsURL, {}).pipe(
-    //   tap((res: adoptionApplication) => {
-    //     console.log(res, 'res');
-    //     this.applicationService.setApplications();
-    //   })
-    // );
+// }
 
 
-  // storeApplications(results) {
-  //   results.map((result) => {
-  //     console.log('result', result);
-  //   });
-  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
