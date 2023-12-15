@@ -1,5 +1,3 @@
-
-
 export class NewPost {
     public id: number;
      public petName: string;
@@ -32,5 +30,4 @@ export class NewPost {
       this.email = email;
       this.phoneNumber = phoneNumber;
      }
-
 }

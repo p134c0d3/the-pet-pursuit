@@ -14,7 +14,6 @@ export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
-  // onLogin: any;
 
   constructor(private router: Router, private dataStorageService: DataStorageService, private formBuilder: FormBuilder) {
     this.newPostForm = this.formBuilder.group({
