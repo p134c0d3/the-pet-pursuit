@@ -14,6 +14,8 @@ export class HomeComponent {
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   adoptionRequestFormHasBeenSubmitted = false;
+  incompleteSections: string[] = [];
+  onSubmitClicked = false;
 
   pets: Pet[] = [
     new Pet(
@@ -51,27 +53,29 @@ export class HomeComponent {
       state: new FormControl(null, Validators.required),
       zipCode: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
       housingType: new FormControl(null, Validators.required),
-      hhName: new FormControl(),
-      hhAge: new FormControl(),
-      hhPet: new FormControl(),
-      petType: new FormControl(),
-      petAge: new FormControl(),
+      hhName: new FormControl(null),
+      hhAge: new FormControl(null),
+      hhPet: new FormControl(null),
+      petType: new FormControl(null),
+      petAge: new FormControl(null),
       whenHome: new FormControl(null, Validators.required),
       whenNotHome: new FormControl(null, Validators.required),
       employment: new FormControl(null, Validators.required),
       commitment: new FormControl(null, Validators.required),
       surrender: new FormControl(null, Validators.required),
-      message: new FormControl(),
+      message: new FormControl(null),
       ageCheck: new FormControl(null, Validators.required),
       termsConditions: new FormControl(null, Validators.required),
     });
   }
 
+
   onSubmit() {
-    console.log('Form Submitted', this.adoptionRequestForm.value);
-    if (this.adoptionRequestForm.valid) {
+    this.onSubmitClicked = true;
+    
+    if (this.adoptionRequestForm.valid && this.incompleteSections.length === 0) {
       this.adoptionRequestFormHasBeenSubmitted = true;
       this.httpService.saveApplicationsToFirebase(
         this.adoptionRequestForm.value
@@ -81,6 +85,7 @@ export class HomeComponent {
       this.openModal = true;
       console.log('form is valid');
     } else {
+      debugger
       console.log('form is not valid');
     }
   }

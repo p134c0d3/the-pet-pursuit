@@ -14,3 +14,13 @@
   height: 256px;
   width: auto;
 }
+
+form .ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+ /* Buttons right align */
+ .modal-card-foot {
+  display: flex;
+  justify-content: flex-end;
+}
