@@ -59,7 +59,7 @@
     class="input"
     type="text"
     formControlName="petBreed"
-    placeholder="e.g. Great Dane">
+    placeholder="e.g. Great Dane - (optional)">
   </div>
 </div>
 
@@ -112,14 +112,14 @@
       name="petAge"
       formControlName="petAge"
       >
-        <option disabled selected>Select Age</option>
+        <option disabled selected value>Select Age</option>
         <option value="0-12 Months">0-12 Months</option>
         <option value="1-3 Years">1-3 Years</option>
         <option value="3-6 Years">3-6 Years</option>
         <option value="6-9 Years">6-9 Years</option>
         <option value="9+ Years">9+ Years</option>
-
       </select>
+
       <span
       class="help is-danger"
       *ngIf="!newPostForm.get('petAge').valid && newPostForm.get('petAge').touched">Please select your pet's age</span>
@@ -244,7 +244,7 @@
     name="message"
     class="textarea"
     formControlName="message"
-    placeholder="e.g. Bruno loves to play with his tennis ball. He is great with kids and other pets."></textarea>
+    placeholder="e.g. Bruno loves to play with his tennis ball. - (optional)"></textarea>
   </div>
 </div>
 <br>

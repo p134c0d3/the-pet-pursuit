@@ -30,7 +30,7 @@ export class NewPostComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: [''],
 
     })
   }

@@ -4,7 +4,7 @@ export class NewPost {
      public petType: string;
      public petBreed: string;
      public petGender: string;
-     public age: string;
+     public petAge: string;
      public spayedNeutered: string;
      public petLocation: string;
      public petDescription: string;
@@ -14,13 +14,13 @@ export class NewPost {
      public email: string;
      public phoneNumber: string;
 
-     constructor (id: number, petName: string, petType: string, petBreed: string, petGender: string, age: string, spayedNeutered: string, petLocation: string, petDescription: string, message: string, firstName: string, lastName: string, email: string, phoneNumber: string) {
+     constructor (id: number, petName: string, petType: string, petBreed: string, petGender: string, petAge: string, spayedNeutered: string, petLocation: string, petDescription: string, message: string, firstName: string, lastName: string, email: string, phoneNumber: string) {
       this.id = id;
       this.petName = petName;
       this.petType = petType;
       this.petBreed = petBreed;
       this.petGender = petGender;
-      this.age = age;
+      this.petAge = petAge;
       this.spayedNeutered = spayedNeutered;
       this.petLocation = petLocation;
       this.petDescription = petDescription;
