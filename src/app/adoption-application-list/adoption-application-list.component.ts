@@ -10,46 +10,31 @@ import { Observable } from 'rxjs';
   styleUrls: ['./adoption-application-list.component.scss']
 })
 export class AdoptionApplicationListComponent implements OnInit {
-  applications: adoptionApplication = {
- petName: '',
- firstName: '',
- lastName: '',
- streetNumber: 0,
- streetName: '',
- city: '',
- state: '',
- zipCode: 0,
- phoneNumber: 0,
- email: '',
- housingType: '',
- whenHome: '',
- whenNotHome: '',
- employment: '',
- commitment: '',
- surrender: '',
- ageCheck: false,
- termsConditions: false,
- hhName: [],
- hhAge: [],
- hhPet: [],
- petType: [],
- petAge: [],
- message: '',
-  }
+  appArray: adoptionApplication[] = [];
+
   constructor(private httpService: HTTPService) {}
 
 
-  ngOnInit(): void {
-    /* this.httpService.fetchApplicationsFromFirebase().subscribe((res) => {
-      console.log(res, "res")
-      return res
-    }) */
-    this.httpService.fetchApplicationsFromFirebase();
+  ngOnInit() {
+
+    this.httpService.fetchApplicationsFromFirebase().subscribe((res) => {
+      this.appArray = res;
+    });
+
   }
+
+  subToAppArray() {
+    this.httpService.applicationArraySubject.subscribe((appArray) => {
+      console.log("appArray", appArray)
+      debugger
+    })
+  }
+};
+
 
 
 
   /* delete(): void {
     this.applicationService.deleteApplication().subscribe();
   } */
-}
+
