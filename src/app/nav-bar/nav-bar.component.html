@@ -1,0 +1,75 @@
+<nav
+  class="navbar has-shadow is-info py-1"
+  role="navigation"
+  aria-label="main navigation"
+>
+  <div class="navbar-brand">
+    <div class="navbar-item">
+      <h1 class="is-size-3 has-text-weight-bold">The Pet Pursuit</h1>
+      <img
+        class="mx-3"
+        src="https://images.unsplash.com/photo-1583023297298-9c17fecb197e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTYxfHxwYXclMjBwcmludHxlbnwwfHwwfHx8MA%3D%3D"
+        alt=""
+        width="40"
+        height="40"
+      />
+    </div>
+
+    <a
+      role="button"
+      class="navbar-burger"
+      [ngClass]="{ xSym: isNavbarActive === true }"
+      (click)="toggleNav()"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarCon" class="navbar-menu" [class.is-active]="isNavbarActive">
+    <div class="navbar-start">
+      <a routerLink="/home" class="navbar-item"> Home 🐾 </a>
+
+      <a routerLink="/accessories" class="navbar-item access">
+        Accessories 🛍️
+      </a>
+
+      <a routerLink="/favorites" class="navbar-item"> Favorites ⭐ </a>
+
+      <a routerLink="/incomingApplications" class="navbar-item">
+        Incoming Applications
+      </a>
+
+      <div *ngIf="isAuthenticated" class="navbar-item">
+        <h3 class="is-family-monospace is-italic is-size-3 ml-2">Whiskery Welcomes!</h3>
+        </div>
+        <div *ngIf="isLoading" style="text-align: center;">
+          <app-loading-spinner></app-loading-spinner>
+        </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-grey-dark" routerLink="/sign-up">
+            <strong>Sign up</strong>
+          </a>
+
+          <a *ngIf="!isAuthenticated" routerLink="/log-in" class="button is-grey-dark">
+            <strong>Log In</strong>
+          </a>
+          <a *ngIf="isAuthenticated" routerLink="/new-post" class="button is-grey-dark">
+            Create New Post</a>
+          <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="button is-grey-dark">
+
+            <strong>Log Out</strong>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

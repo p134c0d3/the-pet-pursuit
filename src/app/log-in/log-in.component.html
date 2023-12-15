@@ -1,0 +1,80 @@
+<!-- Modal for Creating Account Form-->
+
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Log In</p>
+      <button class="delete" aria-label="close" (click)="onCancel()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div *ngIf="isLoading" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <!-- Form start -->
+      <div class="notification is-danger" *ngIf="error">
+        <p>{{error}}</p>
+      </div>
+      <form (ngSubmit)="onLogin(fLogin)" #fLogin="ngForm">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              #email="ngModel"
+              class="input"
+              type="email"
+              name="email"
+              ngModel
+              placeholder="Input your email"
+              required
+              email
+            />
+          </div>
+          <p class="help is-danger" *ngIf="!email.valid && email.touched">
+            Please enter a valid email
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              #password="ngModel"
+              class="input"
+              type="password"
+              name="password"
+              ngModel
+              placeholder="Input your password"
+              required
+            />
+          </div>
+          <!-- <p class="help is-danger" *ngIf="!password.valid && password.touched">
+            Please enter a valid password - require at least 8 characters long
+          </p> -->
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button
+              class="button is-link"
+              type="submit"
+              [disabled]="!fLogin.valid"
+            >
+              Login
+            </button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light" (click)="onCancel()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Form end -->
+    </section>
+    <footer class="modal-card-foot"></footer>
+  </div>
+</div>
+
+<!-- Modal End for Log-in Form -->

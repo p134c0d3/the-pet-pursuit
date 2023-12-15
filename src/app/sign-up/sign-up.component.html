@@ -1,0 +1,157 @@
+<!-- Modal for Creating Account Form-->
+
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create An Account</p>
+      <button class="delete" aria-label="close" (click)="onCancel()"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- may try get errror message and spinny to work -->
+      <div class="notification is-danger" *ngIf="error">
+        <p>{{ error }}</p>
+      </div>
+      <div *ngIf="isLoading" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+      <!-- Form start -->
+
+      <form (ngSubmit)="onSignup(f)" #f="ngForm" *ngIf="!isLoading">
+        <div class="field">
+          <!-- <p
+            style="
+              font-size: x-large;
+              font-weight: bolder;
+              font-stretch: expanded;
+            "
+          >
+            Create an account
+          </p> -->
+        </div>
+        <div class="field">
+          <label class="label">Full Name</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              #fullname="ngModel"
+              type="text"
+              name="fullname"
+              ngModel
+              class="input"
+              placeholder="Input your full name"
+              required
+            />
+          </div>
+          <p class="help is-danger" *ngIf="!fullname.valid && fullname.touched">
+            Full name is required
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Phone Number (optional)</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              type="text"
+              name="phone"
+              ngModel
+              class="input"
+              placeholder="Input your phone number: XXX-XXX-XXXX"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              #username="ngModel"
+              type="text"
+              name="username"
+              ngModel
+              class="input"
+              placeholder="Input your username"
+              required
+            />
+            <!-- <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span> -->
+          </div>
+          <p class="help is-danger" *ngIf="!username.valid && username.touched">
+            Username is required
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              #email="ngModel"
+              class="input"
+              type="email"
+              name="email"
+              ngModel
+              placeholder="Input your email"
+              required
+              email
+            />
+            <!-- <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span> -->
+          </div>
+          <p class="help is-danger" *ngIf="!email.valid && email.touched">
+            Please enter a valid email
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input
+              #password="ngModel"
+              class="input"
+              type="password"
+              name="password"
+              ngModel
+              placeholder="Input your password - require at least 8 characters"
+              required
+              minlength="8"
+            />
+            <!-- <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span> -->
+          </div>
+          <p class="help is-danger" *ngIf="!password.valid && password.touched">
+            Please enter a valid password - require at least 8 characters long
+          </p>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link" type="submit" [disabled]="!f.valid">
+              Submit
+            </button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light" (click)="onCancel()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Form end -->
+    </section>
+    <footer class="modal-card-foot"></footer>
+  </div>
+</div>
+
+<!-- Modal End for Create Account Form -->
