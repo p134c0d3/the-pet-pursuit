@@ -47,7 +47,7 @@ export class HTTPService {
 
   const urlWithAuth = `${this.firebaseApplicationsURL}?auth=${authToken}`;
 
-  this.http.get(urlWithAuth).pipe(map(resData=>{
+  return this.http.get(urlWithAuth).pipe(map(resData=>{
     const postsArray=[]
     for(const key in resData){
       if(resData.hasOwnProperty(key))
@@ -56,19 +56,9 @@ export class HTTPService {
     return postsArray
   })
 
-  ).
-  subscribe(
-    (data) => {
+  )
 
-      this.posts=data
-    },
-    (error) => {
-      console.error('Error fetching applications:', error);
-    }
-  );
-}
-
-
+  }
 
 
 

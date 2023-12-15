@@ -47,12 +47,20 @@ posts:any[]=[]
   ngOnInit(): void {
 
 
-    this.httpService.fetchApplicationsFromFirebase()
+    this.httpService.fetchApplicationsFromFirebase().
+    subscribe(
+      (data) => {
+
+        this.posts=data
+      },
+      (error) => {
+        console.error('Error fetching applications:', error);
+      }
+    );
 
 
-    this.posts=this.httpService.posts
 
-    console.log(this.posts)
+
 
 
 
