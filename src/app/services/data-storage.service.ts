@@ -3,13 +3,14 @@ import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth/auth.service";
 import { NewPost } from "../models/new-post.model";
 import { adoptionApplication } from "../models/adoption-application.model";
+import { environment } from "src/environments/environment.prod";
 
 
 
 @Injectable ({providedIn: 'root'})
 export class DataStorageService {
 
-  firebaseURL = 'https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost.json'
+  firebaseURL = environment.firebaseURL;
   private newPost: NewPost[] = [];
   private adoptionApplication: adoptionApplication[] = [];
 

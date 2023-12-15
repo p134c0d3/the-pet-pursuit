@@ -4,12 +4,14 @@ import { AdoptionApplicationService } from './adoption-application.service';
 import { adoptionApplication } from '../models/adoption-application.model';
 import { tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { environment } from 'src/environments/environment.prod';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class HTTPService {
-  firebaseRootURL = 'https://the-pet-pursuit-default-rtdb.firebaseio.com';
+  firebaseRootURL = environment.firebaseRootURL;
   firebaseApplicationsURL = `${this.firebaseRootURL}/Applications.json`;
   applicationData;
 
