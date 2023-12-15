@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./adoption-application-list.component.scss']
 })
 export class AdoptionApplicationListComponent implements OnInit {
+
+posts:any[]=[]
+
   applications: adoptionApplication = {
  petName: '',
  firstName: '',
@@ -36,22 +39,31 @@ export class AdoptionApplicationListComponent implements OnInit {
  petAge: [],
  message: '',
   }
+
+
   constructor(private httpService: HTTPService) {}
 
 
   ngOnInit(): void {
-    /* this.httpService.fetchApplicationsFromFirebase().subscribe((res) => {
-      console.log(res, "res")
-      return res
-    }) */
-    this.httpService.fetchApplicationsFromFirebase();
+
+
+    this.httpService.fetchApplicationsFromFirebase()
+
+
+    this.posts=this.httpService.posts
+
+    console.log(this.posts)
+
+
+
+
+    }
   }
 
 
- 
 
 
   /* delete(): void {
     this.applicationService.deleteApplication().subscribe();
   } */
-}
+

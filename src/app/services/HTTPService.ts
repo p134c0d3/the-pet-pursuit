@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdoptionApplicationService } from './adoption-application.service';
 import { adoptionApplication } from '../models/adoption-application.model';
-import { exhaustMap, take, tap } from 'rxjs';
+import { exhaustMap, map, take, tap } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -18,6 +18,8 @@ export class HTTPService {
     private http: HttpClient,
     private auth: AuthService
   ) {}
+
+  posts:any[]=[]
 
   saveApplicationsToFirebase(data) {
     const authToken = this.auth.getToken();
@@ -45,49 +47,26 @@ export class HTTPService {
 
   const urlWithAuth = `${this.firebaseApplicationsURL}?auth=${authToken}`;
 
-  this.http.get(urlWithAuth).subscribe(
+  this.http.get(urlWithAuth).pipe(map(resData=>{
+    const postsArray=[]
+    for(const key in resData){
+      if(resData.hasOwnProperty(key))
+      postsArray.push({...resData[key], id:key})
+    }
+    return postsArray
+  })
+
+  ).
+  subscribe(
     (data) => {
-      console.log(data);
-      // Handle the fetched data as needed
+
+      this.posts=data
     },
     (error) => {
       console.error('Error fetching applications:', error);
     }
   );
 }
-
-
-//from max code
-//   fetchApplicationsFromFirebase() {
-//    return this.auth.user.pipe(
-//     take(1),
-//     exhaustMap(user =>{
-//     return this.http.get(
-//       this.firebaseApplicationsURL,
-//       {
-//         params:new HttpParams().set('auth', user.token)
-//       }
-//       )
-//    }),  tap((res: adoptionApplication) => {
-//     console.log(res, 'res');
-//     // this.applicationService.setApplications();
-//   }))
-
-// }
-
-
-
-
-
-
-
-
-// fetchApplicationsFromFirebase() {
-//   this.http.get(this.firebaseApplicationsURL).subscribe(data =>{
-//     console.log(data)
-//   })
-
-// }
 
 
 
