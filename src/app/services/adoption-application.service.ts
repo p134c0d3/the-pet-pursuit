@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { adoptionApplication } from '../models/adoption-application.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
-import { HTTPService } from './HTTPService';
-import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
