@@ -21,9 +21,8 @@ export class AdoptionApplicationListComponent implements OnInit {
       this.appArray = res;
     });
 
-
   }
-    /* this.httpService.fetchApplicationsFromFirebase() */
+
   subToAppArray() {
     this.httpService.applicationArraySubject.subscribe((appArray) => {
       console.log("appArray", appArray)

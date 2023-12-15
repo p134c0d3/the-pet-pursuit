@@ -11,7 +11,7 @@ import { AuthService } from '../auth/auth.service';
 export class HTTPService {
   firebaseRootURL = 'https://the-pet-pursuit-default-rtdb.firebaseio.com';
   firebaseApplicationsURL = `${this.firebaseRootURL}/Applications.json`;
-  
+
   applicationArraySubject = new Subject<adoptionApplication[]>()
 
   constructor(
