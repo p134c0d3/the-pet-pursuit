@@ -6,91 +6,21 @@
   </div>
   <hr />
   <div class="columns is-justify-content-space-evenly">
-    <div class="card is-one-third column">
+    <div class="card is-one-third column" *ngFor="let pet of pets">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="../../assets/img/cattle_dog.jpg" alt="Placeholder image" />
+          <img src="{{ pet.imagePath }}" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-size-1">Cowboy</p>
-            <p class="subtitle is-6">Cattle Dog</p>
+            <p class="title is-size-1">{{ pet.name }}</p>
+            <p class="subtitle is-6">{{ pet.breed }}</p>
           </div>
         </div>
 
-        <div class="content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
-          dolores totam pariatur deleniti voluptatem voluptate dolor labore
-          laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
-          sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
-          iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
-          vitae officiis.
-        </div>
-        <button
-          class="button is-link pet-details-button"
-          (click)="openModal = true"
-        >
-          Details
-        </button>
-      </div>
-    </div>
-    <div class="card is-one-third column">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="../../assets/img/great_dane.jpg" alt="Placeholder image" />
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="title is-size-1">Lila</p>
-            <p class="subtitle is-6">Great Dane</p>
-          </div>
-        </div>
-
-        <div class="content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
-          dolores totam pariatur deleniti voluptatem voluptate dolor labore
-          laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
-          sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
-          iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
-          vitae officiis.
-        </div>
-        <button
-          class="button is-link pet-details-button"
-          (click)="openModal = true"
-        >
-          Details
-        </button>
-      </div>
-    </div>
-    <div class="card is-one-third column">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="../../assets/img/rottweiler.jpg" alt="Placeholder image" />
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-content">
-            <p class="title is-size-1">Brutus</p>
-            <p class="subtitle is-6">Rottweiler</p>
-          </div>
-        </div>
-
-        <div class="content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit
-          dolores totam pariatur deleniti voluptatem voluptate dolor labore
-          laborum repudiandae, fugit perferendis eveniet iste expedita, dolore
-          sunt nam nisi rerum? Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Suscipit ex quod odit. Sed blanditiis quia dolores
-          iusto iure cum vel saepe, ad ducimus inventore totam in nulla. Eius,
-          vitae officiis.
-        </div>
+        <div class="content">{{ pet.description }}</div>
         <button
           class="button is-link pet-details-button"
           (click)="openModal = true"
@@ -121,14 +51,11 @@
       </header>
       <section class="modal-card-body">
         <!-- Form start -->
-        <form
-          [formGroup]="adoptionRequestForm"
-          (ngSubmit)="onSubmit(templateFormRef)"
-          #templateFormRef="ngForm"
-        >
+        <form [formGroup]="adoptionRequestForm" (ngSubmit)="onSubmit()">
           <!-- Pet Name -->
           <div class="field">
-            <label class="label">Pet Name:</label> <!-- auto populate from the pet card they click on -->
+            <label class="label">Pet Name:</label>
+            <!-- auto populate from the pet card they click on -->
             <div class="control">
               <input
                 class="input"
@@ -266,21 +193,24 @@
                     type="radio"
                     formControlName="housingType"
                     value="Apartment"
-                  /> Apartment
+                  />
+                  Apartment
                 </label>
                 <label class="radio">
                   <input
                     type="radio"
                     formControlName="housingType"
                     value="Duplex"
-                  /> Duplex
+                  />
+                  Duplex
                 </label>
                 <label class="radio">
                   <input
                     type="radio"
                     formControlName="housingType"
                     value="Other"
-                  /> Other
+                  />
+                  Other
                 </label>
                 <input
                   class="input"
@@ -571,11 +501,7 @@
               Retired
             </label>
             <label class="radio">
-              <input
-                type="radio"
-                formControlName="employment"
-                value="No"
-              />
+              <input type="radio" formControlName="employment" value="No" />
               No
             </label>
           </div>
@@ -586,19 +512,11 @@
               life span?</label
             >
             <label class="radio">
-              <input
-                type="radio"
-                formControlName="commitment"
-                value="Yes"
-              />
+              <input type="radio" formControlName="commitment" value="Yes" />
               Yes
             </label>
             <label class="radio">
-              <input
-                type="radio"
-                formControlName="commitment"
-                value="No"
-              />
+              <input type="radio" formControlName="commitment" value="No" />
               No
             </label>
           </div>
@@ -608,19 +526,11 @@
               >Have you ever surrendered a pet?</label
             >
             <label class="radio">
-              <input
-                type="radio"
-                formControlName="surrender"
-                value="Yes"
-              />
+              <input type="radio" formControlName="surrender" value="Yes" />
               Yes
             </label>
             <label class="radio">
-              <input
-                type="radio"
-                formControlName="surrender"
-                value="No"
-              />
+              <input type="radio" formControlName="surrender" value="No" />
               No
             </label>
           </div>
@@ -664,16 +574,13 @@
             <button
               type="submit"
               class="button is-success"
-              (click)="onSubmit(templateFormRef)"
+              (click)="onSubmit()"
             >
               Submit
             </button>
           </div>
           <div class="control">
-            <button
-              class="button is-danger"
-              (click)="isApplyClicked = false"
-            >
+            <button class="button is-danger" (click)="isApplyClicked = false">
               Cancel
             </button>
           </div>
@@ -682,11 +589,6 @@
     </div>
     <!-- Modal End for Adoption Request Form -->
   </div>
-
-
-
-
-
 
   <!-- petClicked Modal -->
 
