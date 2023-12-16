@@ -1,8 +1,9 @@
+import { DataStorageService } from './../services/data-storage.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Pet } from '../models/home.model';
 import { HTTPService } from '../services/HTTPService';
 import { adoptionApplication } from '../models/adoption-application.model';
+import { Pet } from '../models/pet-model';
 
 @Component({
   selector: 'app-home',
@@ -16,31 +17,16 @@ export class HomeComponent {
   adoptionRequestFormHasBeenSubmitted = false;
   incompleteSections: string[] = [];
   onSubmitClicked = false;
+  selectedPet: Pet = null;
 
-  pets: Pet[] = [
-    new Pet(
-      'Cowboy',
-      'Cattle Dog',
-      'http://source.unsplash.com/200x200/?cattledog',
-      'Cowboy is an energetic dog...'
-    ),
-    new Pet(
-      'Lila',
-      'Great Dane',
-      'http://source.unsplash.com/200x200/?greatdane',
-      'Lila loves long walks on the beach...'
-    ),
-    new Pet(
-      'Brutus',
-      'Rottweiler',
-      'http://source.unsplash.com/200x200/?rottweiler',
-      'Brutus loves to be buried in plush toys...'
-    ),
-  ];
+  pets: Pet[] = [];
 
   allApplications: adoptionApplication[] = [];
 
-  constructor(private httpService: HTTPService) {}
+  constructor(
+    private httpService: HTTPService,
+    private dataStorage: DataStorageService
+  ) {}
 
   ngOnInit() {
     this.adoptionRequestForm = new FormGroup({
@@ -53,7 +39,10 @@ export class HomeComponent {
       state: new FormControl(null, Validators.required),
       zipCode: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
+      email: new FormControl(
+        null,
+        Validators.compose([Validators.required, Validators.email])
+      ),
       housingType: new FormControl(null, Validators.required),
       hhName: new FormControl(null),
       hhAge: new FormControl(null),
@@ -69,13 +58,42 @@ export class HomeComponent {
       ageCheck: new FormControl(null, Validators.required),
       termsConditions: new FormControl(null, Validators.required),
     });
+
+    this.fetchPets();
   }
 
+  fetchPets() {
+    this.dataStorage.fetchPets().subscribe((petResults) => {
+      this.pets = petResults.map((pet) => ({
+        petName: pet.petName,
+        petBreed: pet.petBreed,
+        message: pet.message,
+        imagePath: `http://source.unsplash.com/200x200/?dog,${pet.petBreed}`,
+        petAge: pet.age,
+        petGender: pet.petGender,
+        petFixed: pet.spayedNeutered,
+      }));
+    });
+  }
+
+  subToPetsArray() {
+    this.dataStorage.allPets.subscribe((Pet) => {
+      console.log('All Pets', Pet);
+    });
+  }
+
+  openPetDetails(pet: any) {
+    this.openModal = true;
+    this.selectedPet = pet;
+  }
 
   onSubmit() {
     this.onSubmitClicked = true;
-    
-    if (this.adoptionRequestForm.valid && this.incompleteSections.length === 0) {
+
+    if (
+      this.adoptionRequestForm.valid &&
+      this.incompleteSections.length === 0
+    ) {
       this.adoptionRequestFormHasBeenSubmitted = true;
       this.httpService.saveApplicationsToFirebase(
         this.adoptionRequestForm.value
@@ -85,7 +103,6 @@ export class HomeComponent {
       this.openModal = true;
       console.log('form is valid');
     } else {
-      debugger
       console.log('form is not valid');
     }
   }
@@ -94,8 +111,4 @@ export class HomeComponent {
     this.isApplyClicked = true;
     this.openModal = false;
   }
-
-  petPicsPost() {}
-
-  getPetPics;
 }

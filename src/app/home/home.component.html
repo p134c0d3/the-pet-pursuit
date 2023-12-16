@@ -15,15 +15,15 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-size-1">{{ pet.name }}</p>
-            <p class="subtitle is-6">{{ pet.breed }}</p>
+            <p class="title is-size-1">{{ pet.petName }}</p>
+            <p class="subtitle is-6">{{ pet.petBreed }}</p>
           </div>
         </div>
 
-        <div class="content">{{ pet.description }}</div>
+        <div class="content">{{ pet.message }}</div>
         <button
           class="button is-link pet-details-button"
-          (click)="openModal = true"
+          (click)="openPetDetails(pet)"
         >
           Details
         </button>
@@ -628,7 +628,7 @@
     <div class="modal-background">
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Cowboy</p>
+          <p class="modal-card-title">{{ selectedPet?.petName }}</p>
           <button
             class="delete"
             aria-label="close"
@@ -640,52 +640,31 @@
             <figure class="media-left">
               <p class="image">
                 <img
-                  src="../../assets/img/cattle_dog.jpg"
+                  src="{{ selectedPet?.imagePath }}"
                   class="clickedPetImage"
                 />
               </p>
             </figure>
-            <h1><strong>A little bit about Cowboy</strong></h1>
+            <h1><strong>A little bit about {{ selectedPet?.petName }}</strong></h1>
             <h3><strong>Cattle Dog Mix</strong></h3>
             <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-              velit dolores totam pariatur deleniti voluptatem voluptate dolor
-              labore laborum repudiandae, fugit perferendis eveniet iste
-              expedita, dolore sunt nam nisi rerum? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Suscipit ex quod odit. Sed
-              blanditiis quia dolores iusto iure cum vel saepe, ad ducimus
-              inventore totam in nulla. Eius, vitae officiis.
+              {{ selectedPet?.message }}
             </div>
           </div>
           <div class="column">
             <div class="block">
-              AgeapplyButtonClicked
-              <span class="tag is-pulled-right is-info">2 years old</span>
+              Age
+              <span class="tag is-pulled-right is-info">{{ selectedPet?.petAge }}</span>
             </div>
             <hr />
             <div class="block">
               Sex
-              <span class="tag is-pulled-right is-info">Male</span>
-            </div>
-            <hr />
-            <div class="block">
-              Good with children?
-              <span class="tag is-pulled-right is-success">Yes</span>
-            </div>
-            <hr />
-            <div class="block">
-              Good with other dogs?
-              <span class="tag is-pulled-right is-danger">No</span>
-            </div>
-            <hr />
-            <div class="block">
-              Good with cats?
-              <span class="tag is-pulled-right is-danger">No</span>
+              <span class="tag is-pulled-right is-info">{{ selectedPet?.petGender }}</span>
             </div>
             <hr />
             <div class="block">
               Spayed/neutered?
-              <span class="tag is-pulled-right is-success">Yes</span>
+              <span class="tag is-pulled-right is-success">{{ selectedPet?.spayedNeutered }}</span>
             </div>
             <hr />
           </div>

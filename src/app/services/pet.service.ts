@@ -10,38 +10,7 @@ export class PetService {
   petChanged = new Subject<Pet[]>();
 
   private pets: Pet[] = [
-    new Pet(
-      'Cowboy',
-      'Dog',
-      'Cattle Dog',
-      'Male',
-      '3',
-      'Yes',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit dolores totam pariatur deleniti',
-      "../../assets/img/cattle_dog.jpg"
-    ),
-
-    new Pet(
-      'Lila',
-      'Dog',
-      'Great Dane',
-      'Female',
-      '6',
-      'Yes',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit dolores totam pariatur deleniti',
-      "../../assets/img/great_dane.jpg"
-    ),
-
-    new Pet(
-      'Brutus',
-      'Dog',
-      'Rottweiler',
-      'Male',
-      '2',
-      'No',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit dolores totam pariatur deleniti',
-      "../../assets/img/rottweiler.jpg"
-    ),
+   
   ];
 
   constructor() { }
@@ -73,6 +42,8 @@ export class PetService {
     this.pets.splice(index, 1);
     this.petChanged.next(this.pets.slice());
   }
+
+
 }
 
 // public petName: string;
