@@ -68,7 +68,7 @@ export class HomeComponent {
         petName: pet.petName,
         petBreed: pet.petBreed,
         message: pet.message,
-        imagePath: `http://source.unsplash.com/200x200/?dog,${pet.petBreed}`,
+        imagePath: `http://source.unsplash.com/200x200/?${pet.petType},${pet.petBreed}`,
         petAge: pet.age,
         petGender: pet.petGender,
         petFixed: pet.spayedNeutered,
