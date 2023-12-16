@@ -1,4 +1,4 @@
-export interface adoptionApplication {
+export interface AdoptionApplication {
   petName: string;
   firstName: string;
   lastName: string;

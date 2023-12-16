@@ -29,6 +29,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     AuthComponent,
     FileUploadComponent,
     LoadingSpinnerComponent,
+
   ],
   imports: [
     BrowserModule,
