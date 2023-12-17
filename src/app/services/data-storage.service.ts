@@ -1,46 +1,37 @@
-import { Injectable, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { AuthService } from "../auth/auth.service";
-import { NewPost } from "../models/new-post.model";
-import { adoptionApplication } from "../models/adoption-application.model";
-import { Pet } from "../models/pet-model";
-import { tap } from "rxjs";
-import { PetService } from "./pet.service";
 
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
+import { NewPost } from '../models/new-post.model';
+import { environment } from 'src/environments/environment.prod';
+import { Subject, map } from 'rxjs';
 
-@Injectable ({providedIn: 'root'})
-export class DataStorageService implements OnInit {
-
-  firebaseURL = 'https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost.json'
+@Injectable({ providedIn: 'root' })
+export class DataStorageService {
+  firebaseURL = environment.firebaseURL;
   private newPost: NewPost[] = [];
-  private adoptionApplication: adoptionApplication[] = [];
+  allPets = new Subject<NewPost[]>();
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private petService: PetService
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  ) {}
 
   ngOnInit (){
 
   }
   storeNewPost(newPost) {
-
-    this.http.post(this.firebaseURL, newPost)
-    .subscribe(response => {
+    this.http.post(this.firebaseURL, newPost).subscribe((response) => {
       console.log(response);
-    })
-  };
+    });
+  }
 
   // need to create modify adoptionApplication model and call this function
   storeAdoptionApplication(adoptionApplication) {
-
-    this.http.post(this.firebaseURL, adoptionApplication)
-    .subscribe(response => {
-      console.log(response);
-    })
-  };
+    this.http
+      .post(this.firebaseURL, adoptionApplication)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
 
   // need to create pet model and pet service
   // get array of pets then put it to the DB
@@ -56,16 +47,22 @@ export class DataStorageService implements OnInit {
   // need to create pet service for fetching list of pets from DB
   fetchPets() {
     return this.http
-    .get<Pet[]>(
-      'https://the-pet-pursuit-default-rtdb.firebaseio.com/newPost.json',)
+
+      .get('https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost.json')
       .pipe(
-        tap(pets => {
-          this.petService.setPets(pets)
+        map((pet) => {
+          console.log('Pets fetched: ', pet);
+          return Object.values(pet);
         })
       );
-      }
-
   }
+  // fetchPets() {
+  //   return this.http
+  //   .get(
+  //     'https://the-pet-pursuit-default-rtdb.firebaseio.com/Pet.json').subscribe (pets => {
+  //       console.log(pets);
+  //     });
 
-
+  // }
+}
 

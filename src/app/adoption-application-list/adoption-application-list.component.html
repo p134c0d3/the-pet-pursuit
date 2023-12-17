@@ -1,1 +1,23 @@
+<div class="card" *ngFor="let application of appArray">
+  <div class="card-header" >
+    <p class="card-header-title">
+      Application for {{ application.petName }}
+    </p>
+    <div class="card-content">
+      <div class="content">
+        Applicant Name: {{ application.firstName}} {{ application.lastName}}
+      </div>
+    </div>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true">▼</i>
+      </span>
+    </button>
+      <button class="is-success">Approve</button>
+      <button class="is-danger">Deny</button>
+
+
+
+
+
 

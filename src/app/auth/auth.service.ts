@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { User } from './user.model';
+import { environment } from 'src/environments/environment.prod';
 
 //this is optional but may need it
 interface AuthResponseData {
@@ -18,6 +19,7 @@ interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+  API_KEY = environment.API_KEY;
   constructor(private http: HttpClient, private router: Router) {}
 
   getToken() {
@@ -34,7 +36,7 @@ export class AuthService {
   ) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCWBFOaq2Dsx2DqeEUDClLQ7bMV5HupJ-Y',
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.API_KEY}`,
         {
           fullname: fullname,
           phone: phone,
@@ -59,7 +61,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCWBFOaq2Dsx2DqeEUDClLQ7bMV5HupJ-Y',
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.API_KEY}`,
         { email: email, password: password, returnSecureToken: true }
       )
       .pipe(
@@ -107,9 +109,3 @@ export class AuthService {
     return throwError(errorMessage);
   }
 }
-
-//sign up
-// https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
-
-//signin
-//https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
