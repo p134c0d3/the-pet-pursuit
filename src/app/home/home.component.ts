@@ -111,12 +111,13 @@ export class HomeComponent {
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
+
   }
+
 
   onCancel() {
     this.onSubmitClicked = false;
     this.isApplyClicked =false;
     this.adoptionRequestForm.reset();
-    this.adoptionFormRef.reset();
  }
 }

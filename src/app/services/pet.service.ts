@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Pet } from '../models/pet-model';
+import { NewPost } from '../models/new-post.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetService {
 
-  petChanged = new Subject<Pet[]>();
+  petChanged = new Subject<NewPost[]>();
 
-  private pets: Pet[] = [
-   
+  private pets: NewPost[] = [
+
   ];
 
   constructor() { }
@@ -26,13 +26,13 @@ export class PetService {
   }
 
   // to add a new pet
-  addPet(pet: Pet) {
+  addPet(pet: NewPost) {
     this.pets.push(pet)
     this.petChanged.next(this.pets.slice());
   }
 
   // to update pet information
-  updatePet(index: number, newPet: Pet) {
+  updatePet(index: number, newPet: NewPost) {
     this.pets[index] = newPet;
     this.petChanged.next(this.pets.slice());
   }

@@ -46,7 +46,7 @@
         <button
           class="delete"
           aria-label="close"
-          (click)="isApplyClicked = false"
+          (click)="onCancel()"
         ></button>
       </header>
       <section class="modal-card-body">
@@ -61,8 +61,7 @@
                 class="input"
                 type="text"
                 formControlName="petName"
-                placeholder=""
-              />
+                placeholder="" readonly>
             </div>
           </div>
 
