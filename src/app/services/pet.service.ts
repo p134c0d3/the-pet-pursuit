@@ -16,6 +16,7 @@ export class PetService {
     private petService: PetService
   ) {}
 
+
   setPets(pets: NewPost[]) {
     this.pets = pets;
     this.petChanged.next(this.pets.slice());
@@ -33,7 +34,9 @@ export class PetService {
 
   // to add a new pet
   addPet(pet: NewPost) {
+
     this.pets.push(pet);
+
     this.petChanged.next(this.pets.slice());
   }
 

@@ -46,7 +46,7 @@
         <button
           class="delete"
           aria-label="close"
-          (click)="isApplyClicked = false"
+          (click)="onCancel()"
         ></button>
       </header>
       <section class="modal-card-body">
@@ -61,8 +61,7 @@
                 class="input"
                 type="text"
                 formControlName="petName"
-                placeholder=""
-              />
+                placeholder="" readonly>
             </div>
           </div>
 
@@ -81,12 +80,10 @@
                 formControlName="firstName"
                 placeholder="First Name"
               />
-
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('firstName').valid &&
-            adoptionRequestForm.get('firstName').touched">First name required.</p>
-            <p class="help is-danger" *ngIf="adoptionRequestForm.get('firstName').invalid">
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('firstName').valid && onSubmitClicked">
               First name required.
-            </p>
+              </p>
             </div>
             <div class="control">
               <input
@@ -96,13 +93,8 @@
                 placeholder="Last Name"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('lastName').valid &&
-                  adoptionRequestForm.get('lastName').touched
-                "
-              >
-                Last name required.
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('lastName').valid && onSubmitClicked">
+              Last name required.
               </p>
             </div>
           </div>
@@ -118,13 +110,8 @@
                 placeholder="Number"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('streetNumber').valid &&
-                  adoptionRequestForm.get('streetNumber').touched
-                "
-              >
-                Street number required.
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('streetNumber').valid && onSubmitClicked">
+              Street number required.
               </p>
             </div>
 
@@ -136,13 +123,8 @@
                 placeholder="Street"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('streetName').valid &&
-                  adoptionRequestForm.get('streetName').touched
-                "
-              >
-                Street name required.
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('streetName').valid && onSubmitClicked">
+              Street name required.
               </p>
             </div>
 
@@ -154,13 +136,8 @@
                 placeholder="City"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('city').valid &&
-                  adoptionRequestForm.get('city').touched
-                "
-              >
-                City required
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('city').valid && onSubmitClicked">
+              City name required.
               </p>
             </div>
 
@@ -173,13 +150,8 @@
                 placeholder="State"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('state').valid &&
-                  adoptionRequestForm.get('state').touched
-                "
-              >
-                State required.
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('state').valid && onSubmitClicked">
+              State required.
               </p>
             </div>
 
@@ -192,13 +164,8 @@
                 placeholder="Zip code"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('zipCode').valid &&
-                  adoptionRequestForm.get('zipCode').touched
-                "
-              >
-                Zip code required.
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('zipCode').valid && onSubmitClicked">
+              Zipcode required.
               </p>
             </div>
           </div>
@@ -214,13 +181,8 @@
                 placeholder="555-555-5555"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('phoneNumber').valid &&
-                  adoptionRequestForm.get('phoneNumber').touched
-                "
-              >
-                Phone number required.
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('phoneNumber').valid && onSubmitClicked">
+              Phone Number required.
               </p>
             </div>
           </div>
@@ -236,13 +198,8 @@
                 placeholder="Email@email.com"
               />
               <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('email').valid &&
-                  adoptionRequestForm.get('email').touched
-                "
-              >
-                Please enter a valid email address.
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('email').valid && onSubmitClicked">
+              Email required.
               </p>
             </div>
           </div>
@@ -300,10 +257,8 @@
               </div>
             </div>
             <p
-              class="help is-danger"
-              *ngIf="adoptionRequestForm.get('housingType').invalid"
-            >
-              Housing type required.
+            class="help is-danger" *ngIf="!adoptionRequestForm.get('housingType').valid && onSubmitClicked">
+            Please select an option.
             </p>
           </div>
 
@@ -529,9 +484,10 @@
                   <option>Outside only</option>
                   <option>Inside and outside</option>
                 </select>
-            <p class="help is-danger" *ngIf="adoptionRequestForm.get('whenHome').invalid">
-              Please select an option.
-            </p>
+                <p
+                class="help is-danger" *ngIf="!adoptionRequestForm.get('whenHome').valid && onSubmitClicked">
+                Please select an option.
+                </p>
 
               </div>
             </div>
@@ -552,13 +508,8 @@
                   <option>Family/Friends</option>
                 </select>
                 <p
-                  class="help is-danger"
-                  *ngIf="
-                    !adoptionRequestForm.get('whenNotHome').valid &&
-                    adoptionRequestForm.get('whenNotHome').touched
-                  "
-                >
-                  Please select an option.
+                class="help is-danger" *ngIf="!adoptionRequestForm.get('whenNotHome').valid && onSubmitClicked">
+                Please select an option.
                 </p>
               </div>
             </div>
@@ -603,13 +554,8 @@
             </label>
           </div>
           <p
-            class="help is-danger"
-            *ngIf="
-              !adoptionRequestForm.get('employment').valid &&
-              adoptionRequestForm.get('employment').touched
-            "
-          >
-            Please select a housing type.
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('employment').valid && onSubmitClicked">
+          Please select an option.
           </p>
 
           <div>
@@ -627,6 +573,11 @@
             </label>
           </div>
 
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('commitment').valid && onSubmitClicked">
+          Please check yes or no.
+          </p>
+
           <div>
             <label class="label" style="margin-top: 10px"
               >Have you ever surrendered a pet?</label
@@ -640,6 +591,11 @@
               No
             </label>
           </div>
+
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('surrender').valid && onSubmitClicked">
+          Please check yes or no.
+          </p>
 
           <!-- Message/Question Box -->
           <div class="field" style="margin-top: 30px">
@@ -663,6 +619,11 @@
             </div>
           </div>
 
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('ageCheck').valid && onSubmitClicked">
+          Please confirm your age.
+          </p>
+
           <div class="field">
             <div class="control">
               <label class="checkbox">
@@ -671,18 +632,22 @@
               </label>
             </div>
           </div>
+
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('termsConditions').valid && onSubmitClicked">
+          Please agree to the terms and conditions.
+          </p>
+
         </form>
         <!-- Form end -->
       </section>
       <footer class="modal-card-foot has-background-info">
         <div class="field is-grouped">
-          <div class="control">
-            <p
-              class="help is-danger is-size-4 has-text-weight-semibold has-text-left"
+          <div class="control field is-grouped">
+            <p class="is-size-4 has-text-weight-semibold formWarning"
               *ngIf="!adoptionRequestForm.valid && onSubmitClicked"
-            >
-              Please fill in all required sections.
-            </p>
+            >Please fill in all required sections.
+          </p>
             <button
               type="submit"
               class="button is-success"
@@ -690,6 +655,7 @@
             >
               Submit
             </button>
+
           </div>
           <div class="control">
             <button class="button is-danger" (click)="onCancel()">

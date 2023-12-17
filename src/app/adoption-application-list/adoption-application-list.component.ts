@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class AdoptionApplicationListComponent implements OnInit {
   appArray: adoptionApplication[] = [];
   constructor(private httpService: HTTPService) {}
+  showFullApplication = false;
 
   ngOnInit() {
     this.httpService.fetchApplicationsFromFirebase().subscribe((res) => {
@@ -24,5 +25,9 @@ export class AdoptionApplicationListComponent implements OnInit {
       console.log('appArray', appArray);
     });
 
+  }
+
+  toggleRow(application: any) {
+    application.expanded = !application.expanded;
   }
 }
