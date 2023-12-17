@@ -1,8 +1,8 @@
+import { DataStorageService } from './../services/data-storage.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Pet } from '../models/home.model';
 import { HTTPService } from '../services/HTTPService';
-import { adoptionApplication } from '../models/adoption-application.model';
+import { NewPost } from '../models/new-post.model';
 
 @Component({
   selector: 'app-home',
@@ -13,33 +13,15 @@ export class HomeComponent {
   openModal = false;
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
-  adoptionRequestFormHasBeenSubmitted = false;
   onSubmitClicked = false;
+  selectedPet: NewPost = null;
 
-  pets: Pet[] = [
-    new Pet(
-      'Cowboy',
-      'Cattle Dog',
-      'http://source.unsplash.com/200x200/?cattledog',
-      'Cowboy is an energetic dog...'
-    ),
-    new Pet(
-      'Lila',
-      'Great Dane',
-      'http://source.unsplash.com/200x200/?greatdane',
-      'Lila loves long walks on the beach...'
-    ),
-    new Pet(
-      'Brutus',
-      'Rottweiler',
-      'http://source.unsplash.com/200x200/?rottweiler',
-      'Brutus loves to be buried in plush toys...'
-    ),
-  ];
+  pets: NewPost[] = [];
 
-  allApplications: adoptionApplication[] = [];
-
-  constructor(private httpService: HTTPService) {}
+  constructor(
+    private httpService: HTTPService,
+    private dataStorage: DataStorageService
+  ) {}
 
   ngOnInit() {
     this.adoptionRequestForm = new FormGroup({
@@ -52,7 +34,10 @@ export class HomeComponent {
       state: new FormControl(null, Validators.required),
       zipCode: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
+      email: new FormControl(
+        null,
+        Validators.compose([Validators.required, Validators.email])
+      ),
       housingType: new FormControl(null, Validators.required),
       hhName: new FormControl(null),
       hhAge: new FormControl(null),
@@ -68,14 +53,53 @@ export class HomeComponent {
       ageCheck: new FormControl(null, Validators.required),
       termsConditions: new FormControl(null, Validators.required),
     });
+
+    this.fetchPets();
   }
 
+  fetchPets() {
+    this.dataStorage.fetchPets().subscribe((petResults) => {
+      this.pets = petResults.map((pet) => ({
+        id: pet.id,
+        petName: pet.petName,
+        petType: pet.petType,
+        petBreed: pet.petBreed,
+        petGender: pet.petGender,
+        petAge: pet.petAge,
+        spayedNeutered: pet.spayedNeutered,
+        petLocation: pet.petLocation,
+        petDescription: pet.petDescription,
+        message: pet.message,
+        firstName: pet.firstName,
+        lastName: pet.lastName,
+        email: pet.email,
+        phoneNumber: pet.phoneNumber,
+        imagePath: `http://source.unsplash.com/200x200/?${pet.petType},${pet.petBreed}`,
+        goodWithChildren: pet.goodWithChildren,
+        housetrained: pet.housetrained,
+        goodWithDogs: pet.goodWithDogs,
+        goodWithCats: pet.goodWithCats,
+      }));
+      console.log('Fetch Pets', petResults);
+    });
+  }
+
+  subToPetsArray() {
+    this.dataStorage.allPets.subscribe((Pet) => {
+      console.log('All Pets', Pet);
+    });
+  }
+
+  openPetDetails(pet: any) {
+    this.openModal = true;
+    this.selectedPet = pet;
+  }
 
   onSubmit() {
     this.onSubmitClicked = true;
-
-    if (this.adoptionRequestForm.valid) {
-      this.adoptionRequestFormHasBeenSubmitted = true;
+    if (
+      this.adoptionRequestForm.valid
+      ) {
       this.httpService.saveApplicationsToFirebase(
         this.adoptionRequestForm.value
       );
@@ -84,7 +108,6 @@ export class HomeComponent {
       this.openModal = true;
       console.log('form is valid');
     } else {
-      debugger
       console.log('form is not valid');
     }
   }
@@ -100,8 +123,4 @@ export class HomeComponent {
     this.adoptionRequestForm.reset();
     debugger
   }
-
-  petPicsPost() {}
-
-  getPetPics;
 }

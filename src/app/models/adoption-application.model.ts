@@ -1,3 +1,4 @@
+
 export class adoptionApplication {
   constructor (
   public petName: string,
@@ -50,4 +51,5 @@ export class adoptionApplication {
   this.ageCheck = ageCheck;
   this.termsConditions = termsConditions;
 };
+
 }

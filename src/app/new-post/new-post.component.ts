@@ -1,56 +1,110 @@
 import { Component } from '@angular/core';
-import { NgForm, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-
-
-import { newPost } from '../models/new-post.model';
+import { DataStorageService } from '../services/data-storage.service';
+import { NewPost } from '../models/new-post.model';
 
 @Component({
   selector: 'app-new-post',
   templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.scss']
+  styleUrls: ['./new-post.component.scss'],
 })
-
 export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
-  // onLogin: any;
 
+  constructor(
+    private router: Router,
+    private dataStorageService: DataStorageService,
+    private formBuilder: FormBuilder
+  ) {
+    this.newPostForm = this.formBuilder.group({
+      id: ['id'],
+      petName: ['', Validators.required],
+      petType: ['', Validators.required],
+      petBreed: [''],
+      petGender: ['', Validators.required],
+      petAge: ['', Validators.required],
+      spayedNeutered: ['', Validators.required],
+      petLocation: ['', Validators.required],
+      message: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      phoneNumber: [''],
+      imagePath: [''],
+      goodWithChildren: [''],
+      housetrained: [''],
+      goodWithDogs: [''],
+      goodWithCats: [''],
+    });
+  }
 
-  constructor(private router: Router) {}
+  ngOnInit() {}
+  ngOnDestroy() {
+    this.newPostForm.reset();
+  }
 
-  ngOnInit() {
-    this.newPostForm = new FormGroup({
-    petName: new FormControl(null, Validators.required),
-    petType: new FormControl(null, Validators.required),
-    petBreed: new FormControl(),
+  onSubmit() {
+    const {
+      petName,
+      petType,
+      petBreed,
+      petGender,
+      petAge,
+      spayedNeutered,
+      petLocation,
+      message,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      imagePath,
+      goodWithChildren,
+      housetrained,
+      goodWithDogs,
+      goodWithCats,
+    } = this.newPostForm.value;
 
-    petGender: new FormControl(null, Validators.required),
-    petAge: new FormControl(null, Validators.required),
-    spayedNeutered: new FormControl(null, Validators.required),
-    petLocation: new FormControl(null, Validators.required),
-    petDescription: new FormControl(null, Validators.required),
-    message: new FormControl(),
-    firstName: new FormControl(null, Validators.required),
-    lastName: new FormControl(null, Validators.required),
-    email: new FormControl(null, Validators.required),
-    phoneNumber: new FormControl(null, Validators.required),
+    const genID = this.generateID();
+    const newPost = new NewPost(
+      genID,
+      petName,
+      petType,
+      petBreed,
+      petGender,
+      petAge,
+      spayedNeutered,
+      petLocation,
+      message,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      imagePath,
+      goodWithChildren,
+      housetrained,
+      goodWithDogs,
+      goodWithCats
+    );
 
-  })
-}
+    console.log(this.newPostForm.value);
+    this.newPostFormHasBeenSubmitted = true;
+    this.dataStorageService.storeNewPost(newPost);
 
-onSubmit() {
-  console.log(this.newPostForm.value);
-  this.newPostFormHasBeenSubmitted = true;
-}
+    this.router.navigate(['home']);
+  }
+  generateID(): number {
+    return Math.floor(Math.random() * 9000) + 1000;
+  }
 
-onCancel() {
-  this.router.navigate(['home']);
-}
-
-// applyButtonClicked(): void {
-//   this.isApplyClicked = true;
-// }
-
+  onCancel() {
+    this.router.navigate(['home']);
+  }
 }
