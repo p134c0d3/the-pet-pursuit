@@ -703,43 +703,43 @@
             <div class="block">
               Age
 
-              <span class="tag is-pulled-right is-info">{{
+              <span class="tag is-pulled-right is-info has-text-weight-bold">{{
                 selectedPet?.petAge
               }}</span>
             </div>
             <hr />
             <div class="block">
               Sex
-              <span class="tag is-pulled-right is-info">{{
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
                 selectedPet?.petGender
               }}</span>
             </div>
             <hr />
             <div class="block">
               Spayed/neutered?
-              <span class="tag is-pulled-right is-info">{{
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
                 selectedPet?.spayedNeutered
               }}</span>
             </div>
             <hr />
             <div class="block">
               Good with children?
-              <span class="tag is-pulled-right is-info">{{ selectedPet?.goodWithChildren }}</span>
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithChildren ? "Yes" : "No" }}</span>
             </div>
             <hr />
             <div class="block">
               Housetrained?
-              <span class="tag is-pulled-right is-info">{{ selectedPet?.housetrained }}</span>
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.housetrained ? "Yes" : "No" }}</span>
             </div>
             <hr />
             <div class="block">
               Good with other dogs?
-              <span class="tag is-pulled-right is-info">{{ selectedPet?.goodWithDogs }}</span>
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithDogs ? "Yes" : "No" }}</span>
             </div>
             <hr />
             <div class="block">
               Good with cats?
-              <span class="tag is-pulled-right is-info">{{ selectedPet?.goodWithCats }}</span>
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithCats ? "Yes" : "No" }}</span>
             </div>
           </div>
         </section>

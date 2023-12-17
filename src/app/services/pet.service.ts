@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
 import { NewPost } from '../models/new-post.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PetService {
-
   petChanged = new Subject<NewPost[]>();
 
-  private pets: NewPost[] = [
+  private pets: NewPost[] = [];
 
-  ];
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private petService: PetService
+  ) {}
 
-  constructor() { }
+
+  setPets(pets: NewPost[]) {
+    this.pets = pets;
+    this.petChanged.next(this.pets.slice());
+  }
 
   // to get a list of all pets
   getPets() {
@@ -27,7 +34,9 @@ export class PetService {
 
   // to add a new pet
   addPet(pet: NewPost) {
-    this.pets.push(pet)
+
+    this.pets.push(pet);
+
     this.petChanged.next(this.pets.slice());
   }
 
@@ -42,8 +51,6 @@ export class PetService {
     this.pets.splice(index, 1);
     this.petChanged.next(this.pets.slice());
   }
-
-
 }
 
 // public petName: string;
