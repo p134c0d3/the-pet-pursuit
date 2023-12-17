@@ -81,15 +81,12 @@
                 formControlName="firstName"
                 placeholder="First Name"
               />
-              <p
-                class="help is-danger"
-                *ngIf="
-                  !adoptionRequestForm.get('firstName').valid &&
-                  adoptionRequestForm.get('firstName').touched
-                "
-              >
-                First name required.
-              </p>
+
+              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('firstName').valid &&
+            adoptionRequestForm.get('firstName').touched">First name required.</p>
+            <p class="help is-danger" *ngIf="adoptionRequestForm.get('firstName').invalid">
+              First name required.
+            </p>
             </div>
             <div class="control">
               <input
@@ -532,15 +529,10 @@
                   <option>Outside only</option>
                   <option>Inside and outside</option>
                 </select>
-                <p
-                  class="help is-danger"
-                  *ngIf="
-                    !adoptionRequestForm.get('whenHome').valid &&
-                    adoptionRequestForm.get('whenHome').touched
-                  "
-                >
-                  Please select an option.
-                </p>
+            <p class="help is-danger" *ngIf="adoptionRequestForm.get('whenHome').invalid">
+              Please select an option.
+            </p>
+
               </div>
             </div>
           </div>
@@ -700,7 +692,7 @@
             </button>
           </div>
           <div class="control">
-            <button class="button is-danger" (click)="isApplyClicked = false">
+            <button class="button is-danger" (click)="onCancel()">
               Cancel
             </button>
           </div>
@@ -744,6 +736,7 @@
           <div class="column">
             <div class="block">
               Age
+
               <span class="tag is-pulled-right is-info">{{
                 selectedPet?.petAge
               }}</span>

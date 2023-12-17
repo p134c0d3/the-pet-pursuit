@@ -12,9 +12,11 @@ export class HTTPService {
   firebaseRootURL = environment.firebaseRootURL;
   firebaseApplicationsURL = `${this.firebaseRootURL}/Applications.json`;
 
+
   applicationArraySubject = new Subject<adoptionApplication[]>();
 
   constructor(private http: HttpClient, private auth: AuthService) {}
+
 
   saveApplicationsToFirebase(data) {
     const authToken = this.auth.getToken();

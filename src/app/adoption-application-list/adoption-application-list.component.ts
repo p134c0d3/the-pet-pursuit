@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class AdoptionApplicationListComponent implements OnInit {
   appArray: adoptionApplication[] = [];
-
   constructor(private httpService: HTTPService) {}
 
   ngOnInit() {
@@ -21,11 +20,9 @@ export class AdoptionApplicationListComponent implements OnInit {
 
   subToAppArray() {
     this.httpService.applicationArraySubject.subscribe((appArray) => {
+
       console.log('appArray', appArray);
     });
+
   }
 }
-
-/* delete(): void {
-    this.applicationService.deleteApplication().subscribe();
-  } */
