@@ -1,23 +1,25 @@
-<div class="card" *ngFor="let application of appArray">
-  <div class="card-header" >
-    <p class="card-header-title">
-      Application for {{ application.petName }}
-    </p>
-    <div class="card-content">
-      <div class="content">
-        Applicant Name: {{ application.firstName}} {{ application.lastName}}
-      </div>
-    </div>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true">▼</i>
-      </span>
-    </button>
-      <button class="is-success">Approve</button>
-      <button class="is-danger">Deny</button>
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Pet Name</th>
+                  <th>Applicant Name</th>
+                  <th>Actions</th>
+                  <th>Expand</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let application of appArray">
+                  <td>{{ application.petName }}</td>
+                  <td>{{ application.firstName }} {{ application.lastName }}</td>
+                  <td><button>Approve</button><button>Deny</button></td>
+                    <td><button (click)="toggleRow(application)">Toggle</button></td>
+                </tr>
+                <tr *ngFor="let application of appArray" [ngClass]="{ 'is-hidden': !application.expanded }">
+                  <td colspan="3">
+                    <!-- Your expandable content goes here -->
+                    <td>{{ application.email }}</td>
+                    <td>{{ application.housingType }} {{ application.ageCheck }}</td>
 
-
-
-
-
-
+                </tr>
+              </tbody>
+            </table>
