@@ -16,6 +16,9 @@ import { AuthComponent } from './auth/auth.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { PetService } from './services/pet.service';
+import { DataStorageService } from './services/data-storage.service';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -39,7 +42,11 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,
+  providers: [
+    PetService,
+    DataStorageService,
+    AuthService,
+    {provide:HTTP_INTERCEPTORS,
     useClass:AuthInterceptorService,
     multi:true}],
   bootstrap: [AppComponent]
