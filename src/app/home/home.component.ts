@@ -14,7 +14,6 @@ export class HomeComponent {
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   adoptionRequestFormHasBeenSubmitted = false;
-  incompleteSections: string[] = [];
   onSubmitClicked = false;
 
   pets: Pet[] = [
@@ -74,8 +73,8 @@ export class HomeComponent {
 
   onSubmit() {
     this.onSubmitClicked = true;
-    
-    if (this.adoptionRequestForm.valid && this.incompleteSections.length === 0) {
+
+    if (this.adoptionRequestForm.valid) {
       this.adoptionRequestFormHasBeenSubmitted = true;
       this.httpService.saveApplicationsToFirebase(
         this.adoptionRequestForm.value
@@ -93,6 +92,13 @@ export class HomeComponent {
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
+
+  }
+
+  onCancel() {
+    this.isApplyClicked =false;
+    this.adoptionRequestForm.reset();
+    debugger
   }
 
   petPicsPost() {}

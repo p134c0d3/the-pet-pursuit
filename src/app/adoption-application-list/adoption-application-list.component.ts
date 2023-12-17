@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HTTPService } from '../services/HTTPService';
-import { AdoptionApplicationService } from '../services/adoption-application.service';
 import { adoptionApplication } from '../models/adoption-application.model';
 import { Observable } from 'rxjs';
 
@@ -11,7 +10,6 @@ import { Observable } from 'rxjs';
 })
 export class AdoptionApplicationListComponent implements OnInit {
   appArray: adoptionApplication[] = [];
-
   constructor(private httpService: HTTPService) {}
 
 
@@ -26,12 +24,9 @@ export class AdoptionApplicationListComponent implements OnInit {
   subToAppArray() {
     this.httpService.applicationArraySubject.subscribe((appArray) => {
       console.log("appArray", appArray)
-      debugger
     })
   }
 };
-
-
 
 
   /* delete(): void {
