@@ -2,8 +2,7 @@ import { DataStorageService } from './../services/data-storage.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
-import { adoptionApplication } from '../models/adoption-application.model';
-import { Pet } from '../models/pet-model';
+import { NewPost } from '../models/new-post.model';
 
 @Component({
   selector: 'app-home',
@@ -14,14 +13,11 @@ export class HomeComponent {
   openModal = false;
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
-  adoptionRequestFormHasBeenSubmitted = false;
   incompleteSections: string[] = [];
   onSubmitClicked = false;
-  selectedPet: Pet = null;
+  selectedPet: NewPost = null;
 
-  pets: Pet[] = [];
-
-  allApplications: adoptionApplication[] = [];
+  pets: NewPost[] = [];
 
   constructor(
     private httpService: HTTPService,
@@ -65,14 +61,27 @@ export class HomeComponent {
   fetchPets() {
     this.dataStorage.fetchPets().subscribe((petResults) => {
       this.pets = petResults.map((pet) => ({
+        id: pet.id,
         petName: pet.petName,
+        petType: pet.petType,
         petBreed: pet.petBreed,
-        message: pet.message,
-        imagePath: `http://source.unsplash.com/200x200/?${pet.petType},${pet.petBreed}`,
-        petAge: pet.age,
         petGender: pet.petGender,
-        petFixed: pet.spayedNeutered,
+        petAge: pet.petAge,
+        spayedNeutered: pet.spayedNeutered,
+        petLocation: pet.petLocation,
+        petDescription: pet.petDescription,
+        message: pet.message,
+        firstName: pet.firstName,
+        lastName: pet.lastName,
+        email: pet.email,
+        phoneNumber: pet.phoneNumber,
+        imagePath: `http://source.unsplash.com/200x200/?${pet.petType},${pet.petBreed}`,
+        goodWithChildren: pet.goodWithChildren,
+        housetrained: pet.housetrained,
+        goodWithDogs: pet.goodWithDogs,
+        goodWithCats: pet.goodWithCats,
       }));
+      console.log('Fetch Pets', petResults);
     });
   }
 
@@ -94,7 +103,6 @@ export class HomeComponent {
       this.adoptionRequestForm.valid &&
       this.incompleteSections.length === 0
     ) {
-      this.adoptionRequestFormHasBeenSubmitted = true;
       this.httpService.saveApplicationsToFirebase(
         this.adoptionRequestForm.value
       );

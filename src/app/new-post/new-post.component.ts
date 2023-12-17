@@ -33,12 +33,16 @@ export class NewPostComponent {
       petAge: ['', Validators.required],
       spayedNeutered: ['', Validators.required],
       petLocation: ['', Validators.required],
-      petDescription: ['', Validators.required],
-      message: [''],
+      message: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.required],
       phoneNumber: [''],
+      imagePath: [''],
+      goodWithChildren: [''],
+      housetrained: [''],
+      goodWithDogs: [''],
+      goodWithCats: [''],
     });
   }
 
@@ -56,12 +60,16 @@ export class NewPostComponent {
       petAge,
       spayedNeutered,
       petLocation,
-      petDescription,
       message,
       firstName,
       lastName,
       email,
       phoneNumber,
+      imagePath,
+      goodWithChildren,
+      housetrained,
+      goodWithDogs,
+      goodWithCats,
     } = this.newPostForm.value;
 
     const genID = this.generateID();
@@ -74,12 +82,16 @@ export class NewPostComponent {
       petAge,
       spayedNeutered,
       petLocation,
-      petDescription,
       message,
       firstName,
       lastName,
       email,
-      phoneNumber
+      phoneNumber,
+      imagePath,
+      goodWithChildren,
+      housetrained,
+      goodWithDogs,
+      goodWithCats
     );
 
     console.log(this.newPostForm.value);
@@ -95,8 +107,4 @@ export class NewPostComponent {
   onCancel() {
     this.router.navigate(['home']);
   }
-
-  // applyButtonClicked(): void {
-  //   this.isApplyClicked = true;
-  // }
 }

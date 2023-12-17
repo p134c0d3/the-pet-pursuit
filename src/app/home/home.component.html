@@ -57,9 +57,7 @@
             <label class="label">Pet Name:</label>
             <!-- auto populate from the pet card they click on -->
             <div class="control">
-
               <input
-
                 class="input"
                 type="text"
                 formControlName="petName"
@@ -83,8 +81,15 @@
                 formControlName="firstName"
                 placeholder="First Name"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('firstName').valid &&
-            adoptionRequestForm.get('firstName').touched">First name required.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('firstName').valid &&
+                  adoptionRequestForm.get('firstName').touched
+                "
+              >
+                First name required.
+              </p>
             </div>
             <div class="control">
               <input
@@ -93,8 +98,15 @@
                 formControlName="lastName"
                 placeholder="Last Name"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('lastName').valid &&
-            adoptionRequestForm.get('lastName').touched">Last name required.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('lastName').valid &&
+                  adoptionRequestForm.get('lastName').touched
+                "
+              >
+                Last name required.
+              </p>
             </div>
           </div>
 
@@ -108,8 +120,15 @@
                 formControlName="streetNumber"
                 placeholder="Number"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('streetNumber').valid &&
-            adoptionRequestForm.get('streetNumber').touched">Street number required.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('streetNumber').valid &&
+                  adoptionRequestForm.get('streetNumber').touched
+                "
+              >
+                Street number required.
+              </p>
             </div>
 
             <div class="control">
@@ -119,8 +138,15 @@
                 formControlName="streetName"
                 placeholder="Street"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('streetName').valid &&
-            adoptionRequestForm.get('streetName').touched">Street name required.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('streetName').valid &&
+                  adoptionRequestForm.get('streetName').touched
+                "
+              >
+                Street name required.
+              </p>
             </div>
 
             <div class="control">
@@ -130,8 +156,15 @@
                 formControlName="city"
                 placeholder="City"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('city').valid &&
-            adoptionRequestForm.get('city').touched">City required</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('city').valid &&
+                  adoptionRequestForm.get('city').touched
+                "
+              >
+                City required
+              </p>
             </div>
 
             <div class="control">
@@ -142,8 +175,15 @@
                 type="text"
                 placeholder="State"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('state').valid &&
-            adoptionRequestForm.get('state').touched">State required.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('state').valid &&
+                  adoptionRequestForm.get('state').touched
+                "
+              >
+                State required.
+              </p>
             </div>
 
             <div class="control">
@@ -154,8 +194,15 @@
                 formControlName="zipCode"
                 placeholder="Zip code"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('zipCode').valid &&
-            adoptionRequestForm.get('zipCode').touched">Zip code required.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('zipCode').valid &&
+                  adoptionRequestForm.get('zipCode').touched
+                "
+              >
+                Zip code required.
+              </p>
             </div>
           </div>
 
@@ -169,8 +216,15 @@
                 formControlName="phoneNumber"
                 placeholder="555-555-5555"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('phoneNumber').valid &&
-            adoptionRequestForm.get('phoneNumber').touched">Phone number required.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('phoneNumber').valid &&
+                  adoptionRequestForm.get('phoneNumber').touched
+                "
+              >
+                Phone number required.
+              </p>
             </div>
           </div>
 
@@ -184,8 +238,15 @@
                 formControlName="email"
                 placeholder="Email@email.com"
               />
-              <p class="help is-danger" *ngIf="!adoptionRequestForm.get('email').valid &&
-            adoptionRequestForm.get('email').touched">Please enter a valid email address.</p>
+              <p
+                class="help is-danger"
+                *ngIf="
+                  !adoptionRequestForm.get('email').valid &&
+                  adoptionRequestForm.get('email').touched
+                "
+              >
+                Please enter a valid email address.
+              </p>
             </div>
           </div>
 
@@ -239,9 +300,12 @@
                   formControlName="housingType"
                   placeholder=""
                 />
-                </div>
+              </div>
             </div>
-            <p class="help is-danger" *ngIf="adoptionRequestForm.get('housingType').invalid">
+            <p
+              class="help is-danger"
+              *ngIf="adoptionRequestForm.get('housingType').invalid"
+            >
               Housing type required.
             </p>
           </div>
@@ -468,8 +532,15 @@
                   <option>Outside only</option>
                   <option>Inside and outside</option>
                 </select>
-                <p class="help is-danger" *ngIf="!adoptionRequestForm.get('whenHome').valid &&
-            adoptionRequestForm.get('whenHome').touched">Please select an option.</p>
+                <p
+                  class="help is-danger"
+                  *ngIf="
+                    !adoptionRequestForm.get('whenHome').valid &&
+                    adoptionRequestForm.get('whenHome').touched
+                  "
+                >
+                  Please select an option.
+                </p>
               </div>
             </div>
           </div>
@@ -488,8 +559,15 @@
                   <option>Boarded/Pet Daycare</option>
                   <option>Family/Friends</option>
                 </select>
-                <p class="help is-danger" *ngIf="!adoptionRequestForm.get('whenNotHome').valid &&
-            adoptionRequestForm.get('whenNotHome').touched">Please select an option.</p>
+                <p
+                  class="help is-danger"
+                  *ngIf="
+                    !adoptionRequestForm.get('whenNotHome').valid &&
+                    adoptionRequestForm.get('whenNotHome').touched
+                  "
+                >
+                  Please select an option.
+                </p>
               </div>
             </div>
           </div>
@@ -532,8 +610,15 @@
               No
             </label>
           </div>
-          <p class="help is-danger" *ngIf="!adoptionRequestForm.get('employment').valid &&
-            adoptionRequestForm.get('employment').touched">Please select a housing type.</p>
+          <p
+            class="help is-danger"
+            *ngIf="
+              !adoptionRequestForm.get('employment').valid &&
+              adoptionRequestForm.get('employment').touched
+            "
+          >
+            Please select a housing type.
+          </p>
 
           <div>
             <label class="label" style="margin-top: 10px"
@@ -600,7 +685,10 @@
       <footer class="modal-card-foot has-background-info">
         <div class="field is-grouped">
           <div class="control">
-            <p class="help is-danger is-size-4 has-text-weight-semibold has-text-left" *ngIf="!adoptionRequestForm.valid && onSubmitClicked">
+            <p
+              class="help is-danger is-size-4 has-text-weight-semibold has-text-left"
+              *ngIf="!adoptionRequestForm.valid && onSubmitClicked"
+            >
               Please fill in all required sections.
             </p>
             <button
@@ -645,7 +733,9 @@
                 />
               </p>
             </figure>
-            <h1><strong>A little bit about {{ selectedPet?.petName }}</strong></h1>
+            <h1>
+              <strong>A little bit about {{ selectedPet?.petName }}</strong>
+            </h1>
             <h3><strong>Cattle Dog Mix</strong></h3>
             <div>
               {{ selectedPet?.message }}
@@ -654,19 +744,44 @@
           <div class="column">
             <div class="block">
               Age
-              <span class="tag is-pulled-right is-info">{{ selectedPet?.petAge }}</span>
+              <span class="tag is-pulled-right is-info">{{
+                selectedPet?.petAge
+              }}</span>
             </div>
             <hr />
             <div class="block">
               Sex
-              <span class="tag is-pulled-right is-info">{{ selectedPet?.petGender }}</span>
+              <span class="tag is-pulled-right is-info">{{
+                selectedPet?.petGender
+              }}</span>
             </div>
             <hr />
             <div class="block">
               Spayed/neutered?
-              <span class="tag is-pulled-right is-success">{{ selectedPet?.spayedNeutered }}</span>
+              <span class="tag is-pulled-right is-info">{{
+                selectedPet?.spayedNeutered
+              }}</span>
             </div>
             <hr />
+            <div class="block">
+              Good with children?
+              <span class="tag is-pulled-right is-info">{{ selectedPet?.goodWithChildren }}</span>
+            </div>
+            <hr />
+            <div class="block">
+              Housetrained?
+              <span class="tag is-pulled-right is-info">{{ selectedPet?.housetrained }}</span>
+            </div>
+            <hr />
+            <div class="block">
+              Good with other dogs?
+              <span class="tag is-pulled-right is-info">{{ selectedPet?.goodWithDogs }}</span>
+            </div>
+            <hr />
+            <div class="block">
+              Good with cats?
+              <span class="tag is-pulled-right is-info">{{ selectedPet?.goodWithCats }}</span>
+            </div>
           </div>
         </section>
         <footer class="modal-card-foot">

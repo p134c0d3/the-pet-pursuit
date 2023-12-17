@@ -2,17 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { NewPost } from '../models/new-post.model';
-import { adoptionApplication } from '../models/adoption-application.model';
 import { environment } from 'src/environments/environment.prod';
 import { Subject, map } from 'rxjs';
-import { Pet } from '../models/pet-model';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
   firebaseURL = environment.firebaseURL;
   private newPost: NewPost[] = [];
-  private adoptionApplication: adoptionApplication[] = [];
-  allPets = new Subject<Pet[]>();
+  allPets = new Subject<NewPost[]>();
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
