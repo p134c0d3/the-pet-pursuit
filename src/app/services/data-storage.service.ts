@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
@@ -13,6 +14,10 @@ export class DataStorageService {
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
+
+  ngOnInit (){
+
+  }
   storeNewPost(newPost) {
     this.http.post(this.firebaseURL, newPost).subscribe((response) => {
       console.log(response);
@@ -31,17 +36,18 @@ export class DataStorageService {
   // need to create pet model and pet service
   // get array of pets then put it to the DB
 
-  // storePet(pets: Pet[]) {
-  //   //const pets = this.petService.getPets();
-  //   this.http.put(this.firebaseURL, pets)
-  //   .subscribe(response => {
-  //     console.log(response);
-  //   })
-  // };
+  storePet() {
+    const pets = this.petService.getPets();
+    this.http.post(this.firebaseURL, pets)
+    .subscribe(response => {
+      console.log(response);
+    })
+  };
 
   // need to create pet service for fetching list of pets from DB
   fetchPets() {
     return this.http
+
       .get('https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost.json')
       .pipe(
         map((pet) => {
@@ -59,3 +65,4 @@ export class DataStorageService {
 
   // }
 }
+
