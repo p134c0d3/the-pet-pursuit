@@ -10,7 +10,7 @@ export class FavoritesComponent implements OnInit {
 
   favorites:any[]
 
-  constructor(private localStorage:localStorageService){
+  constructor(public localStorage:localStorageService){
 
 
   }
@@ -22,9 +22,25 @@ export class FavoritesComponent implements OnInit {
     // this.favorites=storedFavorites
   }
 
-  deleteFav(){
-    this.localStorage.removeFavorite
-  }
+  // deleteFav(){
+  //   this.favorites.forEach((value, index) =>{
+  //     if(value.id==this.favorites.id)
 
+  //     this.favorites.splice(index,1)
+
+  //   this.localStorage.removeFavorite
+  // }
+
+
+//   deleteFav(index: number): void {
+//     if (index >= 0 && index < this.favorites.length) {
+//       // Remove the favorite from the array
+//       this.favorites.splice(index, 1);
+
+//       // Update local storage
+//       this.localStorage.updateLocalStorage();
+//     }
+
+// }
 
 }

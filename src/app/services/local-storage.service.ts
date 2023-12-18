@@ -64,7 +64,7 @@ export class localStorageService{
 
 
 
-    private updateLocalStorage() {
+    public updateLocalStorage() {
       localStorage.setItem('favorites', JSON.stringify(this.favorites));
     }
   }
