@@ -104,6 +104,10 @@ export class NewPostComponent {
     return Math.floor(Math.random() * 9000) + 1000;
   }
 
+  trimPetBreed(breed) {
+    return breed.replaceAll(' ', '');
+  }
+
   onCancel() {
     this.router.navigate(['home']);
   }

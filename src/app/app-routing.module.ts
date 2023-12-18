@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AdoptionApplicationListComponent } from './adoption-application-list/adoption-application-list.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -7,6 +7,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { AuthGuard } from './auth/auth.guard';
+import { MyPostsComponent } from './my-posts/my-posts.component';
 
 const routes: Routes = [
 
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'log-in', component: LogInComponent},
   { path: 'new-post', component: NewPostComponent },
-  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent }
+  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent },
+  { path: 'my-posts', canActivate:[AuthGuard], component: MyPostsComponent }
 ];
 
 @NgModule({
