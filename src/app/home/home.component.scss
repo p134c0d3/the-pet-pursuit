@@ -6,11 +6,35 @@
   margin: 20px;
 }
 
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .card {
   border-radius: 10px;
+  flex: 0 0 30%;
+  margin: 1%;
 }
 
 .clickedPetImage {
   height: 256px;
   width: auto;
 }
+
+form .ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+ /* Buttons right align */
+ .modal-card-foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.formWarning {
+  padding-right: 40px;
+  color: black;
+}
+
