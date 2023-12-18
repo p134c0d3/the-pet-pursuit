@@ -1,0 +1,34 @@
+.container {
+  margin-top: 3rem;
+}
+
+.column {
+  margin: 20px;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.card {
+  border-radius: 10px;
+  flex: 0 0 30%;
+  margin: 1%;
+}
+
+.clickedPetImage {
+  height: 256px;
+  width: auto;
+}
+
+
+
+ /* Buttons right align */
+ .modal-card-foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+

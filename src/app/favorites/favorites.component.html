@@ -1,6 +1,25 @@
-<h1>Favorites</h1>
+<div class="container">
+  <div class="title-header">
+    <h1 class="is-size-1 has-text-centered">
+      Favorites
+    </h1>
+  </div>
+  <hr />
 
-<h1 *ngFor="let fav of favorites">
-{{fav.petName}}
-{{fav.imagePath}}
-</h1>
+
+
+  <div class="columns is-justify-content-space-evenly">
+    <div class="card is-one-third column" *ngFor="let fav of favorites">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{ fav.imagePath}}" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-size-1">{{ fav.petName }}</p>
+            <p class="subtitle is-6">{{ fav.petBreed }}</p>
+          </div>
+        </div>
+
