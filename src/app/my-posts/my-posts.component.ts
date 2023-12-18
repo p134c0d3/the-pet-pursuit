@@ -1,4 +1,6 @@
+import { DataStorageService } from './../services/data-storage.service';
 import { Component } from '@angular/core';
+import { NewPost } from '../models/new-post.model';
 
 @Component({
   selector: 'app-my-posts',
@@ -7,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class MyPostsComponent {
   editPost = false;
+  pets: NewPost[] = [];
 
 
 
