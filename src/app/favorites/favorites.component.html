@@ -21,5 +21,14 @@
             <p class="title is-size-1">{{ fav.petName }}</p>
             <p class="subtitle is-6">{{ fav.petBreed }}</p>
           </div>
+
+          <button
+            class="button is-danger pet-details-button"
+            (click)="deleteFav(pet)"
+
+          >
+            Delete
+          </button>
+
         </div>
 
