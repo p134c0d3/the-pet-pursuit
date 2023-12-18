@@ -37,13 +37,15 @@ export class localStorageService{
       return this.favorites;
     }
 
+
     addFavorite(item: any) {
       this.favorites.push(item);
       this.updateLocalStorage();
     }
 
     // addFavorite(item: any) {
-    //   if(!this.favorites.some(item=>)){
+    //   if(!this.favorites.some(item=>
+    //    item==item )){
     //     this.favorites.push(item);
     //     this.updateLocalStorage();
 
