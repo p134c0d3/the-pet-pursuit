@@ -39,7 +39,7 @@ export class FavoritesComponent implements OnInit {
       console.log(this.favorites)
 
       // Update local storage
-      // this.localStorage.updateLocalStorage(this.favorites);
+      this.localStorage.updateLocalStorage();
     }
 
 }

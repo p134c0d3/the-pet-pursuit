@@ -56,10 +56,19 @@ export class localStorageService{
     }
 
 
-    removeFavorite(key: string): void {
-      localStorage.removeItem(key);
-    }
+    // removeFavorite(key: string): void {
+    //   // localStorage.removeItem(key);
 
+    // }
+
+
+    removeFavorite(index: number): void {
+      // localStorage.removeItem(key);
+      if(index>=0 && index <this.favorites.length){
+        this.favorites.splice(index,1)
+      }
+
+    }
 
 
 
