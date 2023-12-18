@@ -33,6 +33,7 @@ export class FavoritesComponent implements OnInit {
 
 
   deleteFav(index: number){
+    console.log("hey")
     if (index >= 0 && index < this.favorites.length) {
       // Remove the favorite from the array
       this.favorites.splice(index, 1);
@@ -40,7 +41,6 @@ export class FavoritesComponent implements OnInit {
 
       // Update local storage
       this.localStorage.updateLocalStorage();
-      console.log("hey")
     }
 
 }
