@@ -47,8 +47,9 @@ export class localStorageService{
 
     addFavorite(item: any) {
       if(!this.favorites.some(fav=>
-       fav==fav.id )){
+       fav.id==item.id )){
         this.favorites.push(item);
+
         this.updateLocalStorage();
 
       }
