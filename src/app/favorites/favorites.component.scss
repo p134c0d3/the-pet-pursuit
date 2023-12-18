@@ -16,6 +16,8 @@
   border-radius: 10px;
   flex: 0 0 30%;
   margin: 1%;
+
+  border: black solid 1px;
 }
 
 .clickedPetImage {
@@ -33,3 +35,7 @@
 
 
 
+img{
+  background-color: black;
+  padding: 3px;
+}
