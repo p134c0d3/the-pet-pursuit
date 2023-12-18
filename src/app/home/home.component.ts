@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
+import { localStorageService } from '../services/local-storage.service.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ export class HomeComponent {
 
   constructor(
     private httpService: HTTPService,
-    private dataStorage: DataStorageService
+    private dataStorage: DataStorageService,
+    private localStorage:localStorageService
   ) {}
 
   ngOnInit() {
@@ -111,6 +113,10 @@ export class HomeComponent {
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
+
+  }
+
+  addFav(){
 
   }
 
