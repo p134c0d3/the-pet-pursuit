@@ -42,6 +42,14 @@ export class localStorageService{
       this.updateLocalStorage();
     }
 
+    // addFavorite(item: any) {
+    //   if(!this.favorites.some(item=>)){
+    //     this.favorites.push(item);
+    //     this.updateLocalStorage();
+
+    //   }
+    // }
+
 
     removeFavorite(key: string): void {
       localStorage.removeItem(key);

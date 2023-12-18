@@ -17,7 +17,6 @@ export class FavoritesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.localStorage.getFavorites())
     this.favorites=this.localStorage.getFavorites() || []
     // let storedFavorites=this.localStorage.getFavorites()
     // this.favorites=storedFavorites
