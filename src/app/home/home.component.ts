@@ -118,7 +118,7 @@ export class HomeComponent {
   }
 
   addFav(){
-    //its doing all pets ugh
+    //Working but will aloow same pet twice
     if(this.selectedPet){
       this.localStorage.addFavorite(this.selectedPet)
       console.log('Pet added to favorites:', this.selectedPet);
