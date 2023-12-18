@@ -747,7 +747,7 @@
           <button class="button is-success" (click)="applyButtonClicked()">
             Apply to Adopt
           </button>
-          <button routerLink="/favorites" (click)="addFav()" class="button is-info">Add to Favorites ⭐</button>
+          <button (click)="addFav()" (click)="openModal = false"  class="button is-info">Add to Favorites ⭐</button>
           <button class="button is-danger" (click)="openModal = false">
             Close
           </button>

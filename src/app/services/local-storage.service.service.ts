@@ -24,4 +24,30 @@ export class localStorageService{
   removeData(key: string): void {
     localStorage.removeItem(key);
   }
+
+
+
+
+
+
+
+    private favorites: string[] = [];
+
+    getFavorites(): string[] {
+      return this.favorites;
+    }
+
+    addFavorite(item: string) {
+      this.favorites.push(item);
+      this.updateLocalStorage();
+    }
+
+    removeFavorite(key: string): void {
+      localStorage.removeItem(key);
+    }
+
+
+    private updateLocalStorage() {
+      localStorage.setItem('favorites', JSON.stringify(this.favorites));
+    }
   }
