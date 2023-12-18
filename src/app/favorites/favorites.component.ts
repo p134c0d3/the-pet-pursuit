@@ -22,26 +22,7 @@ export class FavoritesComponent implements OnInit {
     // this.favorites=storedFavorites
   }
 
-  // deleteFav(){
-  //   this.favorites.forEach((value, index) =>{
-  //     if(value.id==this.favorites.id)
 
-  //     this.favorites.splice(index,1)
-
-  //   this.localStorage.removeFavorite
-  // }
-
-
-  // deleteFav(index: number){
-  //   console.log("hey")
-  //   if (index >= 0 && index < this.favorites.length) {
-  //     // Remove the favorite from the array
-  //     this.favorites.splice(index, 1);
-  //     console.log(this.favorites)
-
-  //     // Update local storage
-  //     this.localStorage.updateLocalStorage();
-  //   }
 
 
   deleteFav(e){
