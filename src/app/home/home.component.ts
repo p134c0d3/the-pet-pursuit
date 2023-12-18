@@ -95,6 +95,7 @@ export class HomeComponent {
     this.openModal = true;
     this.selectedPet = pet;
     this.adoptionRequestForm.patchValue({petName: this.selectedPet.petName});
+
   }
 
   onSubmit() {
@@ -117,7 +118,11 @@ export class HomeComponent {
   }
 
   addFav(){
-    // this.localStorage.addFavorite()
+    if(this.selectedPet){
+      this.localStorage.addFavorite("k")
+      console.log('Pet added to favorites:', this.selectedPet);
+    }
+
   }
 
 
