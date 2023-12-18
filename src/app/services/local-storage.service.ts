@@ -27,9 +27,9 @@ export class localStorageService{
 
 
 
-    private favorites: string[] = [];
+    private favorites: any[] = [];
 
-    getFavorites(): string[] {
+    getFavorites(): any[] {
       return this.favorites;
     }
 
@@ -37,6 +37,10 @@ export class localStorageService{
       this.favorites.push(item);
       this.updateLocalStorage();
     }
+
+    // addFavorite(key: string, data: any): void {
+    //   localStorage.setItem(key, JSON.stringify(data));
+    // }
 
     removeFavorite(key: string): void {
       localStorage.removeItem(key);
