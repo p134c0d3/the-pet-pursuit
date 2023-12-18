@@ -7,7 +7,11 @@ import { Injectable } from '@angular/core';
 
 export class localStorageService{
 
-  constructor(){}
+  constructor(){
+    const storedFavorites = localStorage.getItem('favorites');
+    this.favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+
+  }
 
   getData(key: string): any {
     const data = localStorage.getItem(key);
@@ -38,13 +42,13 @@ export class localStorageService{
       this.updateLocalStorage();
     }
 
-    // addFavorite(key: string, data: any): void {
-    //   localStorage.setItem(key, JSON.stringify(data));
-    // }
 
     removeFavorite(key: string): void {
       localStorage.removeItem(key);
     }
+
+
+
 
 
     private updateLocalStorage() {
