@@ -119,7 +119,7 @@ export class HomeComponent {
 
   addFav(){
     if(this.selectedPet){
-      this.localStorage.addFavorite("k")
+      this.localStorage.addFavorite(this.selectedPet)
       console.log('Pet added to favorites:', this.selectedPet);
     }
 

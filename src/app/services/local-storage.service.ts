@@ -33,7 +33,7 @@ export class localStorageService{
       return this.favorites;
     }
 
-    addFavorite(item: string) {
+    addFavorite(item: any) {
       this.favorites.push(item);
       this.updateLocalStorage();
     }
