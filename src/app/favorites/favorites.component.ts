@@ -22,5 +22,9 @@ export class FavoritesComponent implements OnInit {
     // this.favorites=storedFavorites
   }
 
+  deleteFav(){
+    this.localStorage.removeFavorite
+  }
+
 
 }
