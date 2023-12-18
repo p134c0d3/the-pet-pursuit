@@ -40,19 +40,19 @@ export class localStorageService{
     }
 
 
-    addFavorite(item: any) {
-      this.favorites.push(item);
-      this.updateLocalStorage();
-    }
-
     // addFavorite(item: any) {
-    //   if(!this.favorites.some(item=>
-    //    item==item )){
-    //     this.favorites.push(item);
-    //     this.updateLocalStorage();
-
-    //   }
+    //   this.favorites.push(item);
+    //   this.updateLocalStorage();
     // }
+
+    addFavorite(item: any) {
+      if(!this.favorites.some(fav=>
+       fav==fav.id )){
+        this.favorites.push(item);
+        this.updateLocalStorage();
+
+      }
+    }
 
 
     removeFavorite(key: string): void {

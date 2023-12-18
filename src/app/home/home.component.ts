@@ -81,7 +81,7 @@ export class HomeComponent {
         goodWithDogs: pet.goodWithDogs,
         goodWithCats: pet.goodWithCats,
       }));
-      console.log('Fetch Pets', petResults);
+      // console.log('Fetch Pets', petResults);
     });
   }
 

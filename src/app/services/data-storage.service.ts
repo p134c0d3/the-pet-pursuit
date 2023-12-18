@@ -47,7 +47,7 @@ export class DataStorageService {
       .get('https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost.json')
       .pipe(
         map((pet) => {
-          console.log('Pets fetched: ', pet);
+          // console.log('Pets fetched: ', pet);
           return Object.values(pet);
         })
       );
