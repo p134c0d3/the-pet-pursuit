@@ -27,10 +27,6 @@ export class localStorageService{
 
 
 
-
-
-
-
     private favorites: string[] = [];
 
     getFavorites(): string[] {
