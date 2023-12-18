@@ -33,6 +33,8 @@ export class localStorageService{
 
     private favorites: any[] = [];
 
+    // private favorites:Set<any>
+
     getFavorites(): any[] {
       return this.favorites;
     }
