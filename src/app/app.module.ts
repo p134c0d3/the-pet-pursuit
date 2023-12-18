@@ -13,7 +13,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AdoptionApplicationListComponent } from './adoption-application-list/adoption-application-list.component';
 import { AuthComponent } from './auth/auth.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { PetService } from './services/pet.service';
@@ -31,7 +30,6 @@ import { AuthService } from './auth/auth.service';
     AdoptionApplicationListComponent,
     LogInComponent,
     AuthComponent,
-    FileUploadComponent,
     LoadingSpinnerComponent,
 
   ],
