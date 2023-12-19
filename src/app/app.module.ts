@@ -20,6 +20,7 @@ import { DataStorageService } from './services/data-storage.service';
 import { AuthService } from './auth/auth.service';
 import { FooterComponent } from './footer/footer.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     LoadingSpinnerComponent,
     FooterComponent,
     FavoritesComponent,
+    TermsAndConditionsComponent,
 
   ],
   imports: [
