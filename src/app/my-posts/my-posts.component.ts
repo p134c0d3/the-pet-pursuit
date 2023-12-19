@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { NewPost } from '../models/new-post.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-posts',
@@ -23,33 +22,32 @@ export class MyPostsComponent {
     private httpService: HTTPService,
     private dataStorage: DataStorageService,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.editPostForm = this.formBuilder.group({
+      id: [''],
+      petName: ['', Validators.required],
+      petType: ['', Validators.required],
+      petBreed: [''],
+      petGender: ['', Validators.required],
+      petAge: ['', Validators.required],
+      spayedNeutered: ['', Validators.required],
+      petLocation: ['', Validators.required],
+      message: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      phoneNumber: [''],
+      imagePath: [''],
+      goodWithChildren: [''],
+      housetrained: [''],
+      goodWithDogs: [''],
+      goodWithCats: [''],
+    })
+  }
 
   ngOnInit() {
     this.editPost = false;
     this.fetchPets();
-
-    this.editPostForm = this.formBuilder.group({
-      id: ['id'],
-      petName: [this.selectedPet?.petName, Validators.required],
-      petType: [this.selectedPet?.petType, Validators.required],
-      petBreed: [this.selectedPet?.petBreed],
-      petGender: [this.selectedPet?.petGender, Validators.required],
-      petAge: [this.selectedPet?.petAge, Validators.required],
-      spayedNeutered: [this.selectedPet?.spayedNeutered, Validators.required],
-      petLocation: [this.selectedPet?.petLocation, Validators.required],
-      message: [this.selectedPet?.message, Validators.required],
-      firstName: [this.selectedPet?.firstName, Validators.required],
-      lastName: [this.selectedPet?.lastName, Validators.required],
-      email: [this.selectedPet?.email, Validators.required],
-      phoneNumber: [this.selectedPet?.phoneNumber],
-      imagePath: [this.selectedPet?.imagePath],
-      goodWithChildren: [this.selectedPet?.goodWithChildren],
-      housetrained: [this.selectedPet?.housetrained],
-      goodWithDogs: [this.selectedPet?.goodWithDogs],
-      goodWithCats: [this.selectedPet?.goodWithCats],
-    });
-    console.log('Edit Post Form', this.editPostForm);
   }
 
   deleteSinglePost() {}
@@ -89,25 +87,44 @@ export class MyPostsComponent {
     });
   }
 
-  editSinglePost(pet: any) {
-    // this.editPost = true;
+  editSinglePost(pet: NewPost) {
     this.openModal = true;
     this.selectedPet = pet;
-    
-    // this.router.navigate(['my-posts-edit']);
+
+    this.editPostForm = this.formBuilder.group({
+      id: [pet?.id],
+      petName: [pet?.petName, Validators.required],
+      petType: [pet?.petType, Validators.required],
+      petBreed: [pet?.petBreed],
+      petGender: [pet?.petGender, Validators.required],
+      petAge: [pet?.petAge, Validators.required],
+      spayedNeutered: [pet?.spayedNeutered, Validators.required],
+      petLocation: [pet?.petLocation, Validators.required],
+      message: [pet?.message, Validators.required],
+      firstName: [pet?.firstName, Validators.required],
+      lastName: [pet?.lastName, Validators.required],
+      email: [pet?.email, Validators.required],
+      phoneNumber: [pet?.phoneNumber],
+      imagePath: [pet?.imagePath],
+      goodWithChildren: [pet?.goodWithChildren],
+      housetrained: [pet?.housetrained],
+      goodWithDogs: [pet?.goodWithDogs],
+      goodWithCats: [pet?.goodWithCats],
+    });
   }
 
   onSubmit() {
     this.onSubmitClicked = true;
     if (this.editPostForm.valid) {
-      this.httpService.saveApplicationsToFirebase(this.editPostForm.value);
+      this.dataStorage.storeNewPost(this.editPostForm.value)
       this.editPostForm.reset();
       this.isApplyClicked = false;
-      this.openModal = true;
+      this.openModal = false;
       console.log('form is valid');
     } else {
       console.log('form is not valid');
     }
+
   }
 
   applyButtonClicked(): void {
@@ -119,5 +136,6 @@ export class MyPostsComponent {
     this.onSubmitClicked = false;
     this.isApplyClicked = false;
     this.editPostForm.reset();
+    this.openModal = false;
   }
 }

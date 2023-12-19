@@ -54,14 +54,26 @@ footer {
   background-color: #a2d6f9;
 }
 
-#submitNewPost {
+#submitEditedPost {
   background-color: #2b3a67;
 }
 
-#submitNewPost:hover {
+#submitEditedPost:hover {
   background-color: #162245;
 }
 
-#cancelNewPost {
+#cancelEditedPost {
   color: #2b3a67;
+}
+#cancelEditedPost:hover {
+  color: #162245;
+}
+
+a.my-post-delete:hover {
+  background-color: red;
+  color: white;
+}
+a.my-post-edit:hover {
+  background-color: #5288ac;
+  color: white;
 }

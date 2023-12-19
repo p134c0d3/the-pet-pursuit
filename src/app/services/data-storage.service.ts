@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { NewPost } from '../models/new-post.model';
 import { environment } from 'src/environments/environment.prod';
-import { Subject, map } from 'rxjs';
+import { Subject, catchError, map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
   firebaseURL = environment.firebaseURL;
   private newPost: NewPost[] = [];
+  private updatedPost: NewPost[] = []
   allPets = new Subject<NewPost[]>();
 
   constructor(private http: HttpClient, private authService: AuthService) {}
@@ -19,6 +20,7 @@ export class DataStorageService {
       console.log(response);
     });
   }
+
 
   // need to create modify adoptionApplication model and call this function
   storeAdoptionApplication(adoptionApplication) {

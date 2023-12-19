@@ -38,7 +38,7 @@
         My Posts 📒
       </a>
 
-      <a routerLink="/favorites" class="navbar-item"> Favorites ⭐ </a>
+      <a routerLink="/favorites" class="navbar-item" *ngIf="isAuthenticated"> Favorites ⭐ </a>
 
       <a routerLink="/incomingApplications" class="navbar-item" *ngIf="isAuthenticated">
         Incoming Applications 📋

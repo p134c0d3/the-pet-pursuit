@@ -16,10 +16,10 @@
 
         <div class="content">{{ pet.message }}</div>
         <footer class="card-footer">
-          <a class="card-footer-item" (click)="editSinglePost(pet)"
+          <a class="card-footer-item my-post-edit" (click)="editSinglePost(pet)"
             >Edit</a
           >
-          <a  class="card-footer-item">Delete</a>
+          <a  class="card-footer-item my-post-delete">Delete</a>
         </footer>
       </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Modal title</p>
-        <button class="delete" aria-label="close"></button>
+        <button class="delete" aria-label="close" (click)="onCancel()"></button>
       </header>
       <section class="modal-card-body">
         <form [formGroup]="editPostForm" (ngSubmit)="onSubmit()">
@@ -42,17 +42,14 @@
               <input
                 type="text"
                 class="input"
-                id="editPetName"
-                formControlName="editPetName"
+                id="petName"
+                formControlName="petName"
+                name="petName"
                 placeholder="i.e. Bruno"
-                [defaultValue]=""
               />
               <span
                 class="help is-danger"
-                *ngIf="
-                  !editPostForm.get('petName').valid &&
-                  editPostForm.get('petName').touched
-                "
+                *ngIf="!editPostForm.get('petName').valid && editPostForm.get('petName').touched"
                 >Please enter your pet's name</span
               >
             </div>
@@ -349,41 +346,11 @@
               placeholder="(123)456-7890 - (optional)">
             </div>
           </div>
-
-          <!-- <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox">
-                I agree to the <a href="#">terms and conditions</a>
-              </label>
-            </div>
-          </div> -->
-
-
-          <footer class="modal-card-foot">
-          <div class="field is-grouped">
-            <div class="control">
-              <button
-              type="submit"
-              class="button is-link"
-              id="submitNewPost"
-              [disabled]="!editPostForm.valid"
-              >Submit Post</button>
-            </div>
-            <div class ="control">
-              <button
-              class ="button is-link is-light"
-              id="cancelNewPost"
-              (click)="onCancel()"
-              >Cancel</button>
-            </div>
-          </div>
-          </footer>
         </form>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-success">Save changes</button>
-        <button class="button" (click)="editPost = false">Cancel</button>
+        <button type="submit" class="button is-success" [disabled]="!editPostForm.valid" id="submitEditedPost" (click)="onSubmit()">Save changes</button>
+        <button class="button" (click)="onCancel()" id="cancelEditedPost">Cancel</button>
       </footer>
     </div>
   </div>
