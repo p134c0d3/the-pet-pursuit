@@ -45,6 +45,8 @@ export class AdoptionApplicationListComponent implements OnInit {
   }
 
   onDeny() {
-
+    /* this.httpService.deleteApplicationsFromFirebase(selectedApplication).subscribe((res) => {
+      this.appArray = res;
+    }) */
   }
 }
