@@ -1,3 +1,29 @@
-<div class="container">
-  
-</div>
+<div class="container" *ngIf="!editPost">
+  <div class="columns is-justify-content-space-evenly">
+    <div class="card is-one-third column" *ngFor="let pet of pets">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{ pet.imagePath }}" alt="Placeholder image" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-size-1">{{ pet.petName }}</p>
+            <p class="subtitle is-6">{{ pet.petBreed }}</p>
+          </div>
+        </div>
+
+        <div class="content">{{ pet.message }}</div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" (click)="editSinglePost(pet)"
+            >Edit</a
+          >
+          <a href="#" class="card-footer-item">Delete</a>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+
+  <app-my-posts-edit *ngIf="editPost"></app-my-posts-edit>
