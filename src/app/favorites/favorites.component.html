@@ -1,7 +1,8 @@
 <div class="container">
   <div class="title-header">
-    <h1 class="is-size-1 has-text-centered">
+    <h1 class="is-size-1 has-text-centered is-family-code">
       Purr-sonal Favorites
+      <div class="cat" style="width:60%;height:10%;padding-bottom:8%;position:relative;"><iframe src="https://giphy.com/embed/9xarGMi45RQXEIirLB" width="75%" height="75%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><a href="https://giphy.com/stickers/animation-cat-9xarGMi45RQXEIirLB"></a>
     </h1>
   </div>
   <hr />
@@ -22,15 +23,15 @@
             <p class="subtitle is-6">{{ fav.petBreed }}</p>
           </div>
 
-          <button
-            class="button is-danger pet-details-button"
-            (click)="deleteFav(fav)"
-
-          >
-            Delete
-          </button>
 
         </div>
+        <button
+          class="button is-danger pet-details-button"
+          (click)="deleteFav(fav)"
+
+        >
+          Delete
+        </button>
       </div>
     </div>
   </div>
