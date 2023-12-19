@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
+import { localStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,8 @@ export class HomeComponent {
 
   constructor(
     private httpService: HTTPService,
-    private dataStorage: DataStorageService
+    private dataStorage: DataStorageService,
+    private localStorage:localStorageService
   ) {}
 
   ngOnInit() {
@@ -79,7 +81,7 @@ export class HomeComponent {
         goodWithDogs: pet.goodWithDogs,
         goodWithCats: pet.goodWithCats,
       }));
-      console.log('Fetch Pets', petResults);
+      // console.log('Fetch Pets', petResults);
     });
   }
 
@@ -93,6 +95,7 @@ export class HomeComponent {
     this.openModal = true;
     this.selectedPet = pet;
     this.adoptionRequestForm.patchValue({petName: this.selectedPet.petName});
+
   }
 
   onSubmit() {
@@ -111,6 +114,15 @@ export class HomeComponent {
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
+
+  }
+
+  addFav(){
+    //Working but will aloow same pet twice
+    if(this.selectedPet){
+      this.localStorage.addFavorite(this.selectedPet)
+      console.log('Pet added to favorites:', this.selectedPet);
+    }
 
   }
 
