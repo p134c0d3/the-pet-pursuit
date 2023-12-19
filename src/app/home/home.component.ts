@@ -24,7 +24,6 @@ export class HomeComponent {
   selectedPet: NewPost = null;
 
   pets: NewPost[] = [];
-  @ViewChild(FormGroupDirective) adoptionFormRef;
 
   constructor(
     private httpService: HTTPService,

@@ -1,73 +1,549 @@
-            <table class="table is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Pet Name</th>
-                  <th>Applicant Name</th>
-                  <th>Actions</th>
-                  <th>Expand</th>
-                </tr>
-              </thead>
-              <tbody>
-                <ng-container *ngFor="let application of appArray">
-                  <tr>
-                    <td>{{ application.petName }}</td>
-                    <td>{{ application.firstName }} {{ application.lastName }}</td>
-                    <td>
-                     <button>Approve</button>
-                      <button>Deny</button>
-                    </td>
-                    <td>
-                      <button (click)="toggleRow(application)">Toggle</button>
-                    </td>
-                </tr>
-                <tr [ngClass]="{ 'is-hidden': !application.expanded }">
-                  <td colspan="4">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Email</th>
-                          <th>Housing Type</th>
-                          <th>Address</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                          <th>Housing</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>{{ application.email }}</td>
-                          <td>{{ application.housingType }} {{ application.ageCheck }} </td>
-                          <td>{{ application.streetName}} {{ application.streetName}} {{ application.city}} {{ application.state}} {{ application.zipCode}}</td>
 
-                            <td>{{ application.phoneNumber}}</td>
-                            <td>{{ application.hhName}}</td>
-                            <td>{{ application.hhAge}}</td>
-                            <td>{{ application.hhPet}}</td>
-                            <td>{{ application.petType}}</td>
-                            <td>{{ application.petAge}}</td>
-                            <td>{{ application.whenHome}}</td>
-                            <td>{{ application.whenNotHome}}</td>
-                            <td>{{ application.employment}}</td>
-                            <td>{{ application.surrender}}</td>
-                            <td>{{ application.commitment}}</td>
-                            <td>{{ application.message}}</td>
-                            <td>{{ application.ageCheck}}</td>
-                            <td>{{ application.termsConditions}}</td>
-                        </tr>
-                      </tbody>
-                     </table>
-                    </td>
-                  </tr>
-                </ng-container>
-              </tbody>
-            </table>
+
+  <div class="card has-background-grey-lighter" *ngFor="let application of appArray">
+    <header class="card-header-title has-background-info-light has-text-weight-bold">
+      <p class="card-header-title">Application for: {{ application.petName }}</p>
+      <p class="card-header-title">Applicant Name: {{ application.firstName }} {{ application.lastName }}</p>
+      <p class="card-header-title">
+        <button class="button is-success is-small">Approve</button>
+        <button class="button is-danger is-small">Deny</button>
+      </p>
+      <p>
+        <button (click)="openApplication(application)" class="button is-info is-small">
+           View Full Application
+        </button>
+      </p>
+    </header>
+  </div>
+
+
+
+
+<div class="modal" [ngClass]="openApplicationModal ? 'is-active' : ''">
+  <!-- Modal for Adoption Request Form -->
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head has-background-info">
+      <p
+        class="modal-card-title has-text-weight-bold is-size-3 has-text-centered"
+      >
+        Adoption Application Review
+      </p>
+      <button
+        class="delete"
+        aria-label="close"
+        (click)="onClose()"
+      ></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Form start -->
+      <form>
+       <!--  [formGroup]="adoptionRequestForm" (ngSubmit)="onApprove()">  -->
+        <!-- Pet Name -->
+        <div class="field">
+          <label class="label">Pet Name:</label>
+          <!-- auto populate from the pet card they click on -->
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petName }}" readonly>
+          </div>
+        </div>
+
+        <label
+          class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+          style="margin: 50px"
+          >Contact Information</label
+        >
+        <!-- Applicant Name -->
+        <label class="label">Applicant Name:</label>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.firstName }}" readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.lastName }}" readonly
+            />
+          </div>
+        </div>
+
+        <!-- Address -->
+        <label class="label">Address:</label>
+        <div class="field is-grouped is-grouped-multiline">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.streetNumber }}" readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.streetName }}" readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.city }}" readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              style="width: 60px"
+              type="text"
+              placeholder="{{ selectedApplication?.state }}" readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              style="width: 133px"
+              type="text"
+              placeholder="{{ selectedApplication?.zipCode }}" readonly
+            />
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="field">
+          <label class="label">Phone Number:</label>
+          <div class="control">
+            <input
+              class="input"
+              type="tel"
+              placeholder="{{ selectedApplication?.phoneNumber }}" readonly
+            />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              placeholder="{{ selectedApplication?.email }}" readonly
+            />
+          </div>
+        </div>
+
+        <label
+          class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+          style="margin: 50px"
+          >Household Information</label
+        >
+
+        <!-- Residence Radio Buttons -->
+        <div style="margin-top: 30px">
+          <label class="label">Type of Residence:</label>
+          <div class="field is-grouped">
+            <div class="control is-flex is-align-items-center">
+              <label class="radio">
+                <input
+                  type="radio"
+                  value="House"
+                  readonly
+                />
+                House
+              </label>
+              <label class="radio">
+                <input
+                  type="radio"
+                  value="Apartment"
+                  readonly
+                />
+                Apartment
+              </label>
+              <label class="radio">
+                <input
+                  type="radio"
+                  value="Duplex"
+                  readonly
+                />
+                Duplex
+              </label>
+              <label class="radio">
+                <input
+                  type="radio"
+                  value="Other"
+                  readonly
+                />
+                Other
+              </label>
+              <input
+                class="input"
+                style="width: 265px; margin-left: 15px"
+                type="text"
+                placeholder="{{ selectedApplication?.housingType }}" readonly
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Home Life Questions -->
+
+        <!-- Household members -->
+        <label class="label" style="margin-top: 25px"
+          >Name and age of all household members:</label
+        >
+
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+
+        <!-- Animals In Home -->
+        <label class="label" style="margin-top: 25px"
+          >Name, type, and age of all pets in the home:</label
+        >
+
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Type"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Type"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Name"
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Type"
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="Age"
+            />
+          </div>
+        </div>
+
+        <!-- Care for pet questions -->
+        <div class="field is-grouped" style="margin-top: 30px">
+          <label class="label is-flex is-align-items-center"
+            >Where will you keep this pet when you are home?</label
+          >
+          <div class="control">
+            <div class="select" style="margin-left: 15px">
+              <select style="width: 300px">
+                <option>Select</option>
+                <option>Inside residence only</option>
+                <option>Outside only</option>
+                <option>Inside and outside</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <label class="label is-flex is-align-items-center"
+            >Where will you keep this pet when you are not home?</label
+          >
+          <div class="control">
+            <div class="select" style="margin-left: 15px">
+              <select style="width: 300px">
+                <option>Select</option>
+                <option>Inside residence only</option>
+                <option>In fenced yard</option>
+                <option>Outside on chain/tether/lead</option>
+                <option>Boarded/Pet Daycare</option>
+                <option>Family/Friends</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Questions -->
+
+        <label
+          class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+          style="margin: 50px"
+          >Additional Information</label
+        >
+        <div>
+          <label class="label">Are you employed?</label>
+          <label class="radio">
+            <input
+              type="radio"
+              value="Full-time"
+            />
+            Full-time
+          </label>
+          <label class="radio">
+            <input
+              type="radio"
+              value="Part-time"
+            />
+            Part-time
+          </label>
+          <label class="radio">
+            <input
+              type="radio"
+              value="Retired"
+            />
+            Retired
+          </label>
+          <label class="radio">
+            <input type="radio" value="No" />
+            No
+          </label>
+        </div>
+        <div>
+          <label class="label" style="margin-top: 10px"
+            >Can you commit to taking care of this pet for the entirety of its
+            life span?</label
+          >
+          <label class="radio">
+            <input type="radio" value="Yes" />
+            Yes
+          </label>
+          <label class="radio">
+            <input type="radio" value="No" />
+            No
+          </label>
+        </div>
+        <div>
+          <label class="label" style="margin-top: 10px"
+            >Have you ever surrendered a pet?</label
+          >
+          <label class="radio">
+            <input type="radio" value="Yes" />
+            Yes
+          </label>
+          <label class="radio">
+            <input type="radio" value="No" />
+            No
+          </label>
+        </div>
+
+        <!-- Message/Question Box -->
+        <div class="field" style="margin-top: 30px">
+          <label class="label">Message</label>
+          <div class="control">
+            <textarea
+              class="textarea"
+              placeholder="I am interested in adopting..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Terms Checkboxes -->
+        <div class="field" style="margin-top: 30px">
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox"/>
+              I am 18 years old or older.
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input type="checkbox"/>
+              I agree to the <a>Pet Pursuit Terms and Conditions.</a>
+            </label>
+          </div>
+        </div>
+      </form>
+      <!-- Form end -->
+    </section>
+    <footer class="modal-card-foot has-background-info">
+      <div class="field is-grouped">
+        <div class="control field is-grouped">
+          <button
+            type="submit"
+            class="button is-success"
+            (click)="onApprove()"
+          >
+            Approve
+          </button>
+
+        </div>
+        <div class="control">
+          <button
+          class="button is-danger"
+          (click)="onDeny()"
+          >
+            Deny
+          </button>
+        </div>
+        <div class="control">
+          <button
+          class="button is-primary"
+          (click)="onClose()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
