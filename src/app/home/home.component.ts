@@ -1,5 +1,5 @@
 import { DataStorageService } from './../services/data-storage.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
@@ -17,7 +17,6 @@ export class HomeComponent {
   selectedPet: NewPost = null;
 
   pets: NewPost[] = [];
-  @ViewChild(FormGroupDirective) adoptionFormRef;
 
 
   constructor(
