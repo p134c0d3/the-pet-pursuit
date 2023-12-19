@@ -1,13 +1,13 @@
-<div>  <!-- add *ngIf="onLogin" once we have the database fully setup -->
+<div>
     <header class="modal-card-head">
       <p
       class="modal-card-title has-text-weight-bold is-size-3 has-text-centered"
       >Create New Post</p>
     </header>
     <section class="modal-card-body">
-      <!-- Form start ... -->
 
 
+<!-- Form start ... -->
 <form
 [formGroup]="newPostForm"
 (ngSubmit)="onSubmit()">
@@ -24,6 +24,9 @@
     type="text"
     formControlName="petName"
     placeholder="e.g. Bruno">
+    <span
+    class="help is-danger"
+    *ngIf="!newPostForm.get('petName').valid && newPostForm.get('petName').touched">Please enter your pet's name</span>
   </div>
 </div>
 
@@ -39,6 +42,9 @@
     type="text"
     formControlName="petType"
     placeholder="e.g. Dog">
+    <span
+    class="help is-danger"
+    *ngIf="!newPostForm.get('petType').valid && newPostForm.get('petType').touched">Please enter the pet type</span>
   </div>
 </div>
 
@@ -53,7 +59,7 @@
     class="input"
     type="text"
     formControlName="petBreed"
-    placeholder="e.g. Great Dane">
+    placeholder="e.g. Great Dane - (optional)">
   </div>
 </div>
 
@@ -61,7 +67,7 @@
   <label
   class="label"
   >Upload a photo of your pet:
-<button class="button is-link is-light is-outlined is-small">Upload Image</button></label>
+<button type="button" class="button is-link is-light is-outlined is-small">Upload Image</button></label>
 
 <div class="card-image">
   <figure class="image is-128x128">
@@ -69,7 +75,8 @@
     class="img"
     src="https://source.unsplash.com/200x200/?pet"
     placeholder=""
-    frameborder="0"/>
+    frameborder="0"
+    />
   </figure>
 </div>
 </div>
@@ -86,6 +93,9 @@
     type="text"
     formControlName="petGender"
     placeholder="e.g. Male">
+    <span
+    class="help is-danger"
+    *ngIf="!newPostForm.get('petGender').valid && newPostForm.get('petGender').touched">Please enter your pet's gender</span>
   </div>
 </div>
 
@@ -102,18 +112,21 @@
       name="petAge"
       formControlName="petAge"
       >
-        <option disabled selected>Select Age</option>
+        <option disabled selected value>Select Age</option>
         <option value="0-12 Months">0-12 Months</option>
         <option value="1-3 Years">1-3 Years</option>
         <option value="3-6 Years">3-6 Years</option>
         <option value="6-9 Years">6-9 Years</option>
         <option value="9+ Years">9+ Years</option>
-
       </select>
+
+      <span
+      class="help is-danger"
+      *ngIf="!newPostForm.get('petAge').valid && newPostForm.get('petAge').touched">Please select your pet's age</span>
     </div>
   </div>
 </div>
-
+<br>
 <div class="field">
   <label
   class="label"
@@ -126,6 +139,9 @@
     type="text"
     formControlName="petLocation"
     placeholder="e.g. St.Louis, MO">
+    <span
+      class="help is-danger"
+      *ngIf="!newPostForm.get('petLocation').valid && newPostForm.get('petLocation').touched">Please enter your pet's location</span>
   </div>
 </div>
 
@@ -161,6 +177,9 @@
       value="N/A">
       N/A
     </label>
+    <span
+      class="help is-danger"
+      *ngIf="!newPostForm.get('spayedNeutered').valid && newPostForm.get('spayedNeutered').touched">Please select a value</span>
   </div>
 </div>
 
@@ -180,7 +199,7 @@
           id="petDescription"
           name="petDescription"
           type="checkbox"
-          formControlName="petDescription"
+          formControlName="goodWithChildren"
           value="Children?">
           Good with children?
         </label>
@@ -190,17 +209,7 @@
           id="petDescription"
           name="petDescription"
           type="checkbox"
-          formControlName="petDescription"
-          value="Trained?">
-          House trained or litter box trained?
-        </label>
-        <br>
-        <label class="checkbox">
-          <input
-          id="petDescription"
-          name="petDescription"
-          type="checkbox"
-          formControlName="petDescription"
+          formControlName="goodWithDogs"
           value="Good with dogs?">
           Good with dogs?
         </label>
@@ -210,9 +219,19 @@
           id="petDescription"
           name="petDescription"
           type="checkbox"
-          formControlName="petDescription"
+          formControlName="goodWithCats"
           value="Good with cats?">
           Good with cats?
+        </label>
+        <br>
+        <label class="checkbox">
+          <input
+          id="petDescription"
+          name="petDescription"
+          type="checkbox"
+          formControlName="housetrained"
+          value="Trained?">
+          House trained or litter box trained?
         </label>
         <br>
         <br>
@@ -225,7 +244,10 @@
     name="message"
     class="textarea"
     formControlName="message"
-    placeholder="e.g. Bruno loves to play with his tennis ball. He is great with kids and other pets."></textarea>
+    placeholder="e.g. Bruno loves to play with his tennis ball."></textarea>
+    <span
+        class="help is-danger"
+        *ngIf="!newPostForm.get('message').valid && newPostForm.get('message').touched">Please enter some details about your pet.</span>
   </div>
 </div>
 <br>
@@ -245,6 +267,9 @@
     formControlName="firstName"
     placeholder="Enter your first name"
     required>
+    <span
+        class="help is-danger"
+        *ngIf="!newPostForm.get('firstName').valid && newPostForm.get('firstName').touched">Please enter your first name</span>
   </div>
 </div>
 <div class="field">
@@ -260,6 +285,9 @@
     formControlName="lastName"
     placeholder="Enter your last name">
   </div>
+  <span
+        class="help is-danger"
+        *ngIf="!newPostForm.get('lastName').valid && newPostForm.get('lastName').touched">Please enter your last name</span>
 </div>
 <div class="field">
   <label
@@ -274,6 +302,9 @@
     formControlName="email"
     placeholder="Enter a valid email"
     >
+    <span
+        class="help is-danger"
+        *ngIf="!newPostForm.get('email').valid && newPostForm.get('email').touched">Please enter a valid email</span>
   </div>
 </div>
 <div class="field">
@@ -287,7 +318,7 @@
     class="input"
     type="tel"
     formControlName="phoneNumber"
-    placeholder="(123)456-7890">
+    placeholder="(123)456-7890 - (optional)">
   </div>
 </div>
 
@@ -308,6 +339,7 @@
     type="submit"
     class="button is-link"
     id="submitNewPost"
+    [disabled]="!newPostForm.valid"
     >Submit Post</button>
   </div>
   <div class ="control">
@@ -321,3 +353,4 @@
 </footer>
 </form>
 </section>
+<hr>

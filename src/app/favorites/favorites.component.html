@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="title-header">
+    <h1 class="is-size-1 has-text-centered is-family-code">
+      Purr-sonal Favorites
+      <div class="cat" style="width:60%;height:10%;padding-bottom:8%;position:relative;"><iframe src="https://giphy.com/embed/9xarGMi45RQXEIirLB" width="75%" height="75%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><a href="https://giphy.com/stickers/animation-cat-9xarGMi45RQXEIirLB"></a>
+    </h1>
+  </div>
+  <hr />
+
+
+
+  <div class="columns is-justify-content-space-evenly">
+    <div class="card is-one-third column" *ngFor="let fav of favorites">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{ fav.imagePath}}" alt="Placeholder image; let i=index" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-size-1">{{ fav.petName }}</p>
+            <p class="subtitle is-6">{{ fav.petBreed }}</p>
+          </div>
+
+
+        </div>
+        <button
+          class="button is-danger pet-details-button"
+          (click)="deleteFav(fav)"
+
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

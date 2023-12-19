@@ -9,21 +9,22 @@
     <div class="card is-one-third column" *ngFor="let pet of pets">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img [src]="pets.imagePath" alt="Placeholder image" />
+          <img src="{{ pet.imagePath }}" alt="Placeholder image" />
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            <p class="title is-size-1">{{ pet.name }}</p>
-            <p class="subtitle is-6">{{ pet.breed }}</p>
+            <p class="title is-size-1">{{ pet.petName }}</p>
+            <p class="subtitle is-6">{{ pet.petBreed }}</p>
           </div>
         </div>
 
-        <div class="content"> {{ pet.description }} </div>
+        <div class="content">{{ pet.message }}</div>
         <button
           class="button is-link pet-details-button"
-          (click)="openModal = true"
+          (click)="openPetDetails(pet)"
+
         >
           Details
         </button>
@@ -46,16 +47,12 @@
         <button
           class="delete"
           aria-label="close"
-          (click)="isApplyClicked = false"
+          (click)="onCancel()"
         ></button>
       </header>
       <section class="modal-card-body">
         <!-- Form start -->
-        <form
-          [formGroup]="adoptionRequestForm"
-          (ngSubmit)="onSubmit()"
-          #templateFormRef="ngForm"
-        >
+        <form [formGroup]="adoptionRequestForm" (ngSubmit)="onSubmit()">
           <!-- Pet Name -->
           <div class="field">
             <label class="label">Pet Name:</label>
@@ -65,8 +62,7 @@
                 class="input"
                 type="text"
                 formControlName="petName"
-                placeholder=""
-              />
+                placeholder="" readonly>
             </div>
           </div>
 
@@ -85,6 +81,10 @@
                 formControlName="firstName"
                 placeholder="First Name"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('firstName').valid && onSubmitClicked">
+              First name required.
+              </p>
             </div>
             <div class="control">
               <input
@@ -93,6 +93,10 @@
                 formControlName="lastName"
                 placeholder="Last Name"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('lastName').valid && onSubmitClicked">
+              Last name required.
+              </p>
             </div>
           </div>
 
@@ -106,6 +110,10 @@
                 formControlName="streetNumber"
                 placeholder="Number"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('streetNumber').valid && onSubmitClicked">
+              Street number required.
+              </p>
             </div>
 
             <div class="control">
@@ -115,6 +123,10 @@
                 formControlName="streetName"
                 placeholder="Street"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('streetName').valid && onSubmitClicked">
+              Street name required.
+              </p>
             </div>
 
             <div class="control">
@@ -124,6 +136,10 @@
                 formControlName="city"
                 placeholder="City"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('city').valid && onSubmitClicked">
+              City name required.
+              </p>
             </div>
 
             <div class="control">
@@ -134,6 +150,10 @@
                 type="text"
                 placeholder="State"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('state').valid && onSubmitClicked">
+              State required.
+              </p>
             </div>
 
             <div class="control">
@@ -144,6 +164,10 @@
                 formControlName="zipCode"
                 placeholder="Zip code"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('zipCode').valid && onSubmitClicked">
+              Zipcode required.
+              </p>
             </div>
           </div>
 
@@ -157,6 +181,10 @@
                 formControlName="phoneNumber"
                 placeholder="555-555-5555"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('phoneNumber').valid && onSubmitClicked">
+              Phone Number required.
+              </p>
             </div>
           </div>
 
@@ -170,6 +198,10 @@
                 formControlName="email"
                 placeholder="Email@email.com"
               />
+              <p
+              class="help is-danger" *ngIf="!adoptionRequestForm.get('email').valid && onSubmitClicked">
+              Email required.
+              </p>
             </div>
           </div>
 
@@ -225,6 +257,10 @@
                 />
               </div>
             </div>
+            <p
+            class="help is-danger" *ngIf="!adoptionRequestForm.get('housingType').valid && onSubmitClicked">
+            Please select an option.
+            </p>
           </div>
 
           <!-- Home Life Questions -->
@@ -449,6 +485,11 @@
                   <option>Outside only</option>
                   <option>Inside and outside</option>
                 </select>
+                <p
+                class="help is-danger" *ngIf="!adoptionRequestForm.get('whenHome').valid && onSubmitClicked">
+                Please select an option.
+                </p>
+
               </div>
             </div>
           </div>
@@ -467,6 +508,10 @@
                   <option>Boarded/Pet Daycare</option>
                   <option>Family/Friends</option>
                 </select>
+                <p
+                class="help is-danger" *ngIf="!adoptionRequestForm.get('whenNotHome').valid && onSubmitClicked">
+                Please select an option.
+                </p>
               </div>
             </div>
           </div>
@@ -509,6 +554,10 @@
               No
             </label>
           </div>
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('employment').valid && onSubmitClicked">
+          Please select an option.
+          </p>
 
           <div>
             <label class="label" style="margin-top: 10px"
@@ -525,6 +574,11 @@
             </label>
           </div>
 
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('commitment').valid && onSubmitClicked">
+          Please check yes or no.
+          </p>
+
           <div>
             <label class="label" style="margin-top: 10px"
               >Have you ever surrendered a pet?</label
@@ -538,6 +592,11 @@
               No
             </label>
           </div>
+
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('surrender').valid && onSubmitClicked">
+          Please check yes or no.
+          </p>
 
           <!-- Message/Question Box -->
           <div class="field" style="margin-top: 30px">
@@ -561,6 +620,11 @@
             </div>
           </div>
 
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('ageCheck').valid && onSubmitClicked">
+          Please confirm your age.
+          </p>
+
           <div class="field">
             <div class="control">
               <label class="checkbox">
@@ -569,12 +633,22 @@
               </label>
             </div>
           </div>
+
+          <p
+          class="help is-danger" *ngIf="!adoptionRequestForm.get('termsConditions').valid && onSubmitClicked">
+          Please agree to the terms and conditions.
+          </p>
+
         </form>
         <!-- Form end -->
       </section>
       <footer class="modal-card-foot has-background-info">
         <div class="field is-grouped">
-          <div class="control">
+          <div class="control field is-grouped">
+            <p class="is-size-4 has-text-weight-semibold formWarning"
+              *ngIf="!adoptionRequestForm.valid && onSubmitClicked"
+            >Please fill in all required sections.
+          </p>
             <button
               type="submit"
               class="button is-success"
@@ -582,9 +656,10 @@
             >
               Submit
             </button>
+
           </div>
           <div class="control">
-            <button class="button is-danger" (click)="isApplyClicked = false">
+            <button class="button is-danger" (click)="onCancel()">
               Cancel
             </button>
           </div>
@@ -600,7 +675,7 @@
     <div class="modal-background">
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Cowboy</p>
+          <p class="modal-card-title">{{ selectedPet?.petName }}</p>
           <button
             class="delete"
             aria-label="close"
@@ -612,61 +687,68 @@
             <figure class="media-left">
               <p class="image">
                 <img
-                  src="../../assets/img/cattle_dog.jpg"
+                  src="{{ selectedPet?.imagePath }}"
                   class="clickedPetImage"
                 />
               </p>
             </figure>
-            <h1><strong>A little bit about Cowboy</strong></h1>
+            <h1>
+              <strong>A little bit about {{ selectedPet?.petName }}</strong>
+            </h1>
             <h3><strong>Cattle Dog Mix</strong></h3>
             <div>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-              velit dolores totam pariatur deleniti voluptatem voluptate dolor
-              labore laborum repudiandae, fugit perferendis eveniet iste
-              expedita, dolore sunt nam nisi rerum? Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Suscipit ex quod odit. Sed
-              blanditiis quia dolores iusto iure cum vel saepe, ad ducimus
-              inventore totam in nulla. Eius, vitae officiis.
+              {{ selectedPet?.message }}
             </div>
           </div>
           <div class="column">
             <div class="block">
-              AgeapplyButtonClicked
-              <span class="tag is-pulled-right is-info">2 years old</span>
+              Age
+
+              <span class="tag is-pulled-right is-info has-text-weight-bold">{{
+                selectedPet?.petAge
+              }}</span>
             </div>
             <hr />
             <div class="block">
               Sex
-              <span class="tag is-pulled-right is-info">Male</span>
-            </div>
-            <hr />
-            <div class="block">
-              Good with children?
-              <span class="tag is-pulled-right is-success">Yes</span>
-            </div>
-            <hr />
-            <div class="block">
-              Good with other dogs?
-              <span class="tag is-pulled-right is-danger">No</span>
-            </div>
-            <hr />
-            <div class="block">
-              Good with cats?
-              <span class="tag is-pulled-right is-danger">No</span>
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
+                selectedPet?.petGender
+              }}</span>
             </div>
             <hr />
             <div class="block">
               Spayed/neutered?
-              <span class="tag is-pulled-right is-success">Yes</span>
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
+                selectedPet?.spayedNeutered
+              }}</span>
             </div>
             <hr />
+            <div class="block">
+              Good with children?
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithChildren ? "Yes" : "No" }}</span>
+            </div>
+            <hr />
+            <div class="block">
+              Housetrained?
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.housetrained ? "Yes" : "No" }}</span>
+            </div>
+            <hr />
+            <div class="block">
+              Good with other dogs?
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithDogs ? "Yes" : "No" }}</span>
+            </div>
+            <hr />
+            <div class="block">
+              Good with cats?
+              <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithCats ? "Yes" : "No" }}</span>
+            </div>
           </div>
         </section>
         <footer class="modal-card-foot">
           <button class="button is-success" (click)="applyButtonClicked()">
             Apply to Adopt
           </button>
-          <button class="button is-info">Add to Favorites ⭐</button>
+          <button (click)="addFav()" (click)="openModal = false"  class="button is-info">Add to Favorites ⭐</button>
           <button class="button is-danger" (click)="openModal = false">
             Close
           </button>
@@ -675,3 +757,4 @@
     </div>
   </div>
 </div>
+

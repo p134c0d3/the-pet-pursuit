@@ -1,1 +1,73 @@
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Pet Name</th>
+                  <th>Applicant Name</th>
+                  <th>Actions</th>
+                  <th>Expand</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngFor="let application of appArray">
+                  <tr>
+                    <td>{{ application.petName }}</td>
+                    <td>{{ application.firstName }} {{ application.lastName }}</td>
+                    <td>
+                     <button>Approve</button>
+                      <button>Deny</button>
+                    </td>
+                    <td>
+                      <button (click)="toggleRow(application)">Toggle</button>
+                    </td>
+                </tr>
+                <tr [ngClass]="{ 'is-hidden': !application.expanded }">
+                  <td colspan="4">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Email</th>
+                          <th>Housing Type</th>
+                          <th>Address</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                          <th>Housing</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{{ application.email }}</td>
+                          <td>{{ application.housingType }} {{ application.ageCheck }} </td>
+                          <td>{{ application.streetName}} {{ application.streetName}} {{ application.city}} {{ application.state}} {{ application.zipCode}}</td>
 
+                            <td>{{ application.phoneNumber}}</td>
+                            <td>{{ application.hhName}}</td>
+                            <td>{{ application.hhAge}}</td>
+                            <td>{{ application.hhPet}}</td>
+                            <td>{{ application.petType}}</td>
+                            <td>{{ application.petAge}}</td>
+                            <td>{{ application.whenHome}}</td>
+                            <td>{{ application.whenNotHome}}</td>
+                            <td>{{ application.employment}}</td>
+                            <td>{{ application.surrender}}</td>
+                            <td>{{ application.commitment}}</td>
+                            <td>{{ application.message}}</td>
+                            <td>{{ application.ageCheck}}</td>
+                            <td>{{ application.termsConditions}}</td>
+                        </tr>
+                      </tbody>
+                     </table>
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
