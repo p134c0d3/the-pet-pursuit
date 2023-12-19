@@ -45,4 +45,15 @@ export class HTTPService {
       })
     );
   }
+
+
+  deleteApplicationsFromFirebase() {
+    const authToken = this.auth.getToken();
+    if(!authToken) {
+      return;
+      debugger
+    }
+    const deleteUrl = `${this.firebaseApplicationsURL}?auth=${authToken}`;
+    return this.http.delete(deleteUrl);
+  }
 }
