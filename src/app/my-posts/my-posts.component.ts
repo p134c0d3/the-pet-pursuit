@@ -1,7 +1,7 @@
 import { DataStorageService } from './../services/data-storage.service';
 import { Component } from '@angular/core';
 import { NewPost } from '../models/new-post.model';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
 import { Router } from '@angular/router';
 
@@ -15,18 +15,41 @@ export class MyPostsComponent {
   pets: NewPost[] = [];
   openModal = false;
   isApplyClicked = false;
-  adoptionRequestForm: FormGroup;
   onSubmitClicked = false;
   selectedPet: NewPost = null;
+  editPostForm: FormGroup;
 
   constructor(
-    private router: Router,
     private httpService: HTTPService,
-    private dataStorage: DataStorageService
+    private dataStorage: DataStorageService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.editPost = false;
     this.fetchPets();
+
+    this.editPostForm = this.formBuilder.group({
+      id: ['id'],
+      petName: [this.selectedPet?.petName, Validators.required],
+      petType: [this.selectedPet?.petType, Validators.required],
+      petBreed: [this.selectedPet?.petBreed],
+      petGender: [this.selectedPet?.petGender, Validators.required],
+      petAge: [this.selectedPet?.petAge, Validators.required],
+      spayedNeutered: [this.selectedPet?.spayedNeutered, Validators.required],
+      petLocation: [this.selectedPet?.petLocation, Validators.required],
+      message: [this.selectedPet?.message, Validators.required],
+      firstName: [this.selectedPet?.firstName, Validators.required],
+      lastName: [this.selectedPet?.lastName, Validators.required],
+      email: [this.selectedPet?.email, Validators.required],
+      phoneNumber: [this.selectedPet?.phoneNumber],
+      imagePath: [this.selectedPet?.imagePath],
+      goodWithChildren: [this.selectedPet?.goodWithChildren],
+      housetrained: [this.selectedPet?.housetrained],
+      goodWithDogs: [this.selectedPet?.goodWithDogs],
+      goodWithCats: [this.selectedPet?.goodWithCats],
+    });
+    console.log('Edit Post Form', this.editPostForm);
   }
 
   deleteSinglePost() {}
@@ -67,20 +90,18 @@ export class MyPostsComponent {
   }
 
   editSinglePost(pet: any) {
-    this.editPost = true;
+    // this.editPost = true;
     this.openModal = true;
     this.selectedPet = pet;
-    this.adoptionRequestForm.patchValue({ petName: this.selectedPet.petName });
-    this.router.navigate(['my-posts-edit']);
+    
+    // this.router.navigate(['my-posts-edit']);
   }
 
   onSubmit() {
     this.onSubmitClicked = true;
-    if (this.adoptionRequestForm.valid) {
-      this.httpService.saveApplicationsToFirebase(
-        this.adoptionRequestForm.value
-      );
-      this.adoptionRequestForm.reset();
+    if (this.editPostForm.valid) {
+      this.httpService.saveApplicationsToFirebase(this.editPostForm.value);
+      this.editPostForm.reset();
       this.isApplyClicked = false;
       this.openModal = true;
       console.log('form is valid');
@@ -97,6 +118,6 @@ export class MyPostsComponent {
   onCancel() {
     this.onSubmitClicked = false;
     this.isApplyClicked = false;
-    this.adoptionRequestForm.reset();
+    this.editPostForm.reset();
   }
 }

@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'new-post', component: NewPostComponent },
   { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent },
   { path: 'my-posts', canActivate:[AuthGuard], component: MyPostsComponent },
-  { path: 'my-posts/my-posts-edit', canActivate:[AuthGuard], component: MyPostsEditComponent }
+  // { path: 'my-posts-edit', canActivate:[AuthGuard], component: MyPostsEditComponent }
 ];
 
 @NgModule({
