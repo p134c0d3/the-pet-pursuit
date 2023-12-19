@@ -19,6 +19,7 @@ import { PetService } from './services/pet.service';
 import { DataStorageService } from './services/data-storage.service';
 import { AuthService } from './auth/auth.service';
 import { FooterComponent } from './footer/footer.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { FooterComponent } from './footer/footer.component';
     AuthComponent,
     LoadingSpinnerComponent,
     FooterComponent,
+    FavoritesComponent,
 
   ],
   imports: [
