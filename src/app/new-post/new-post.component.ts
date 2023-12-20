@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { DataStorageService } from '../services/data-storage.service';
 import { NewPost } from '../models/new-post.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-new-post',
@@ -72,7 +73,8 @@ export class NewPostComponent {
       goodWithCats,
     } = this.newPostForm.value;
 
-    const genID = this.generateID();
+
+    const genID = uuidv4()
     const newPost = new NewPost(
       genID,
       petName,

@@ -42,7 +42,7 @@ export class MyPostsComponent {
       housetrained: [''],
       goodWithDogs: [''],
       goodWithCats: [''],
-    })
+    });
   }
 
   ngOnInit() {
@@ -77,7 +77,6 @@ export class MyPostsComponent {
         goodWithDogs: pet.goodWithDogs,
         goodWithCats: pet.goodWithCats,
       }));
-      console.log('Fetch Pets', this.pets);
     });
   }
 
@@ -116,7 +115,7 @@ export class MyPostsComponent {
   onSubmit() {
     this.onSubmitClicked = true;
     if (this.editPostForm.valid) {
-      this.dataStorage.storeNewPost(this.editPostForm.value)
+      this.dataStorage.storeNewPost(this.editPostForm.value);
       this.editPostForm.reset();
       this.isApplyClicked = false;
       this.openModal = false;
@@ -124,7 +123,27 @@ export class MyPostsComponent {
     } else {
       console.log('form is not valid');
     }
+  }
 
+  onEditSubmit() {
+    this.onSubmitClicked = true;
+    if (this.editPostForm.valid) {
+      const data = this.selectedPet.id;
+      console.log(this.editPostForm.value);
+      this.dataStorage
+        .saveEditedPostToFirebase(data, this.editPostForm.value)
+        .subscribe(
+          (res) => {
+            console.log('Post Edit Successful!', res);
+          },
+          (error) => {
+            console.error('Error editing post.', error);
+          }
+        );
+      this.openModal = false;
+      console.log(this.selectedPet);
+    }
+    this.fetchPets();
   }
 
   applyButtonClicked(): void {
