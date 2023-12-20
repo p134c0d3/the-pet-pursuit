@@ -4,8 +4,8 @@ import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
 import { localStorageService } from '../services/local-storage.service';
-// import { AuthService } from '../auth/auth.service';
-// import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
   adoptionRequestForm: FormGroup;
   onSubmitClicked = false;
   selectedPet: NewPost = null;
-  // private userSub: Subscription;
+  private userSub: Subscription;
   isAuthenticated = false;
 
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
     private httpService: HTTPService,
     private dataStorage: DataStorageService,
     private localStorage:localStorageService,
-    // private authService: AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -63,9 +63,9 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
     this.fetchPets();
 
-    // this.userSub= this.authService.user.subscribe(user =>{
-    //   this.isAuthenticated= !!user
-    //  })
+    this.userSub= this.authService.user.subscribe(user =>{
+      this.isAuthenticated= !!user
+     })
   }
 
   fetchPets() {
@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
   }
 
   addFav(){
-   
+
     if(this.selectedPet){
       this.localStorage.addFavorite(this.selectedPet)
       console.log('Pet added to favorites:', this.selectedPet);
@@ -146,6 +146,6 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
 
  ngOnDestroy(): void {
-  // this.userSub.unsubscribe()
+  this.userSub.unsubscribe()
 }
 }
