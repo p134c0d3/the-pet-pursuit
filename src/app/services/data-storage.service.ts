@@ -36,7 +36,7 @@ export class DataStorageService {
       .subscribe((response) => {
         console.log(response);
       });
-  }
+  } */
 
   // need to create modify adoptionApplication model and call this function
   storeAdoptionApplication(adoptionApplication) {
