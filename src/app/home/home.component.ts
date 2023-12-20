@@ -12,6 +12,7 @@ import { localStorageService } from '../services/local-storage.service';
 })
 export class HomeComponent {
   openModal = false;
+  openTermsModal = false;
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   onSubmitClicked = false;
@@ -114,11 +115,13 @@ export class HomeComponent {
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
-
+    this.openTermsModal = false;
   }
 
+
+
   addFav(){
-    //Working but will aloow same pet twice
+    //Working but will allow same pet twice
     if(this.selectedPet){
       this.localStorage.addFavorite(this.selectedPet)
       console.log('Pet added to favorites:', this.selectedPet);
@@ -132,4 +135,10 @@ export class HomeComponent {
     this.isApplyClicked =false;
     this.adoptionRequestForm.reset();
  }
+
+  openTermsConditions() {
+   this.openTermsModal = true;
+   this.isApplyClicked = false;
+ }
+
 }

@@ -330,28 +330,7 @@
       id="termsConditions"
       name="termsConditions"
       formControlName="termsConditions">
-      I agree to the
-      <div class="modal" [ngClass]="isApplyClicked ? 'is-active' : ''">
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p
-            class="modal-card-title has-text-weight-bold is-size-3 has-text-centered">
-            terms and conditions</p>
-            <button
-            class="delete"
-            aria-label="close"
-            >
-          </button>
-          </header>
-          <section class="modal-card-body">
-            <app-terms-and-conditions></app-terms-and-conditions>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button">Close</button>
-          </footer>
-        </div>
-      </div>
+      I agree to the <a class="link" (click)="openTermsConditions()">terms and conditions</a>
     </label>
   </div>
 </div>
@@ -379,3 +358,24 @@
 </form>
 </section>
 <hr>
+<div class="modal" [ngClass]="openModal ? 'is-active' : ''">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Terms and Conditions</p>
+      <button
+      class="delete"
+      aria-label="close"
+      (click)="openModal = false">
+    </button>
+    </header>
+    <section class="modal-card-body">
+      <app-terms-and-conditions></app-terms-and-conditions>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-danger" (click)="openModal = false">
+        Close
+      </button>
+    </footer>
+  </div>
+</div>

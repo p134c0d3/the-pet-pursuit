@@ -18,6 +18,7 @@ export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
+  openModal = false;
 
   constructor(
     private router: Router,
@@ -109,9 +110,7 @@ export class NewPostComponent {
     this.router.navigate(['home']);
   }
 
-  applyButtonClicked(): void {
-    this.isApplyClicked = true;
-    // this.openModal = false;
-
+  openTermsConditions() {
+    this.openModal = true;
   }
 }
