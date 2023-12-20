@@ -56,7 +56,7 @@ export class HTTPService {
       console.error('No auth token found');
       return;
     }
-    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${id}.json?auth=${authToken}`;
+    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${appID}.json?auth=${authToken}`;
     return this.http.delete(deleteUrl).pipe(
       catchError((error) => {
         console.error('Error deleting application:', error);
