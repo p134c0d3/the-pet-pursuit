@@ -1,6 +1,7 @@
 
 export class adoptionApplication {
   constructor (
+  public appID: number,
   public petName: string,
   public firstName: string,
   public lastName: string,
@@ -26,6 +27,7 @@ export class adoptionApplication {
   public petAge?: number[],
   public message?: string,
 ){
+  this.appID = appID;
   this.petName = petName;
   this.firstName = firstName;
   this.lastName = lastName;

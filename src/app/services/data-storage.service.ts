@@ -21,13 +21,13 @@ export class DataStorageService {
   }
 
   // need to create modify adoptionApplication model and call this function
-  storeAdoptionApplication(adoptionApplication) {
+/*   storeAdoptionApplication(adoptionApplication) {
     this.http
       .post(this.firebaseURL, adoptionApplication)
       .subscribe((response) => {
         console.log(response);
       });
-  }
+  } */
 
   // need to create pet model and pet service
   // get array of pets then put it to the DB
