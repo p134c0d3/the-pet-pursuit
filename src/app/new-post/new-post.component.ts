@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { DataStorageService } from '../services/data-storage.service';
 import { NewPost } from '../models/new-post.model';
 import { v4 as uuidv4 } from 'uuid';
+import { Observable, from, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-post',
@@ -23,7 +25,8 @@ export class NewPostComponent {
   constructor(
     private router: Router,
     private dataStorageService: DataStorageService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) {
     this.newPostForm = this.formBuilder.group({
       id: ['id'],
@@ -73,8 +76,7 @@ export class NewPostComponent {
       goodWithCats,
     } = this.newPostForm.value;
 
-
-    const genID = uuidv4()
+    const genID = uuidv4();
     const newPost = new NewPost(
       genID,
       petName,
@@ -101,9 +103,6 @@ export class NewPostComponent {
     this.dataStorageService.storeNewPost(newPost);
 
     this.router.navigate(['home']);
-  }
-  generateID(): number {
-    return Math.floor(Math.random() * 9000) + 1000;
   }
 
   trimPetBreed(breed) {

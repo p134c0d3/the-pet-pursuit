@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment.prod';
-import { Subject, catchError, map, throwError } from 'rxjs';
+import { Observable, Subject, catchError, from, map, switchMap, takeUntil, tap, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
@@ -21,6 +21,7 @@ export class DataStorageService {
       console.log(response);
     });
   }
+
 
   // need to create modify adoptionApplication model and call this function
   storeAdoptionApplication(adoptionApplication) {
@@ -49,28 +50,21 @@ export class DataStorageService {
       })
     );
   }
-  saveEditedPostToFirebase(id: number, newPostData: any) {
-    if (!id) {
-      console.error('No id provided');
-      return throwError('No id provided');
-    }
-    const authToken = this.auth.getToken();
-    console.log(authToken);
 
-    if (!authToken) {
-      console.error('No auth token found');
-      return;
-    }
-    const editUrl = `${this.firebaseURL}/newpost/${id}.json?auth=${authToken}`;
-    return this.http.patch(editUrl, newPostData).pipe(
+  saveEditedPostToFirebase(id: number, newPostData: any): Observable<any> {
+    return from(this.auth.getToken()).pipe(
+      switchMap((token: string) => {
+        const url = `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${id}.json?auth=${token}`;
+        return this.http.put(url, newPostData);
+      }),
       catchError((error) => {
-        console.error('Error deleting application:', error);
+        console.error('Error updating post:', error);
         return throwError(error);
       })
     );
   }
-
   // need to create pet service for fetching list of pets from DB
+
   fetchPets() {
     return this.http
 
@@ -81,5 +75,4 @@ export class DataStorageService {
         })
       );
   }
-
 }
