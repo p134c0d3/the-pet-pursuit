@@ -58,8 +58,8 @@ export class HTTPService {
   } */
 
 
-  deleteApplicationsFromFirebase(id: number) {
-    if (!id) {
+  deleteApplicationsFromFirebase(appID: number) {
+    if (!appID) {
       console.error('No id provided');
       return throwError('No id provided');
     }
@@ -68,7 +68,7 @@ export class HTTPService {
       console.error('No auth token found');
       return;
     }
-    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${id}.json?auth=${authToken}`;
+    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${appID}.json?auth=${authToken}`;
     return this.http.delete(deleteUrl).pipe(
       catchError((error) => {
         debugger
