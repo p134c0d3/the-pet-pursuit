@@ -43,6 +43,7 @@ export class NewPostComponent {
       housetrained: [''],
       goodWithDogs: [''],
       goodWithCats: [''],
+      termsConditions: ['', Validators.required],
     });
   }
 
