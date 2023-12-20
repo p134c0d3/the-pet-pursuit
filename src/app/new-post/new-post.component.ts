@@ -100,7 +100,7 @@ export class NewPostComponent {
 
     this.router.navigate(['home']);
   }
-  
+
   generateID(): number {
     return Math.floor(Math.random() * 9000) + 1000;
   }
