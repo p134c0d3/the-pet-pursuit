@@ -1,7 +1,7 @@
 
 export class adoptionApplication {
   constructor (
-  public appID: number,
+  public appID: string,
   public petName: string,
   public firstName: string,
   public lastName: string,
