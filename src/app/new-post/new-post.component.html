@@ -330,7 +330,28 @@
       id="termsConditions"
       name="termsConditions"
       formControlName="termsConditions">
-      I agree to the <a class="nav-link" routerLink="/terms-and-conditions" routerLinkActive="active">terms and conditions</a>
+      I agree to the
+      <div class="modal" [ngClass]="isApplyClicked ? 'is-active' : ''">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p
+            class="modal-card-title has-text-weight-bold is-size-3 has-text-centered">
+            terms and conditions</p>
+            <button
+            class="delete"
+            aria-label="close"
+            >
+          </button>
+          </header>
+          <section class="modal-card-body">
+            <app-terms-and-conditions></app-terms-and-conditions>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button">Close</button>
+          </footer>
+        </div>
+      </div>
     </label>
   </div>
 </div>

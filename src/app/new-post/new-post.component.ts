@@ -108,4 +108,10 @@ export class NewPostComponent {
   onCancel() {
     this.router.navigate(['home']);
   }
+
+  applyButtonClicked(): void {
+    this.isApplyClicked = true;
+    // this.openModal = false;
+
+  }
 }
