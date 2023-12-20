@@ -22,7 +22,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
 
  user=this.localStorage.getData('username')
- 
+
 
 
   toggleNav(){
