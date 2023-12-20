@@ -1,21 +1,26 @@
 import { DataStorageService } from './../services/data-storage.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
 import { localStorageService } from '../services/local-storage.service';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy  {
   openModal = false;
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   onSubmitClicked = false;
   selectedPet: NewPost = null;
+  private userSub: Subscription;
+  isAuthenticated = false;
+  private sub: Subscription;
 
   pets: NewPost[] = [];
   @ViewChild(FormGroupDirective) adoptionFormRef;
@@ -24,7 +29,8 @@ export class HomeComponent {
   constructor(
     private httpService: HTTPService,
     private dataStorage: DataStorageService,
-    private localStorage:localStorageService
+    private localStorage:localStorageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -56,6 +62,10 @@ export class HomeComponent {
     });
 
     this.fetchPets();
+
+    this.userSub= this.authService.user.subscribe(user =>{
+      this.isAuthenticated= !!user
+     })
   }
 
   fetchPets() {
@@ -132,4 +142,10 @@ export class HomeComponent {
     this.isApplyClicked =false;
     this.adoptionRequestForm.reset();
  }
+
+
+
+ ngOnDestroy(): void {
+  this.userSub.unsubscribe()
+}
 }
