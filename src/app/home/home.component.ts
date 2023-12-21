@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
   selectedPet: NewPost = null;
   private userSub: Subscription;
   isAuthenticated = false;
+  applicationId: any;
 
 
   pets: NewPost[] = [];
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
   ngOnInit() {
     this.adoptionRequestForm = new FormGroup({
-      appID: new FormControl(),
+      applicationId: new FormControl(this.generateAppID()),
       petName: new FormControl(null),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
@@ -48,16 +49,29 @@ export class HomeComponent implements OnInit, OnDestroy  {
       state: new FormControl(null, Validators.required),
       zipCode: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
-      email: new FormControl(
-        null,
-        Validators.compose([Validators.required, Validators.email])
-      ),
+      email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
       housingType: new FormControl(null, Validators.required),
-      hhName: new FormControl(null),
-      hhAge: new FormControl(null),
-      hhPet: new FormControl(null),
-      petType: new FormControl(null),
-      petAge: new FormControl(null),
+      hhName1: new FormControl(null),
+      hhName2: new FormControl(null),
+      hhName3: new FormControl(null),
+      hhName4: new FormControl(null),
+      hhName5: new FormControl(null),
+      hhName6: new FormControl(null),
+      hhAge1: new FormControl(null),
+      hhAge2: new FormControl(null),
+      hhAge3: new FormControl(null),
+      hhAge4: new FormControl(null),
+      hhAge5: new FormControl(null),
+      hhAge6: new FormControl(null),
+      hhPet1: new FormControl(null),
+      hhPet2: new FormControl(null),
+      hhPet3: new FormControl(null),
+      petType1: new FormControl(null),
+      petType2: new FormControl(null),
+      petType3: new FormControl(null),
+      petAge1: new FormControl(null),
+      petAge2: new FormControl(null),
+      petAge3: new FormControl(null),
       whenHome: new FormControl(null, Validators.required),
       whenNotHome: new FormControl(null, Validators.required),
       employment: new FormControl(null, Validators.required),
@@ -117,14 +131,13 @@ export class HomeComponent implements OnInit, OnDestroy  {
   }
 
   onSubmit() {
-    this.onSubmitClicked = true;
     if (this.adoptionRequestForm.valid) {
       this.httpService.saveApplicationsToFirebase(
         this.adoptionRequestForm.value
       );
-      this.adoptionRequestForm.reset();
       this.isApplyClicked = false;
-      this.openModal = true;
+      this.adoptionRequestForm.reset();
+      this.onSubmitClicked = false;
       console.log('form is valid');
     } else {
       console.log('form is not valid');

@@ -44,16 +44,18 @@ export class AdoptionApplicationListComponent implements OnInit {
 
   }
 
-  onDeny() {
-   /*  const selectedApplicationId = this.selectedApplication?.appID;
-    console.log('selected application', this.selectedApplication)
-    if (selectedApplicationId) {
-      console.log('selected application id', this.selectedApplication.appID)
-    this.httpService.deleteApplicationsFromFirebase(selectedApplicationId).subscribe(() => {
-      return this.httpService.deleteApplicationsFromFirebase.remove()
-    });
-    } else {
-      console.error('No id provided');
-    } */
+  onDeny(applicationId: number) {
+    this.httpService.deleteApplicationsFromFirebase(applicationId).subscribe((res) => {
+      console.log(res);
+    })
+    this.openApplicationModal = false;
+    this.httpService.fetchApplicationsFromFirebase();
+      setTimeout(() => {
+        this.httpService.fetchApplicationsFromFirebase();
+
+      }, 1500);
   }
+
+
 }
+
