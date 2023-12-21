@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HTTPService } from '../services/HTTPService';
 import { adoptionApplication } from '../models/adoption-application.model';
-import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-adoption-application-list',
@@ -11,7 +12,9 @@ import { Observable } from 'rxjs';
 export class AdoptionApplicationListComponent implements OnInit {
   appArray: adoptionApplication[] = [];
   constructor(private httpService: HTTPService) {}
-  showFullApplication = false;
+  openApplicationModal = false;
+  selectedApplication: adoptionApplication = null;
+
 
   ngOnInit() {
     this.httpService.fetchApplicationsFromFirebase().subscribe((res) => {
@@ -27,7 +30,30 @@ export class AdoptionApplicationListComponent implements OnInit {
 
   }
 
-  toggleRow(application: any) {
-    application.expanded = !application.expanded;
+  openApplication(application: adoptionApplication) {
+    this.openApplicationModal = true;
+    this.selectedApplication = application;
+
+  }
+
+  onClose() {
+    this.openApplicationModal =false;
+  }
+
+  onApprove() {
+
+  }
+
+  onDeny() {
+   /*  const selectedApplicationId = this.selectedApplication?.appID;
+    console.log('selected application', this.selectedApplication)
+    if (selectedApplicationId) {
+      console.log('selected application id', this.selectedApplication.appID)
+    this.httpService.deleteApplicationsFromFirebase(selectedApplicationId).subscribe(() => {
+      return this.httpService.deleteApplicationsFromFirebase.remove()
+    });
+    } else {
+      console.error('No id provided');
+    } */
   }
 }
