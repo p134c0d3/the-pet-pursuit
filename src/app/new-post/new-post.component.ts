@@ -8,6 +8,9 @@ import {
 import { Router } from '@angular/router';
 import { DataStorageService } from '../services/data-storage.service';
 import { NewPost } from '../models/new-post.model';
+import { v4 as uuidv4 } from 'uuid';
+import { Observable, from, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-post',
@@ -18,11 +21,14 @@ export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
+  genID: number;
+
 
   constructor(
     private router: Router,
     private dataStorageService: DataStorageService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient
   ) {
     this.newPostForm = this.formBuilder.group({
       id: ['id'],
@@ -46,7 +52,10 @@ export class NewPostComponent {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+
+  }
   ngOnDestroy() {
     this.newPostForm.reset();
   }
@@ -72,9 +81,8 @@ export class NewPostComponent {
       goodWithCats,
     } = this.newPostForm.value;
 
-    const genID = this.generateID();
     const newPost = new NewPost(
-      genID,
+      this.genID = uuidv4(),
       petName,
       petType,
       petBreed,
@@ -99,9 +107,11 @@ export class NewPostComponent {
     this.dataStorageService.storeNewPost(newPost);
 
     this.router.navigate(['home']);
+    location.reload();
   }
-  generateID(): number {
-    return Math.floor(Math.random() * 9000) + 1000;
+
+  trimPetBreed(breed) {
+    return breed.replaceAll(' ', '');
   }
 
   onCancel() {

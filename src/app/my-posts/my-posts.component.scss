@@ -1,0 +1,79 @@
+.card {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+.container {
+  margin-top: 3rem;
+}
+
+.column {
+  margin: 20px;
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.card {
+  border-radius: 10px;
+  flex: 0 0 30%;
+  margin: 1%;
+}
+
+.clickedPetImage {
+  height: 256px;
+  width: auto;
+}
+
+form .ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+ /* Buttons right align */
+ .modal-card-foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.formWarning {
+  padding-right: 40px;
+  color: black;
+}
+
+header {
+  background-color: #a2d6f9;
+}
+
+p.modal-card-title {
+  color: #2b3a67;
+}
+
+footer {
+  background-color: #a2d6f9;
+}
+
+#submitEditedPost {
+  background-color: #2b3a67;
+}
+
+#submitEditedPost:hover {
+  background-color: #162245;
+}
+
+#cancelEditedPost {
+  color: #2b3a67;
+}
+#cancelEditedPost:hover {
+  color: #162245;
+}
+
+a.my-post-delete:hover {
+  background-color: red;
+  color: white;
+}
+a.my-post-edit:hover {
+  background-color: #5288ac;
+  color: white;
+}
