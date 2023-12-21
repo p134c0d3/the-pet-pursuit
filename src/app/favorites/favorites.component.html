@@ -23,17 +23,116 @@
             <p class="subtitle is-6">{{ fav.petBreed }}</p>
           </div>
 
+
         ⭐
         </div>
+
+        <div class="container is-flex is-justify-content-center">
+
+
+          <button
+          class="button is-link pet-details-button"
+          (click)="openPetDetails(fav)"
+
+          >
+          Details
+        </button>
         <button
           class="button is-danger pet-details-button"
           (click)="deleteFav(fav)"
 
-        >
+          >
           Delete
         </button>
+      </div>
 
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal" [ngClass]="openModal ? 'is-active' : ''">
+  <div class="modal-background">
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">{{ selectedPet?.petName }}</p>
+        <button
+          class="delete"
+          aria-label="close"
+          (click)="openModal = false"
+        ></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="modal-content content">
+          <figure class="media-left">
+            <p class="image">
+              <img
+                src="{{ selectedPet?.imagePath }}"
+                class="clickedPetImage"
+              />
+            </p>
+          </figure>
+          <h1>
+            <strong>A little bit about {{ selectedPet?.petName }}</strong>
+          </h1>
+          <!-- <h3><strong>Cattle Dog Mix</strong></h3> -->
+          <div>
+            {{ selectedPet?.message }}
+          </div>
+        </div>
+        <div class="column">
+          <div class="block">
+            Age
+
+            <span class="tag is-pulled-right is-info has-text-weight-bold">{{
+              selectedPet?.petAge
+            }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Sex
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
+              selectedPet?.petGender
+            }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Spayed/neutered?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
+              selectedPet?.spayedNeutered
+            }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Good with children?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithChildren ? "Yes" : "No" }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Housetrained?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.housetrained ? "Yes" : "No" }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Good with other dogs?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithDogs ? "Yes" : "No" }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Good with cats?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithCats ? "Yes" : "No" }}</span>
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <!-- <h1 class="mr-7" *ngIf="!isAuthenticated">Please Log in to Fav or Apply</h1> -->
+        <button class="button is-danger" (click)="openModal = false">
+          Close
+        </button>
+      </footer>
     </div>
   </div>
 </div>
