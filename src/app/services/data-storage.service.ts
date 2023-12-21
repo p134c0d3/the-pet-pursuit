@@ -38,30 +38,6 @@ export class DataStorageService {
       });
   }
 
-  // need to create modify adoptionApplication model and call this function
-/*   storeAdoptionApplication(adoptionApplication) {
-    this.http
-      .put(this.firebaseURL, adoptionApplication)
-      .subscribe((response) => {
-        console.log(response);
-      });
-  } */
-
-  // deletePostFromFirebase(id: number) {
-  //   console.log('Request Started:', id);
-  //   const authToken = this.auth.getToken();
-  //   if (!authToken) {
-  //     console.error('No auth token found');
-  //     return;
-  //   }
-  //   const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${id}.json?auth=${authToken}`;
-  //   return this.http.delete(deleteUrl).pipe(
-  //     catchError((error) => {
-  //       console.error('Error deleting application:', error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // }
 
   deletePostFromFirebase(id: number): Observable<void> {
     console.log('Request Started:', id);
@@ -79,6 +55,8 @@ export class DataStorageService {
       })
     );
   }
+
+
   saveEditedPostToFirebase(id: number, newPostData: any): Observable<any> {
     return from(this.auth.getToken()).pipe(
       switchMap((token: string) => {
@@ -89,8 +67,9 @@ export class DataStorageService {
         console.error('Error updating post:', error);
         return throwError(error);
       })
-    );
-  }
+      );
+
+    }
   // need to create pet service for fetching list of pets from DB
 
   fetchPets() {

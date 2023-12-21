@@ -24,7 +24,6 @@ export class NewPostComponent {
   openModal = false;
   genID: number;
 
-
   constructor(
     private router: Router,
     private dataStorageService: DataStorageService,
@@ -54,10 +53,7 @@ export class NewPostComponent {
     });
   }
 
-  ngOnInit() {
-
-
-  }
+  ngOnInit() {}
   ngOnDestroy() {
     this.newPostForm.reset();
   }
@@ -108,18 +104,17 @@ export class NewPostComponent {
     this.newPostFormHasBeenSubmitted = true;
     this.dataStorageService.storeNewPost(newPost);
 
+    this.dataStorageService.fetchPets();
     this.router.navigate(['home']);
-    location.reload();
-  }
 
+    // location.reload();
+  }
 
   trimPetBreed(breed) {
     return breed.replaceAll(' ', '');
-
   }
   generateID(): number {
     return Math.floor(Math.random() * 9000) + 1000;
-
   }
 
   onCancel() {

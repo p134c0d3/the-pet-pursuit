@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NewPost } from '../models/new-post.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-posts',
@@ -21,7 +22,8 @@ export class MyPostsComponent {
   constructor(
     private httpService: HTTPService,
     private dataStorage: DataStorageService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.editPostForm = this.formBuilder.group({
       id: [''],
@@ -56,8 +58,7 @@ export class MyPostsComponent {
       console.log(res);
 
     });
-
-    location.reload();
+    // location.reload();
   }
 
   fetchPets() {
@@ -119,22 +120,8 @@ export class MyPostsComponent {
       goodWithDogs: [pet?.goodWithDogs],
       goodWithCats: [pet?.goodWithCats],
     });
-
-    location.reload();
   }
 
-  onSubmit() {
-    this.onSubmitClicked = true;
-    if (this.editPostForm.valid) {
-      this.dataStorage.storeNewPost(this.editPostForm.value);
-      this.editPostForm.reset();
-      this.isApplyClicked = false;
-      this.openModal = false;
-      console.log('form is valid');
-    } else {
-      console.log('form is not valid');
-    }
-  }
 
   onEditSubmit(data: number) {
     this.onSubmitClicked = true;
@@ -153,8 +140,11 @@ export class MyPostsComponent {
         );
       this.openModal = false;
       console.log(this.selectedPet);
+      this.fetchPets();
+      this.router.navigate(['my-posts']);
     }
-    this.fetchPets();
+    // location.reload();
+
   }
 
   applyButtonClicked(): void {
