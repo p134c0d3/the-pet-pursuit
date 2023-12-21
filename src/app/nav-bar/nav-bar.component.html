@@ -34,18 +34,20 @@
     <div class="navbar-start">
       <a routerLink="/home" class="navbar-item"> Home 🐾 </a>
 
-      <a routerLink="/accessories" class="navbar-item access">
-        Accessories 🛍️
+      <a routerLink="/my-posts" class="navbar-item" *ngIf="isAuthenticated">
+        My Posts 📒
       </a>
 
-      <a routerLink="/favorites" class="navbar-item"> Favorites ⭐ </a>
+      <a routerLink="/favorites" class="navbar-item" *ngIf="isAuthenticated"> Favorites ⭐ </a>
 
-      <a routerLink="/incomingApplications" class="navbar-item">
-        Incoming Applications 📝
+
+      <a routerLink="/incomingApplications" class="navbar-item" *ngIf="isAuthenticated">
+        Incoming Applications 📋
+
       </a>
 
       <div *ngIf="isAuthenticated" class="navbar-item">
-        <h3 class="is-family-monospace is-italic is-size-3 ml-2">Whiskery Welcomes,{{user}}!</h3>
+        <h3 class="is-family-monospace is-italic is-size-3 ml-2">Whiskery Welcomes, {{user}}!</h3>
         </div>
         <div *ngIf="isLoading" style="text-align: center;">
           <app-loading-spinner></app-loading-spinner>
@@ -55,7 +57,7 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-grey-dark" routerLink="/sign-up">
+          <a class="button is-grey-dark" routerLink="/sign-up" *ngIf="!isAuthenticated">
             <strong>Sign up</strong>
           </a>
 

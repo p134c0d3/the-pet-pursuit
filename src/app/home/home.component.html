@@ -38,7 +38,9 @@
     <!-- Modal for Adoption Request Form -->
     <div class="modal-background"></div>
     <div class="modal-card">
-      <header class="modal-card-head has-background-info">
+      <header
+      class="modal-card-head"
+      id="adoptionRequest">
         <p
           class="modal-card-title has-text-weight-bold is-size-3 has-text-centered"
         >
@@ -629,7 +631,10 @@
             <div class="control">
               <label class="checkbox">
                 <input type="checkbox" formControlName="termsConditions" />
-                I agree to the <a>Pet Pursuit Terms and Conditions.</a>
+                I agree to the
+
+                <a class="link" (click)="openTermsConditions()"
+                >Pet Pursuit Terms and Conditions.</a>
               </label>
             </div>
           </div>
@@ -642,7 +647,7 @@
         </form>
         <!-- Form end -->
       </section>
-      <footer class="modal-card-foot has-background-info">
+      <footer class="modal-card-foot">
         <div class="field is-grouped">
           <div class="control field is-grouped">
             <p class="is-size-4 has-text-weight-semibold formWarning"
@@ -650,6 +655,7 @@
             >Please fill in all required sections.
           </p>
             <button
+              id="onSubmit"
               type="submit"
               class="button is-success"
               (click)="onSubmit()"
@@ -659,10 +665,35 @@
 
           </div>
           <div class="control">
-            <button class="button is-danger" (click)="onCancel()">
+            <button
+              class="button is-danger"
+              (click)="onCancel()">
               Cancel
             </button>
           </div>
+
+          <div class="modal" [ngClass]="openTermsModal ? 'is-active' : ''">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Terms and Conditions</p>
+                <button
+                class="delete"
+                aria-label="close"
+                (click)="openTermsModal = false">
+              </button>
+              </header>
+              <section class="modal-card-body">
+                <app-terms-and-conditions></app-terms-and-conditions>
+              </section>
+              <footer class="modal-card-foot">
+                <button class="button is-danger" (click)="openTermsModal = false">
+                  Close
+                </button>
+              </footer>
+            </div>
+          </div>
+
         </div>
       </footer>
     </div>
@@ -695,7 +726,7 @@
             <h1>
               <strong>A little bit about {{ selectedPet?.petName }}</strong>
             </h1>
-            <h3><strong>Cattle Dog Mix</strong></h3>
+            <h3><strong>{{ selectedPet?.petBreed }}</strong></h3>
             <div>
               {{ selectedPet?.message }}
             </div>
@@ -745,10 +776,13 @@
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success" (click)="applyButtonClicked()">
+
+         
+          <button *ngIf="isAuthenticated" class="button is-success" (click)="applyButtonClicked()">
             Apply to Adopt
           </button>
-          <button (click)="addFav()" (click)="openModal = false"  class="button is-info">Add to Favorites ⭐</button>
+          <button *ngIf="isAuthenticated" (click)="addFav()" (click)="openModal = false"  class="button is-info">Add to Favorites ⭐</button>
+
           <button class="button is-danger" (click)="openModal = false">
             Close
           </button>
@@ -757,4 +791,3 @@
     </div>
   </div>
 </div>
-
