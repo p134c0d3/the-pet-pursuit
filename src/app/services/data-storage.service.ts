@@ -91,7 +91,6 @@ export class DataStorageService {
 
   fetchPets() {
     return this.http
-
       .get('https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost.json')
       .pipe(
         map((pet) => {

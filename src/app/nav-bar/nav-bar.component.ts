@@ -21,7 +21,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   //user object is not null when user is logged in
 
 
- user=this.localStorage.getData('username')
+ user = this.localStorage.getData('username')
 
 
 
