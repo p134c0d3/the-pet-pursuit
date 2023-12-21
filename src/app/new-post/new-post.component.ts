@@ -115,6 +115,7 @@ export class NewPostComponent {
 
   trimPetBreed(breed) {
     return breed.replaceAll(' ', '');
+  }
 
   generateID(): number {
     return Math.floor(Math.random() * 9000) + 1000;
@@ -129,3 +130,4 @@ export class NewPostComponent {
     this.openModal = true;
   }
 }
+

@@ -18,6 +18,9 @@ export class HTTPService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
 
+
+
+
   saveApplicationsToFirebase(data) {
     const authToken = this.auth.getToken();
     if (!authToken) {
@@ -48,7 +51,7 @@ export class HTTPService {
 
 
   deleteApplicationFromFirebase(id: number) {
-    if (!id) {
+    if (!id) {}
 
 
  /*  deleteApplicationsFromFirebase() {
@@ -62,8 +65,8 @@ export class HTTPService {
   } */
 
 
-  deleteApplicationsFromFirebase(appID: number) {
-    if (!appID) {
+  /* deleteApplicationsFromFirebase(appID: number) { */
+    /* if (!appID) {
       console.error('No id provided');
       return throwError('No id provided');
     }
@@ -79,7 +82,7 @@ export class HTTPService {
         return throwError(error);
       })
     );
-  }
+  } */
 
     /* return this.http.get(deleteUrl).pipe(
       map((applications) => {
@@ -98,5 +101,5 @@ export class HTTPService {
     ); */
   }
 
-
+}
 
