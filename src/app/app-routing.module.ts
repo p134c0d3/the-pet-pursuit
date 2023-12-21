@@ -7,6 +7,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { AuthGuard } from './auth/auth.guard';
+import { FavoritesComponent } from './favorites/favorites.component';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { MyPostsEditComponent } from './my-posts-edit/my-posts-edit.component';
 
@@ -18,9 +19,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'log-in', component: LogInComponent},
   { path: 'new-post', component: NewPostComponent },
-  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent },
-  { path: 'my-posts', canActivate:[AuthGuard], component: MyPostsComponent },
-  // { path: 'my-posts-edit', canActivate:[AuthGuard], component: MyPostsEditComponent }
+  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent }
 ];
 
 @NgModule({
