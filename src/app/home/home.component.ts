@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
 import { localStorageService } from '../services/local-storage.service';
-import { formatCurrency } from '@angular/common';
+
 
 @Component({
   selector: 'app-home',
@@ -28,8 +28,9 @@ export class HomeComponent {
   ) {}
 
   ngOnInit() {
+    /* const appId = this.generateAppID(); */
     this.adoptionRequestForm = new FormGroup({
-      appID: new FormControl(),
+      appID: new FormControl(this.generateAppID()),
       petName: new FormControl(null),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),

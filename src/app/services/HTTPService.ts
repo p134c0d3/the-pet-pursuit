@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { adoptionApplication } from '../models/adoption-application.model';
-import { Subject, catchError, map, tap, throwError } from 'rxjs';
+import { Subject, catchError, map, switchMap, tap, throwError } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -58,8 +58,8 @@ export class HTTPService {
   } */
 
 
-  deleteApplicationsFromFirebase(appID: number) {
-    if (!appID) {
+  deleteApplicationsFromFirebase(appId: number) {
+    if (!appId) {
       console.error('No id provided');
       return throwError('No id provided');
     }
@@ -68,15 +68,32 @@ export class HTTPService {
       console.error('No auth token found');
       return;
     }
-    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${appID}.json?auth=${authToken}`;
+    const deleteUrl = `${this.firebaseRootURL}/Applications/${appId}.json?auth=${authToken}`;
+
     return this.http.delete(deleteUrl).pipe(
       catchError((error) => {
-        debugger
         console.error('Error deleting application:', error);
         return throwError(error);
       })
     );
   }
-}
+
+    /* return this.http.get(deleteUrl).pipe(
+      map((applications) => {
+        const uniqueId = Object.keys(applications)[0];
+        return uniqueId;
+      }),
+      switchMap((uniqueId) => {
+        const finalDeleteUrl = `${this.firebaseRootURL}/Applications/${uniqueId}.json?auth=${authToken}`;
+        return this.http.delete(finalDeleteUrl);
+      }),
+      catchError((error) => {
+        debugger
+        console.error('Error deleting application:', error);
+        return throwError(error);
+      })
+    ); */
+  }
+
 
 
