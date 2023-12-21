@@ -29,6 +29,17 @@ export class localStorageService{
     localStorage.removeItem(key);
   }
 
+  newPostFormData(): void {
+    localStorage.setItem('newPostFormData', JSON.stringify(this.newPostFormData));
+  }
+
+  getNewPostFormData(): any {
+    const formValue = localStorage.getItem('newPostFormData');
+    if (formValue) {
+      return JSON.parse(formValue);
+    }
+    return null;
+  }
 
 
     private favorites: any[] = [];

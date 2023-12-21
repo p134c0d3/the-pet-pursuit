@@ -1,6 +1,9 @@
 import { DataStorageService } from './../services/data-storage.service';
+
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+
+
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
 import { localStorageService } from '../services/local-storage.service';
@@ -14,6 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy  {
   openModal = false;
+  openTermsModal = false;
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   onSubmitClicked = false;
@@ -24,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
   pets: NewPost[] = [];
   @ViewChild(FormGroupDirective) adoptionFormRef;
-
 
   constructor(
     private httpService: HTTPService,
@@ -44,7 +47,10 @@ export class HomeComponent implements OnInit, OnDestroy  {
       state: new FormControl(null, Validators.required),
       zipCode: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
-      email: new FormControl(null,Validators.compose([Validators.required, Validators.email])),
+      email: new FormControl(
+        null,
+        Validators.compose([Validators.required, Validators.email])
+      ),
       housingType: new FormControl(null, Validators.required),
       hhName: new FormControl(null),
       hhAge: new FormControl(null),
@@ -85,13 +91,15 @@ export class HomeComponent implements OnInit, OnDestroy  {
         lastName: pet.lastName,
         email: pet.email,
         phoneNumber: pet.phoneNumber,
-        imagePath: `http://source.unsplash.com/200x200/?${pet.petType},${pet.petBreed}`,
+        imagePath: `http://source.unsplash.com/200x200/?${
+          pet.petType
+        },${pet.petBreed.replaceAll(' ', '+')}`,
         goodWithChildren: pet.goodWithChildren,
         housetrained: pet.housetrained,
         goodWithDogs: pet.goodWithDogs,
         goodWithCats: pet.goodWithCats,
       }));
-      // console.log('Fetch Pets', petResults);
+      return this.pets;
     });
   }
 
@@ -104,14 +112,15 @@ export class HomeComponent implements OnInit, OnDestroy  {
   openPetDetails(pet: any) {
     this.openModal = true;
     this.selectedPet = pet;
-    this.adoptionRequestForm.patchValue({petName: this.selectedPet.petName});
-
+    this.adoptionRequestForm.patchValue({ petName: this.selectedPet.petName });
   }
 
   onSubmit() {
     this.onSubmitClicked = true;
     if (this.adoptionRequestForm.valid) {
-      this.httpService.saveApplicationsToFirebase(this.adoptionRequestForm.value);
+      this.httpService.saveApplicationsToFirebase(
+        this.adoptionRequestForm.value
+      );
       this.adoptionRequestForm.reset();
       this.isApplyClicked = false;
       this.openModal = true;
@@ -124,7 +133,6 @@ export class HomeComponent implements OnInit, OnDestroy  {
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
-
   }
 
   addFav(){
@@ -136,16 +144,22 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
   }
 
-
   onCancel() {
     this.onSubmitClicked = false;
-    this.isApplyClicked =false;
+    this.isApplyClicked = false;
     this.adoptionRequestForm.reset();
  }
+
 
 
 
  ngOnDestroy(): void {
   this.userSub.unsubscribe()
 }
+
+  openTermsConditions() {
+    this.openTermsModal = true;
+  }
+
+
 }
