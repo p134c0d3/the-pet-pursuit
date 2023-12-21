@@ -55,7 +55,6 @@ export class HTTPService {
     return this.http.get(urlWithAuth).pipe(
       map((app) => {
         if (app === null) {
-          // debugger;
           return [];
         }
         return Object.values(app);

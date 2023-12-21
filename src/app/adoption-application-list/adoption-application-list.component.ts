@@ -43,27 +43,28 @@ export class AdoptionApplicationListComponent implements OnInit, OnChanges {
   onApprove() {}
 
   onDeny(applicationId: number) {
-    this.httpService
-      .deleteApplicationsFromFirebase(applicationId)
-      .subscribe((res) => {
+    this.httpService.deleteApplicationsFromFirebase(applicationId).subscribe({
+      next: (res) => {
         console.log(res);
-      });
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        this.fetchAppsFromFirebase();
+      },
+    });
     this.openApplicationModal = false;
-
-    this.fetchAppsFromFirebase();
-
   }
 
   fetchAppsFromFirebase() {
-    this.httpService.fetchApplicationsFromFirebase().subscribe((res) => {
-      this.appArray = res;
-
-      // setTimeout(() => {
-      //   this.httpService.fetchApplicationsFromFirebase();
-      //   debugger;
-      //   console.log('timeout');
-      // }, 1000);
+    this.httpService.fetchApplicationsFromFirebase().subscribe({
+      next: (res) => {
+        this.appArray = res;
+      },
+      error: (err) => {
+        console.error(err);
+      },
     });
-
   }
 }
