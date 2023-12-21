@@ -1,5 +1,6 @@
 <nav
-  class="navbar has-shadow is-info py-1"
+  id="navBar"
+  class="navbar has-shadow py-1"
   role="navigation"
   aria-label="main navigation"
 >
@@ -32,16 +33,16 @@
 
   <div id="navbarCon" class="navbar-menu" [class.is-active]="isNavbarActive">
     <div class="navbar-start">
-      <a routerLink="/home" class="navbar-item"> Home 🐾 </a>
+      <a routerLink="/home" class="navbar-item" id="home"> Home 🐾 </a>
 
-      <a routerLink="/my-posts" class="navbar-item" *ngIf="isAuthenticated">
+      <a routerLink="/my-posts" class="navbar-item" id="myPosts" *ngIf="isAuthenticated">
         My Posts 📒
       </a>
 
-      <a routerLink="/favorites" class="navbar-item" *ngIf="isAuthenticated"> Favorites ⭐ </a>
+      <a routerLink="/favorites" class="navbar-item" id="favs" *ngIf="isAuthenticated"> Favorites ⭐ </a>
 
 
-      <a routerLink="/incomingApplications" class="navbar-item" *ngIf="isAuthenticated">
+      <a routerLink="/incomingApplications" class="navbar-item" id="incomingApps" *ngIf="isAuthenticated">
         Incoming Applications 📋
 
       </a>
@@ -64,9 +65,9 @@
           <a *ngIf="!isAuthenticated" routerLink="/log-in" class="button is-grey-dark">
             <strong>Log In</strong>
           </a>
-          <a *ngIf="isAuthenticated" routerLink="/new-post" class="button is-grey-dark">
+          <a *ngIf="isAuthenticated" routerLink="/new-post" class="button" id="newPostButton">
             Create New Post</a>
-          <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="button is-grey-dark">
+          <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="button" id="logOutButton">
 
             <strong>Log Out</strong>
           </a>

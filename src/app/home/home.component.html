@@ -22,7 +22,7 @@
 
         <!-- <div class="content">{{ pet.message }}</div> -->
         <button
-          class="button is-link pet-details-button"
+          class="button pet-details-button"
           (click)="openPetDetails(pet)"
 
         >
@@ -687,7 +687,7 @@
                 <app-terms-and-conditions></app-terms-and-conditions>
               </section>
               <footer class="modal-card-foot">
-                <button class="button is-danger" (click)="openTermsModal = false">
+                <button id="closeButton" class="button" (click)="openTermsModal = false">
                   Close
                 </button>
               </footer>
@@ -706,7 +706,7 @@
     <div class="modal-background">
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">{{ selectedPet?.petName }}</p>
+          <p class="modal-card-title has-text-weight-bold is-size-4">{{ selectedPet?.petName }}</p>
           <button
             class="delete"
             aria-label="close"
@@ -778,12 +778,24 @@
         <footer class="modal-card-foot">
 
 
-          <button *ngIf="isAuthenticated" class="button is-success" (click)="applyButtonClicked()">
+          <button
+          *ngIf="isAuthenticated"
+          class="button"
+          id="adoptButton"
+          (click)="applyButtonClicked()">
             Apply to Adopt
           </button>
-          <button *ngIf="isAuthenticated" (click)="addFav()" (click)="openModal = false"  class="button is-info">Add to Favorites ⭐</button>
+          <button
+          *ngIf="isAuthenticated"
+          (click)="addFav()"
+          (click)="openModal = false"
+          class="button"
+          id="faveButton">
+          Add to Favorites ⭐</button>
 
-          <button class="button is-danger" (click)="openModal = false">
+          <button
+          class="button is-danger"
+          (click)="openModal = false">
             Close
           </button>
         </footer>

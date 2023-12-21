@@ -44,6 +44,10 @@ form .ng-invalid.ng-touched {
   color: #fff;
 }
 
+.pet-details-button:hover {
+  background-color: #162245;
+}
+
 .modal-card-head {
   background-color: #a2d6f9;
 }
@@ -56,21 +60,25 @@ form .ng-invalid.ng-touched {
   background-color: #162245;
 }
 
-#applyButton {
+#adoptButton {
   color: #fff;
   background-color: #94bfa7;
 }
 
-#applyButton:hover {
+#adoptButton:hover {
   background-color: #5e8b6a;
 }
 
-#favButton {
+#faveButton {
   color: #fff;
   background-color: #2b3a67;
 }
 
-#favButton:hover {
+#faveButton:hover {
   background-color: #162245;
 }
 
+#closeButton {
+  color: #fff;
+  background-color: #5c677d;
+}
