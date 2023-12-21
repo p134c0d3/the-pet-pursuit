@@ -1,23 +1,37 @@
-
-
-  <div class="card has-background-grey-lighter" *ngFor="let application of appArray">
-    <header class="card-header-title has-background-info-light has-text-weight-bold">
-      <p class="card-header-title">Application for: {{ application.petName }}</p>
-      <p class="card-header-title">Applicant Name: {{ application.firstName }} {{ application.lastName }}</p>
+<ng-container *ngIf="appArray">
+  <div
+    class="card has-background-grey-lighter"
+    *ngFor="let application of appArray"
+  >
+    <header
+      class="card-header-title has-background-info-light has-text-weight-bold"
+    >
+      <p class="card-header-title">
+        Application for: {{ application.petName }}
+      </p>
+      <p class="card-header-title">
+        Applicant Name: {{ application.firstName }} {{ application.lastName }}
+      </p>
       <p class="card-header-title">
         <button class="button is-success is-small">Approve</button>
-        <button class="button is-danger is-small" (click)="onDeny(application.applicationId)">Deny</button>
+        <button
+          class="button is-danger is-small"
+          (click)="onDeny(application.applicationId)"
+        >
+          Deny
+        </button>
       </p>
       <p>
-        <button (click)="openApplication(application)" class="button is-info is-small">
-           View Full Application
+        <button
+          (click)="openApplication(application)"
+          class="button is-info is-small"
+        >
+          View Full Application
         </button>
       </p>
     </header>
   </div>
-
-
-
+</ng-container>
 
 <div class="modal" [ngClass]="openApplicationModal ? 'is-active' : ''">
   <!-- Modal for Adoption Application Review Form -->
@@ -29,11 +43,7 @@
       >
         Adoption Application Review
       </p>
-      <button
-        class="delete"
-        aria-label="close"
-        (click)="onClose()"
-      ></button>
+      <button class="delete" aria-label="close" (click)="onClose()"></button>
     </header>
     <section class="modal-card-body">
       <!-- Form start -->
@@ -45,7 +55,9 @@
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.petName }}" readonly>
+              placeholder="{{ selectedApplication?.petName }}"
+              readonly
+            />
           </div>
         </div>
 
@@ -61,14 +73,16 @@
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.firstName }}" readonly
+              placeholder="{{ selectedApplication?.firstName }}"
+              readonly
             />
           </div>
           <div class="control">
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.lastName }}" readonly
+              placeholder="{{ selectedApplication?.lastName }}"
+              readonly
             />
           </div>
         </div>
@@ -80,7 +94,8 @@
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.streetNumber }}" readonly
+              placeholder="{{ selectedApplication?.streetNumber }}"
+              readonly
             />
           </div>
 
@@ -88,7 +103,8 @@
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.streetName }}" readonly
+              placeholder="{{ selectedApplication?.streetName }}"
+              readonly
             />
           </div>
 
@@ -96,7 +112,8 @@
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.city }}" readonly
+              placeholder="{{ selectedApplication?.city }}"
+              readonly
             />
           </div>
 
@@ -105,7 +122,8 @@
               class="input"
               style="width: 60px"
               type="text"
-              placeholder="{{ selectedApplication?.state }}" readonly
+              placeholder="{{ selectedApplication?.state }}"
+              readonly
             />
           </div>
 
@@ -114,7 +132,8 @@
               class="input"
               style="width: 133px"
               type="text"
-              placeholder="{{ selectedApplication?.zipCode }}" readonly
+              placeholder="{{ selectedApplication?.zipCode }}"
+              readonly
             />
           </div>
         </div>
@@ -126,7 +145,8 @@
             <input
               class="input"
               type="tel"
-              placeholder="{{ selectedApplication?.phoneNumber }}" readonly
+              placeholder="{{ selectedApplication?.phoneNumber }}"
+              readonly
             />
           </div>
         </div>
@@ -138,7 +158,8 @@
             <input
               class="input"
               type="email"
-              placeholder="{{ selectedApplication?.email }}" readonly
+              placeholder="{{ selectedApplication?.email }}"
+              readonly
             />
           </div>
         </div>
@@ -154,7 +175,7 @@
           <label class="label">Type of Residence:</label>
           <div class="field is-grouped">
             <div class="control is-flex is-align-items-center">
-             <!--  <label class="radio">
+              <!--  <label class="radio">
                 <input
                   type="radio"
                   value="House"
@@ -190,7 +211,8 @@
                 class="input"
                 style="width: 265px; margin-left: 15px"
                 type="text"
-                placeholder="{{ selectedApplication?.housingType }}" readonly
+                placeholder="{{ selectedApplication?.housingType }}"
+                readonly
               />
             </div>
           </div>
@@ -418,12 +440,14 @@
                 <option disabled>Outside only</option>
                 <option disabled>Inside and outside</option>
               </select> -->
-          <div class="control">
-            <input
-              class="input"
-              type="text"
-              placeholder="{{ selectedApplication?.whenHome }}" readonly>
-          </div>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="{{ selectedApplication?.whenHome }}"
+                  readonly
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -433,7 +457,7 @@
           >
           <div class="control">
             <div class="select" style="margin-left: 15px">
-             <!--  <select style="width: 300px">
+              <!--  <select style="width: 300px">
                 <option disabled>Select</option>
                 <option disabled>Inside residence only</option>
                 <option disabled>In fenced yard</option>
@@ -445,7 +469,9 @@
                 <input
                   class="input"
                   type="text"
-                  placeholder="{{ selectedApplication?.whenNotHome }}" readonly>
+                  placeholder="{{ selectedApplication?.whenNotHome }}"
+                  readonly
+                />
               </div>
             </div>
           </div>
@@ -496,7 +522,9 @@
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.employment }}" readonly>
+              placeholder="{{ selectedApplication?.employment }}"
+              readonly
+            />
           </div>
         </div>
         <div>
@@ -529,7 +557,9 @@
             <input
               class="input"
               type="text"
-              placeholder="{{ selectedApplication?.commitment }}" readonly>
+              placeholder="{{ selectedApplication?.commitment }}"
+              readonly
+            />
           </div>
         </div>
 
@@ -550,9 +580,10 @@
           <div class="control">
             <label class="checkbox">
               <input
-              type="checkbox"
-              [defaultChecked]="selectedApplication?.ageCheck"
-              disabled/>
+                type="checkbox"
+                [defaultChecked]="selectedApplication?.ageCheck"
+                disabled
+              />
               I am 18 years old or older.
             </label>
           </div>
@@ -562,9 +593,10 @@
           <div class="control">
             <label class="checkbox">
               <input
-              type="checkbox"
-              [defaultChecked]="selectedApplication?.ageCheck"
-              disabled/>
+                type="checkbox"
+                [defaultChecked]="selectedApplication?.ageCheck"
+                disabled
+              />
               I agree to the <a>Pet Pursuit Terms and Conditions.</a>
             </label>
           </div>
@@ -575,32 +607,22 @@
     <footer class="modal-card-foot has-background-info">
       <div class="field is-grouped">
         <div class="control field is-grouped">
-          <button
-            type="submit"
-            class="button is-success"
-            (click)="onApprove()"
-          >
+          <button type="submit" class="button is-success" (click)="onApprove()">
             Approve
           </button>
-
         </div>
         <div class="control">
           <button
-          class="button is-danger"
-          (click)="onDeny(this.selectedApplication?.applicationId)"
+            class="button is-danger"
+            (click)="onDeny(this.selectedApplication?.applicationId)"
           >
             Deny
           </button>
         </div>
         <div class="control">
-          <button
-          class="button is-primary"
-          (click)="onClose()"
-          >
-            Close
-          </button>
+          <button class="button is-primary" (click)="onClose()">Close</button>
         </div>
       </div>
     </footer>
   </div>
-
+</div>

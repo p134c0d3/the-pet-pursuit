@@ -15,8 +15,6 @@ export class HTTPService {
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
-
-
   saveApplicationsToFirebase(data) {
     const applicationId = data.applicationId;
     const authToken = this.auth.getToken();
@@ -30,11 +28,7 @@ export class HTTPService {
       (res) => console.log('Application submitted:', res),
       (error) => console.error('Error submitting application:', error)
     );
-
   }
-
-
-
 
   /* old working save to database code */
   /* saveApplicationsToFirebase(data) {
@@ -60,13 +54,16 @@ export class HTTPService {
     const urlWithAuth = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications.json?auth=${authToken}`;
     return this.http.get(urlWithAuth).pipe(
       map((app) => {
+        if (app === null) {
+          // debugger;
+          return [];
+        }
         return Object.values(app);
       })
     );
   }
 
-
- /*  deleteApplicationsFromFirebase() {
+  /*  deleteApplicationsFromFirebase() {
     const authToken = this.auth.getToken();
     if(!authToken) {
       return;
@@ -75,7 +72,6 @@ export class HTTPService {
     const deleteUrl = `${this.firebaseApplicationsURL}?auth=${authToken}`;
     return this.http.delete(deleteUrl);
   } */
-
 
   // deleteApplicationsFromFirebase(appID: number) {
   //   if (!appID) {
@@ -105,8 +101,7 @@ export class HTTPService {
   //         );
   //       }
 
-
-/* deleteApplicationsFromFirebase(applicationId: number) {
+  /* deleteApplicationsFromFirebase(applicationId: number) {
   if (!applicationId) {
     console.error('No id provided');
     return throwError('No id provided');
@@ -126,21 +121,20 @@ export class HTTPService {
   );
 } */
 
-
-deleteApplicationsFromFirebase(id: number): Observable<void> {
-  console.log('Request Started:', id);
-  const authToken = this.auth.getToken();
-  if (!authToken) {
-    console.error('No auth token found');
-    return throwError('No auth token found');
+  deleteApplicationsFromFirebase(id: number): Observable<void> {
+    console.log('Request Started:', id);
+    const authToken = this.auth.getToken();
+    if (!authToken) {
+      console.error('No auth token found');
+      return throwError('No auth token found');
+    }
+    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications/${id}.json?auth=${authToken}`;
+    return this.http.delete<void>(deleteUrl).pipe(
+      tap(() => console.log(`Deleted post id: ${id}`)),
+      catchError((error) => {
+        console.error('Error deleting application:', error);
+        return throwError(error);
+      })
+    );
   }
-  const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications/${id}.json?auth=${authToken}`;
-  return this.http.delete<void>(deleteUrl).pipe(
-    tap(() => console.log(`Deleted post id: ${id}`)),
-    catchError((error) => {
-      console.error('Error deleting application:', error);
-      return throwError(error);
-    })
-  );
-}
 }
