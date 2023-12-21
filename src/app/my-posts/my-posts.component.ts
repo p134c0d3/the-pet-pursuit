@@ -58,7 +58,9 @@ export class MyPostsComponent {
       console.log(res);
 
     });
-    // location.reload();
+    setTimeout(() => {
+      this.fetchPets();
+    }, 1000);
   }
 
   fetchPets() {
@@ -140,9 +142,11 @@ export class MyPostsComponent {
         );
       this.openModal = false;
       console.log(this.selectedPet);
-      this.fetchPets();
-      this.router.navigate(['my-posts']);
+      // this.fetchPets();
     }
+    setTimeout(() => {
+      this.fetchPets();
+    }, 1000);
 
   }
 

@@ -80,7 +80,7 @@ export class NewPostComponent {
     } = this.newPostForm.value;
 
     const newPost = new NewPost(
-      this.genID = uuidv4(),
+      (this.genID = uuidv4()),
       petName,
       petType,
       petBreed,
@@ -104,10 +104,10 @@ export class NewPostComponent {
     this.newPostFormHasBeenSubmitted = true;
     this.dataStorageService.storeNewPost(newPost);
 
-    this.dataStorageService.fetchPets();
-    this.router.navigate(['home']);
-
-    // location.reload();
+    setTimeout(() => {
+      this.dataStorageService.fetchPets();
+      this.router.navigate(['home']);
+    }, 1000);
   }
 
   trimPetBreed(breed) {
