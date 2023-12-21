@@ -21,6 +21,8 @@ export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
+  genID: number;
+
 
   constructor(
     private router: Router,
@@ -50,7 +52,10 @@ export class NewPostComponent {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+
+  }
   ngOnDestroy() {
     this.newPostForm.reset();
   }
@@ -76,9 +81,8 @@ export class NewPostComponent {
       goodWithCats,
     } = this.newPostForm.value;
 
-    const genID = uuidv4();
     const newPost = new NewPost(
-      genID,
+      this.genID = uuidv4(),
       petName,
       petType,
       petBreed,

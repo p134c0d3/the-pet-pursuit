@@ -50,7 +50,15 @@ export class MyPostsComponent {
     this.fetchPets();
   }
 
-  deleteSinglePost() {}
+  deleteSinglePost(id: number) {
+    console.log('Delete Post ID:', id);
+    this.dataStorage.deletePostFromFirebase(id).subscribe((res) => {
+      console.log(res);
+
+    });
+
+    location.reload();
+  }
 
   fetchPets() {
     this.dataStorage.fetchPets().subscribe((petResults) => {
@@ -82,7 +90,8 @@ export class MyPostsComponent {
 
   subToPetsArray() {
     this.dataStorage.allPets.subscribe((Pet) => {
-      console.log('All Pets', Pet);
+      // console.log('All Pets', Pet);
+      return Pet;
     });
   }
 
@@ -110,6 +119,8 @@ export class MyPostsComponent {
       goodWithDogs: [pet?.goodWithDogs],
       goodWithCats: [pet?.goodWithCats],
     });
+
+    location.reload();
   }
 
   onSubmit() {
@@ -125,10 +136,10 @@ export class MyPostsComponent {
     }
   }
 
-  onEditSubmit() {
+  onEditSubmit(data: number) {
     this.onSubmitClicked = true;
     if (this.editPostForm.valid) {
-      const data = this.selectedPet.id;
+      // const data = this.selectedPet.id;
       console.log(this.editPostForm.value);
       this.dataStorage
         .saveEditedPostToFirebase(data, this.editPostForm.value)

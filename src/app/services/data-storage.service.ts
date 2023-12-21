@@ -3,7 +3,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment.prod';
-import { Observable, Subject, catchError, from, map, switchMap, takeUntil, tap, throwError } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  catchError,
+  from,
+  map,
+  switchMap,
+  takeUntil,
+  tap,
+  throwError,
+} from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
@@ -17,40 +27,58 @@ export class DataStorageService {
 
   ngOnInit() {}
   storeNewPost(newPost) {
-    this.http.post(this.firebaseURL, newPost).subscribe((response) => {
-      console.log(response);
-    });
-  }
-
-
-  // need to create modify adoptionApplication model and call this function
-  storeAdoptionApplication(adoptionApplication) {
+    const appID = newPost.id;
     this.http
-      .post(this.firebaseURL, adoptionApplication)
+      .put(
+        `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${appID}.json`,
+        newPost
+      )
       .subscribe((response) => {
         console.log(response);
       });
   }
 
-  deletePostFromFirebase(id: number) {
-    if (!id) {
-      console.error('No id provided');
-      return throwError('No id provided');
-    }
+  // need to create modify adoptionApplication model and call this function
+  storeAdoptionApplication(adoptionApplication) {
+    this.http
+      .put(this.firebaseURL, adoptionApplication)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
+
+  // deletePostFromFirebase(id: number) {
+  //   console.log('Request Started:', id);
+  //   const authToken = this.auth.getToken();
+  //   if (!authToken) {
+  //     console.error('No auth token found');
+  //     return;
+  //   }
+  //   const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${id}.json?auth=${authToken}`;
+  //   return this.http.delete(deleteUrl).pipe(
+  //     catchError((error) => {
+  //       console.error('Error deleting application:', error);
+  //       return throwError(error);
+  //     })
+  //   );
+  // }
+
+  deletePostFromFirebase(id: number): Observable<void> {
+    console.log('Request Started:', id);
     const authToken = this.auth.getToken();
     if (!authToken) {
       console.error('No auth token found');
-      return;
+      return throwError('No auth token found');
     }
     const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${id}.json?auth=${authToken}`;
-    return this.http.delete(deleteUrl).pipe(
+    return this.http.delete<void>(deleteUrl).pipe(
+      tap(() => console.log(`Deleted post id: ${id}`)),
       catchError((error) => {
         console.error('Error deleting application:', error);
         return throwError(error);
       })
     );
   }
-
   saveEditedPostToFirebase(id: number, newPostData: any): Observable<any> {
     return from(this.auth.getToken()).pipe(
       switchMap((token: string) => {

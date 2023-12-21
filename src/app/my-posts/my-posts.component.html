@@ -19,7 +19,11 @@
           <a class="card-footer-item my-post-edit" (click)="editSinglePost(pet)"
             >Edit</a
           >
-          <a  class="card-footer-item my-post-delete">Delete</a>
+          <a
+            class="card-footer-item my-post-delete"
+            (click)="deleteSinglePost(pet.id)"
+            >Delete</a
+          >
         </footer>
       </div>
     </div>
@@ -27,7 +31,11 @@
 
   <!-- <app-my-posts-edit *ngIf="editPost"></app-my-posts-edit> -->
 
-  <div class="modal" [ngClass]="openModal ? 'is-active' : ''">
+  <div
+    class="modal"
+    [ngClass]="openModal ? 'is-active' : ''"
+    *ngFor="let pet of pets"
+  >
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
@@ -35,7 +43,7 @@
         <button class="delete" aria-label="close" (click)="onCancel()"></button>
       </header>
       <section class="modal-card-body">
-        <form [formGroup]="editPostForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="editPostForm" (ngSubmit)="onEditSubmit()">
           <div class="field">
             <label for="" class="label"> Pet Name </label>
             <div class="control">
@@ -49,94 +57,101 @@
               />
               <span
                 class="help is-danger"
-                *ngIf="!editPostForm.get('petName').valid && editPostForm.get('petName').touched"
+                *ngIf="
+                  !editPostForm.get('petName').valid &&
+                  editPostForm.get('petName').touched
+                "
                 >Please enter your pet's name</span
               >
             </div>
           </div>
 
           <div class="field">
-            <label
-            class="label"
-            >Pet Type</label>
+            <label class="label">Pet Type</label>
             <div class="control">
               <input
-              id="petType"
-              name="petType"
-              class="input"
-              type="text"
-              formControlName="petType"
-              placeholder="e.g. Dog">
-              <span
-              class="help is-danger"
-              *ngIf="!editPostForm.get('petType').valid && editPostForm.get('petType').touched">Please enter the pet type</span>
-            </div>
-          </div>
-
-          <div class="field">
-            <label
-            class="label"
-            >Pet Breed</label>
-            <div class="control">
-              <input
-              id="petBreed"
-              name="petBreed"
-              class="input"
-              type="text"
-              formControlName="petBreed"
-              placeholder="e.g. Great Dane - (optional)">
-            </div>
-          </div>
-
-          <div class="field">
-            <label
-            class="label"
-            >Upload a photo of your pet:
-          <button type="button" class="button is-link is-light is-outlined is-small">Upload Image</button></label>
-
-          <div class="card-image">
-            <figure class="image is-128x128">
-              <img
-              class="img"
-              src="https://source.unsplash.com/200x200/?pet"
-              placeholder=""
-              frameborder="0"
+                id="petType"
+                name="petType"
+                class="input"
+                type="text"
+                formControlName="petType"
+                placeholder="e.g. Dog"
               />
-            </figure>
-          </div>
-          </div>
-
-          <div class="field">
-            <label
-            class="label"
-            >Sex</label>
-            <div class="control">
-              <input
-              id="petGender"
-              name="petGender"
-              class="input"
-              type="text"
-              formControlName="petGender"
-              placeholder="e.g. Male">
               <span
-              class="help is-danger"
-              *ngIf="!editPostForm.get('petGender').valid && editPostForm.get('petGender').touched">Please enter your pet's gender</span>
+                class="help is-danger"
+                *ngIf="
+                  !editPostForm.get('petType').valid &&
+                  editPostForm.get('petType').touched
+                "
+                >Please enter the pet type</span
+              >
             </div>
           </div>
 
           <div class="field">
-            <label
-            class="label"
-            >Age</label>
+            <label class="label">Pet Breed</label>
             <div class="control">
-              <div
-              class="select is-link"
+              <input
+                id="petBreed"
+                name="petBreed"
+                class="input"
+                type="text"
+                formControlName="petBreed"
+                placeholder="e.g. Great Dane - (optional)"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label"
+              >Upload a photo of your pet:
+              <button
+                type="button"
+                class="button is-link is-light is-outlined is-small"
               >
-                <select
-                id="petAge"
-                name="petAge"
-                formControlName="petAge"
-                >
+                Upload Image
+              </button></label
+            >
+
+            <div class="card-image">
+              <figure class="image is-128x128">
+                <img
+                  class="img"
+                  src="https://source.unsplash.com/200x200/?pet"
+                  placeholder=""
+                  frameborder="0"
+                />
+              </figure>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Sex</label>
+            <div class="control">
+              <input
+                id="petGender"
+                name="petGender"
+                class="input"
+                type="text"
+                formControlName="petGender"
+                placeholder="e.g. Male"
+              />
+              <span
+                class="help is-danger"
+                *ngIf="
+                  !editPostForm.get('petGender').valid &&
+                  editPostForm.get('petGender').touched
+                "
+                >Please enter your pet's gender</span
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Age</label>
+            <div class="control">
+              <div class="select is-link">
+                <select id="petAge" name="petAge" formControlName="petAge">
                   <option disabled selected value>Select Age</option>
                   <option value="0-12 Months">0-12 Months</option>
                   <option value="1-3 Years">1-3 Years</option>
@@ -146,211 +161,254 @@
                 </select>
 
                 <span
-                class="help is-danger"
-                *ngIf="!editPostForm.get('petAge').valid && editPostForm.get('petAge').touched">Please select your pet's age</span>
+                  class="help is-danger"
+                  *ngIf="
+                    !editPostForm.get('petAge').valid &&
+                    editPostForm.get('petAge').touched
+                  "
+                  >Please select your pet's age</span
+                >
               </div>
             </div>
           </div>
-          <br>
+          <br />
           <div class="field">
-            <label
-            class="label"
-            >Location</label>
+            <label class="label">Location</label>
             <div class="control">
               <input
-              id="petLocation"
-              name="petLocation"
-              class="input"
-              type="text"
-              formControlName="petLocation"
-              placeholder="e.g. St.Louis, MO">
+                id="petLocation"
+                name="petLocation"
+                class="input"
+                type="text"
+                formControlName="petLocation"
+                placeholder="e.g. St.Louis, MO"
+              />
               <span
                 class="help is-danger"
-                *ngIf="!editPostForm.get('petLocation').valid && editPostForm.get('petLocation').touched">Please enter your pet's location</span>
+                *ngIf="
+                  !editPostForm.get('petLocation').valid &&
+                  editPostForm.get('petLocation').touched
+                "
+                >Please enter your pet's location</span
+              >
             </div>
           </div>
 
           <div class="field">
             <div class="control">
-              <label
-              class="label"
-              >Is your pet spayed or neutered?</label>
+              <label class="label">Is your pet spayed or neutered?</label>
               <label class="radio">
                 <input
-                id="spayedNeutered"
-                name="spayedNeutered"
-                type="radio"
-                formControlName="spayedNeutered"
-                value="Yes">
+                  id="spayedNeutered"
+                  name="spayedNeutered"
+                  type="radio"
+                  formControlName="spayedNeutered"
+                  value="Yes"
+                />
                 Yes
               </label>
               <label class="radio">
                 <input
-                id="spayedNeutered"
-                name="spayedNeutered"
-                type="radio"
-                formControlName="spayedNeutered"
-                value="No">
+                  id="spayedNeutered"
+                  name="spayedNeutered"
+                  type="radio"
+                  formControlName="spayedNeutered"
+                  value="No"
+                />
                 No
               </label>
               <label class="radio">
                 <input
-                id="spayedNeutered"
-                name="spayedNeutered"
-                type="radio"
-                formControlName="spayedNeutered"
-                value="N/A">
+                  id="spayedNeutered"
+                  name="spayedNeutered"
+                  type="radio"
+                  formControlName="spayedNeutered"
+                  value="N/A"
+                />
                 N/A
               </label>
               <span
                 class="help is-danger"
-                *ngIf="!editPostForm.get('spayedNeutered').valid && editPostForm.get('spayedNeutered').touched">Please select a value</span>
+                *ngIf="
+                  !editPostForm.get('spayedNeutered').valid &&
+                  editPostForm.get('spayedNeutered').touched
+                "
+                >Please select a value</span
+              >
             </div>
           </div>
 
-          <br>
+          <br />
 
           <div class="field">
-            <label
-            class="label is-size-4 has-text-weight-bold"
-            >Additional Details: </label>
+            <label class="label is-size-4 has-text-weight-bold"
+              >Additional Details:
+            </label>
             <div class="control">
-
-                  <label
-                  class="label"
-                  >Select all that apply: </label>
-                  <label class="checkbox">
-                    <input
-                    id="petDescription"
-                    name="petDescription"
-                    type="checkbox"
-                    formControlName="goodWithChildren"
-                    value="Children?">
-                    Good with children?
-                  </label>
-                  <br>
-                  <label class="checkbox">
-                    <input
-                    id="petDescription"
-                    name="petDescription"
-                    type="checkbox"
-                    formControlName="goodWithDogs"
-                    value="Good with dogs?">
-                    Good with dogs?
-                  </label>
-                  <br>
-                  <label class="checkbox">
-                    <input
-                    id="petDescription"
-                    name="petDescription"
-                    type="checkbox"
-                    formControlName="goodWithCats"
-                    value="Good with cats?">
-                    Good with cats?
-                  </label>
-                  <br>
-                  <label class="checkbox">
-                    <input
-                    id="petDescription"
-                    name="petDescription"
-                    type="checkbox"
-                    formControlName="housetrained"
-                    value="Trained?">
-                    House trained or litter box trained?
-                  </label>
-                  <br>
-                  <br>
-                  <label
-                  class="label has-text-weight-bold"
-                  >Please tell us more about your pet:</label>
+              <label class="label">Select all that apply: </label>
+              <label class="checkbox">
+                <input
+                  id="petDescription"
+                  name="petDescription"
+                  type="checkbox"
+                  formControlName="goodWithChildren"
+                  value="Children?"
+                />
+                Good with children?
+              </label>
+              <br />
+              <label class="checkbox">
+                <input
+                  id="petDescription"
+                  name="petDescription"
+                  type="checkbox"
+                  formControlName="goodWithDogs"
+                  value="Good with dogs?"
+                />
+                Good with dogs?
+              </label>
+              <br />
+              <label class="checkbox">
+                <input
+                  id="petDescription"
+                  name="petDescription"
+                  type="checkbox"
+                  formControlName="goodWithCats"
+                  value="Good with cats?"
+                />
+                Good with cats?
+              </label>
+              <br />
+              <label class="checkbox">
+                <input
+                  id="petDescription"
+                  name="petDescription"
+                  type="checkbox"
+                  formControlName="housetrained"
+                  value="Trained?"
+                />
+                House trained or litter box trained?
+              </label>
+              <br />
+              <br />
+              <label class="label has-text-weight-bold"
+                >Please tell us more about your pet:</label
+              >
 
               <textarea
-              id="message"
-              name="message"
-              class="textarea"
-              formControlName="message"
-              placeholder="e.g. Bruno loves to play with his tennis ball."></textarea>
+                id="message"
+                name="message"
+                class="textarea"
+                formControlName="message"
+                placeholder="e.g. Bruno loves to play with his tennis ball."
+              ></textarea>
               <span
-                  class="help is-danger"
-                  *ngIf="!editPostForm.get('message').valid && editPostForm.get('message').touched">Please enter some details about your pet.</span>
+                class="help is-danger"
+                *ngIf="
+                  !editPostForm.get('message').valid &&
+                  editPostForm.get('message').touched
+                "
+                >Please enter some details about your pet.</span
+              >
             </div>
           </div>
-          <br>
-          <h2 class="is-size-4 has-text-weight-bold"
-          >Please tell us about yourself:</h2>
-          <br>
+          <br />
+          <h2 class="is-size-4 has-text-weight-bold">
+            Please tell us about yourself:
+          </h2>
+          <br />
           <div class="field">
-            <label
-            class="label"
-            >First Name</label>
+            <label class="label">First Name</label>
             <div class="control">
               <input
-              id="firstName"
-              name="firstName"
-              class="input"
-              type="text"
-              formControlName="firstName"
-              placeholder="Enter your first name"
-              required>
+                id="firstName"
+                name="firstName"
+                class="input"
+                type="text"
+                formControlName="firstName"
+                placeholder="Enter your first name"
+                required
+              />
               <span
-                  class="help is-danger"
-                  *ngIf="!editPostForm.get('firstName').valid && editPostForm.get('firstName').touched">Please enter your first name</span>
+                class="help is-danger"
+                *ngIf="
+                  !editPostForm.get('firstName').valid &&
+                  editPostForm.get('firstName').touched
+                "
+                >Please enter your first name</span
+              >
             </div>
           </div>
           <div class="field">
-            <label
-            class="label"
-            >Last Name</label>
+            <label class="label">Last Name</label>
             <div class="control">
               <input
-              id="lastName"
-              name="lastName"
-              class="input"
-              type="text"
-              formControlName="lastName"
-              placeholder="Enter your last name">
+                id="lastName"
+                name="lastName"
+                class="input"
+                type="text"
+                formControlName="lastName"
+                placeholder="Enter your last name"
+              />
             </div>
             <span
-                  class="help is-danger"
-                  *ngIf="!editPostForm.get('lastName').valid && editPostForm.get('lastName').touched">Please enter your last name</span>
+              class="help is-danger"
+              *ngIf="
+                !editPostForm.get('lastName').valid &&
+                editPostForm.get('lastName').touched
+              "
+              >Please enter your last name</span
+            >
           </div>
           <div class="field">
-            <label
-            class="label"
-            >Email</label>
+            <label class="label">Email</label>
             <div class="control">
               <input
-              id="email"
-              name="email"
-              class="input"
-              type="email"
-              formControlName="email"
-              placeholder="Enter a valid email"
-              >
+                id="email"
+                name="email"
+                class="input"
+                type="email"
+                formControlName="email"
+                placeholder="Enter a valid email"
+              />
               <span
-                  class="help is-danger"
-                  *ngIf="!editPostForm.get('email').valid && editPostForm.get('email').touched">Please enter a valid email</span>
+                class="help is-danger"
+                *ngIf="
+                  !editPostForm.get('email').valid &&
+                  editPostForm.get('email').touched
+                "
+                >Please enter a valid email</span
+              >
             </div>
           </div>
           <div class="field">
-            <label
-            class="label"
-            >Phone Number</label>
+            <label class="label">Phone Number</label>
             <div class="control">
               <input
-              id="phoneNumber"
-              name="phoneNumber"
-              class="input"
-              type="tel"
-              formControlName="phoneNumber"
-              placeholder="(123)456-7890 - (optional)">
+                id="phoneNumber"
+                name="phoneNumber"
+                class="input"
+                type="tel"
+                formControlName="phoneNumber"
+                placeholder="(123)456-7890 - (optional)"
+              />
             </div>
           </div>
         </form>
       </section>
       <footer class="modal-card-foot">
-        <button type="submit" class="button is-success" [disabled]="!editPostForm.valid" id="submitEditedPost" (click)="onEditSubmit()">Save changes</button>
-        <button class="button" (click)="onCancel()" id="cancelEditedPost">Cancel</button>
+        <button
+          type="submit"
+          class="button is-success"
+          [disabled]="!editPostForm.valid"
+          id="submitEditedPost"
+          (click)="onEditSubmit(pet.id)"
+        >
+          Save changes
+        </button>
+        <button class="button" (click)="onCancel()" id="cancelEditedPost">
+          Cancel
+        </button>
       </footer>
     </div>
   </div>
