@@ -131,10 +131,9 @@ export class HomeComponent implements OnInit, OnDestroy  {
   }
 
   onSubmit() {
+    this.onSubmitClicked = true
     if (this.adoptionRequestForm.valid) {
-      this.httpService.saveApplicationsToFirebase(
-        this.adoptionRequestForm.value
-      );
+      this.httpService.saveApplicationsToFirebase(this.adoptionRequestForm.value);
       this.isApplyClicked = false;
       this.adoptionRequestForm.reset();
       this.onSubmitClicked = false;
