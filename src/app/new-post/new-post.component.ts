@@ -21,6 +21,7 @@ export class NewPostComponent {
   isApplyClicked = false;
   newPostForm: FormGroup;
   newPostFormHasBeenSubmitted = false;
+  openModal = false;
   genID: number;
 
 
@@ -49,6 +50,7 @@ export class NewPostComponent {
       housetrained: [''],
       goodWithDogs: [''],
       goodWithCats: [''],
+      termsConditions: ['', Validators.required],
     });
   }
 
@@ -116,5 +118,9 @@ export class NewPostComponent {
 
   onCancel() {
     this.router.navigate(['home']);
+  }
+
+  openTermsConditions() {
+    this.openModal = true;
   }
 }

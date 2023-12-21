@@ -10,6 +10,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { MyPostsEditComponent } from './my-posts-edit/my-posts-edit.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 const routes: Routes = [
 
@@ -20,8 +21,9 @@ const routes: Routes = [
   { path: 'log-in', component: LogInComponent},
   { path: 'new-post', component: NewPostComponent },
   { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent },
+  { path: 'favorites', canActivate:[AuthGuard], component:FavoritesComponent},
+  { path: "terms-and-conditions", component: TermsAndConditionsComponent }
   { path: 'my-posts', canActivate:[AuthGuard], component: MyPostsComponent },
-  {path: 'favorites', canActivate:[AuthGuard], component:FavoritesComponent}
 ];
 
 @NgModule({

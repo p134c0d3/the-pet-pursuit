@@ -22,6 +22,7 @@ import { MyPostsComponent } from './my-posts/my-posts.component';
 import { MyPostsEditComponent } from './my-posts-edit/my-posts-edit.component';
 import { FooterComponent } from './footer/footer.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     MyPostsEditComponent,
     FooterComponent,
     FavoritesComponent,
+    TermsAndConditionsComponent,
 
   ],
   imports: [
