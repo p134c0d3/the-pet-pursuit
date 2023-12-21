@@ -776,17 +776,13 @@
           </div>
         </section>
         <footer class="modal-card-foot">
-          <button
-          id="applyButton"
-          class="button"
-          (click)="applyButtonClicked()">
+
+         
+          <button *ngIf="isAuthenticated" class="button is-success" (click)="applyButtonClicked()">
             Apply to Adopt
           </button>
-          <button
-          id="favButton"
-          (click)="addFav()"
-          (click)="openModal = false"
-          class="button">Add to Favorites ⭐</button>
+          <button *ngIf="isAuthenticated" (click)="addFav()" (click)="openModal = false"  class="button is-info">Add to Favorites ⭐</button>
+
           <button class="button is-danger" (click)="openModal = false">
             Close
           </button>

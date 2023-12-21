@@ -1,28 +1,30 @@
 import { DataStorageService } from './../services/data-storage.service';
-import { Component, ViewChild } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-} from '@angular/forms';
+
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+
+
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
 import { localStorageService } from '../services/local-storage.service';
+import { AuthService } from '../auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy  {
   openModal = false;
   openTermsModal = false;
   isApplyClicked = false;
   adoptionRequestForm: FormGroup;
   onSubmitClicked = false;
   selectedPet: NewPost = null;
+  private userSub: Subscription;
+  isAuthenticated = false;
+
 
   pets: NewPost[] = [];
   @ViewChild(FormGroupDirective) adoptionFormRef;
@@ -30,7 +32,8 @@ export class HomeComponent {
   constructor(
     private httpService: HTTPService,
     private dataStorage: DataStorageService,
-    private localStorage:localStorageService
+    private localStorage:localStorageService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -65,6 +68,10 @@ export class HomeComponent {
     });
 
     this.fetchPets();
+
+    this.userSub= this.authService.user.subscribe(user =>{
+      this.isAuthenticated= !!user
+     })
   }
 
   fetchPets() {
@@ -129,7 +136,7 @@ export class HomeComponent {
   }
 
   addFav(){
-    //Working but will allow same pet twice
+
     if(this.selectedPet){
       this.localStorage.addFavorite(this.selectedPet)
       console.log('Pet added to favorites:', this.selectedPet);
@@ -143,8 +150,16 @@ export class HomeComponent {
     this.adoptionRequestForm.reset();
  }
 
+
+
+
+ ngOnDestroy(): void {
+  this.userSub.unsubscribe()
+}
+
   openTermsConditions() {
     this.openTermsModal = true;
   }
+
 
 }
