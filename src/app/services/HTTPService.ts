@@ -57,7 +57,7 @@ export class HTTPService {
       console.error('No auth token found');
       return;
     }
-    const urlWithAuth = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications/.json?auth=${authToken}`;
+    const urlWithAuth = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications.json?auth=${authToken}`;
     return this.http.get(urlWithAuth).pipe(
       map((app) => {
         return Object.values(app);

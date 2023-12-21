@@ -49,11 +49,11 @@ export class AdoptionApplicationListComponent implements OnInit {
       console.log(res);
     })
     this.openApplicationModal = false;
-    this.httpService.fetchApplicationsFromFirebase();
+
       setTimeout(() => {
         this.httpService.fetchApplicationsFromFirebase();
-
-      }, 1500);
+        console.log('timeout')
+       }, 1000);
   }
 
 
