@@ -778,12 +778,24 @@
         <footer class="modal-card-foot">
 
 
-          <button *ngIf="isAuthenticated" class="button is-success" (click)="applyButtonClicked()">
+          <button
+          *ngIf="isAuthenticated"
+          class="button"
+          id="adoptButton"
+          (click)="applyButtonClicked()">
             Apply to Adopt
           </button>
-          <button *ngIf="isAuthenticated" (click)="addFav()" (click)="openModal = false"  class="button is-info">Add to Favorites ⭐</button>
+          <button
+          *ngIf="isAuthenticated"
+          (click)="addFav()"
+          (click)="openModal = false"
+          class="button"
+          id="faveButton">
+          Add to Favorites ⭐</button>
 
-          <button class="button is-danger" (click)="openModal = false">
+          <button
+          class="button is-danger"
+          (click)="openModal = false">
             Close
           </button>
         </footer>
