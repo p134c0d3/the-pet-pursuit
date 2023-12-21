@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { localStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,7 +15,9 @@ export class SignUpComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private router: Router, private authService:AuthService) { }
+  constructor(private router: Router, private authService:AuthService, private localStorage:localStorageService) {
+
+   }
   ngOnInit() {
 
   }
@@ -41,6 +44,7 @@ export class SignUpComponent implements OnInit {
     this.authService.signup(fullname, phone, username,email,password).subscribe(resData=>{
       console.log(resData);
       this.isLoading=false
+      this.localStorage.setData('username', username)
       this.router.navigate(['home']);
       form.reset()
     }, errorRes =>{

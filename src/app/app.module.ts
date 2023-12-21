@@ -20,6 +20,8 @@ import { DataStorageService } from './services/data-storage.service';
 import { AuthService } from './auth/auth.service';
 import { MyPostsComponent } from './my-posts/my-posts.component';
 import { MyPostsEditComponent } from './my-posts-edit/my-posts-edit.component';
+import { FooterComponent } from './footer/footer.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { MyPostsEditComponent } from './my-posts-edit/my-posts-edit.component';
     LoadingSpinnerComponent,
     MyPostsComponent,
     MyPostsEditComponent,
+    FooterComponent,
+    FavoritesComponent,
 
   ],
   imports: [

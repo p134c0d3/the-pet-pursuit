@@ -32,7 +32,7 @@ export class LogInComponent implements OnInit {
     this.authService.login(email, password).subscribe(
       resData => {
         this.router.navigate(['home']);
-        console.log(resData);
+        // console.log(resData);
         // isSuccessful=true
        },
        errorRes =>{
@@ -45,7 +45,7 @@ export class LogInComponent implements OnInit {
 
 //test
 
-    console.log(form.value)
+    // console.log(form.value)
 
   }
 
