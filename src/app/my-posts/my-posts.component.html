@@ -15,16 +15,16 @@
         </div>
 
         <div class="content">{{ pet.message }}</div>
-        <footer class="card-footer">
-          <a class="card-footer-item my-post-edit" (click)="editSinglePost(pet)"
-            >Edit</a
+        <div class="gap container is-flex is-justify-content-center">
+          <button class="button is-info my-post-edit pet-details-button" (click)="editSinglePost(pet)"
+            >Edit</button
           >
-          <a
-            class="card-footer-item my-post-delete"
+          <button
+            class="button is-danger my-post-delete pet-details-button"
             (click)="deleteSinglePost(pet.id)"
-            >Delete</a
+            >Delete</button
           >
-        </footer>
+        </div>
       </div>
     </div>
   </div>
