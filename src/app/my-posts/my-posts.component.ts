@@ -143,7 +143,6 @@ export class MyPostsComponent {
       this.fetchPets();
       this.router.navigate(['my-posts']);
     }
-    // location.reload();
 
   }
 
@@ -158,4 +157,6 @@ export class MyPostsComponent {
     this.editPostForm.reset();
     this.openModal = false;
   }
+
+
 }

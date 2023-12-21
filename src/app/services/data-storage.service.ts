@@ -38,7 +38,6 @@ export class DataStorageService {
       });
   }
 
-
   deletePostFromFirebase(id: number): Observable<void> {
     console.log('Request Started:', id);
     const authToken = this.auth.getToken();
@@ -55,21 +54,39 @@ export class DataStorageService {
       })
     );
   }
-
-
   saveEditedPostToFirebase(id: number, newPostData: any): Observable<any> {
-    return from(this.auth.getToken()).pipe(
-      switchMap((token: string) => {
-        const url = `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${id}.json?auth=${token}`;
-        return this.http.put(url, newPostData);
-      }),
+    id = newPostData.id;
+    console.log('Request Started:', id);
+    const authToken = this.auth.getToken();
+    if (!authToken) {
+      console.error('No auth token found');
+      return throwError('No auth token found');
+    }
+    const url = `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${id}.json?auth=${authToken}`;
+    return this.http.put(url, newPostData).pipe(
+      tap(() => console.log(`Updated post id: ${id}`)),
       catchError((error) => {
-        console.error('Error updating post:', error);
+        console.error('Error updating application:', error);
         return throwError(error);
       })
-      );
+    );
 
-    }
+  }
+
+  // saveEditedPostToFirebase(id: number, newPostData: any): Observable<any> {
+  //   console.log('Request Started:', id);
+
+  //   return from(this.auth.getToken()).pipe(
+  //     switchMap((token: string) => {
+  //       const url = `https://the-pet-pursuit-default-rtdb.firebaseio.com/newpost/${id}.json?auth=${token}`;
+  //       return this.http.put(url, newPostData);
+  //     }),
+  //     catchError((error) => {
+  //       console.error('Error updating post:', error);
+  //       return throwError(error);
+  //     })
+  //   );
+  // }
   // need to create pet service for fetching list of pets from DB
 
   fetchPets() {
