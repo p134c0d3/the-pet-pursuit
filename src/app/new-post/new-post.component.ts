@@ -107,6 +107,7 @@ export class NewPostComponent {
     this.dataStorageService.storeNewPost(newPost);
 
     this.router.navigate(['home']);
+    location.reload();
   }
 
   trimPetBreed(breed) {
