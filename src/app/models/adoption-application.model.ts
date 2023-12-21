@@ -1,6 +1,7 @@
 
 export class adoptionApplication {
   constructor (
+  public applicationId: number,
   public petName: string,
   public firstName: string,
   public lastName: string,
@@ -19,13 +20,30 @@ export class adoptionApplication {
   public surrender: string,
   public ageCheck: boolean,
   public termsConditions: boolean,
-  public hhName?: string[],
-  public hhAge?: number[],
-  public hhPet?: string[],
-  public petType?: string[],
-  public petAge?: number[],
+  public hhName1?: string,
+  public hhName2?: string,
+  public hhName3?: string,
+  public hhName4?: string,
+  public hhName5?: string,
+  public hhName6?: string,
+  public hhAge1?: number,
+  public hhAge2?: number,
+  public hhAge3?: number,
+  public hhAge4?: number,
+  public hhAge5?: number,
+  public hhAge6?: number,
+  public hhPet1?: string,
+  public hhPet2?: string,
+  public hhPet3?: string,
+  public petType1?: string,
+  public petType2?: string,
+  public petType3?: string,
+  public petAge1?: number,
+  public petAge2?: number,
+  public petAge3?: number,
   public message?: string,
 ){
+  this.applicationId = applicationId;
   this.petName = petName;
   this.firstName = firstName;
   this.lastName = lastName;
@@ -37,11 +55,27 @@ export class adoptionApplication {
   this.phoneNumber = phoneNumber;
   this.email = email;
   this.housingType = housingType;
-  this.hhName = hhName;
-  this.hhAge = hhAge;
-  this.hhPet = hhPet;
-  this.petType = petType;
-  this.petAge = petAge;
+  this.hhName1 = hhName1;
+  this.hhName2 = hhName2;
+  this.hhName3 = hhName3;
+  this.hhName4 = hhName4;
+  this.hhName5 = hhName5;
+  this.hhName6 = hhName6;
+  this.hhAge1 = hhAge1;
+  this.hhAge2 = hhAge2;
+  this.hhAge3 = hhAge3;
+  this.hhAge4 = hhAge4;
+  this.hhAge5 = hhAge5;
+  this.hhAge6 = hhAge6;
+  this.hhPet1 = hhPet1
+  this.hhPet2 = hhPet2
+  this.hhPet3 = hhPet3
+  this.petType1 = petType1;
+  this.petType2 = petType2;
+  this.petType3 = petType3;
+  this.petAge1 = petAge1;
+  this.petAge2 = petAge2;
+  this.petAge3 = petAge3;
   this.whenHome = whenHome;
   this.whenNotHome = whenNotHome;
   this.employment = employment;

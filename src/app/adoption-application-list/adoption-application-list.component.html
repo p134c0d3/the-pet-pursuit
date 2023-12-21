@@ -1,22 +1,628 @@
-<div class="card" *ngFor="let application of appArray">
-  <header class="card-header" >
-    <p class="card-header-title">
-      Pet Name: {{ application.petName }}
-    </p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </header>
-  <div class="card-content">
-    <div class="content">
-      Applicant Name: {{ application.firstName}} {{ application.lastName}}
-
-    </div>
+<ng-container *ngIf="appArray">
+  <div
+    class="card has-background-grey-lighter"
+    *ngFor="let application of appArray"
+  >
+    <header
+      class="card-header-title has-background-info-light has-text-weight-bold"
+    >
+      <p class="card-header-title">
+        Application for: {{ application.petName }}
+      </p>
+      <p class="card-header-title">
+        Applicant Name: {{ application.firstName }} {{ application.lastName }}
+      </p>
+      <p class="card-header-title">
+        <button class="button is-success is-small">Approve</button>
+        <button
+          class="button is-danger is-small"
+          (click)="onDeny(application.applicationId)"
+        >
+          Deny
+        </button>
+      </p>
+      <p>
+        <button
+          (click)="openApplication(application)"
+          class="button is-info is-small"
+        >
+          View Full Application
+        </button>
+      </p>
+    </header>
   </div>
-  <footer class="card-footer">
-    <button class="is-success">Approve</button>
-    <button class="is-danger">Deny</button>
-  </footer>
+</ng-container>
+
+<div class="modal" [ngClass]="openApplicationModal ? 'is-active' : ''">
+  <!-- Modal for Adoption Application Review Form -->
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head has-background-info">
+      <p
+        class="modal-card-title has-text-weight-bold is-size-3 has-text-centered"
+      >
+        Adoption Application Review
+      </p>
+      <button class="delete" aria-label="close" (click)="onClose()"></button>
+    </header>
+    <section class="modal-card-body">
+      <!-- Form start -->
+      <form>
+        <!-- Pet Name -->
+        <div class="field">
+          <label class="label">Pet Name:</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petName }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <label
+          class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+          style="margin: 50px"
+          >Contact Information</label
+        >
+        <!-- Applicant Name -->
+        <label class="label">Applicant Name:</label>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.firstName }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.lastName }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Address -->
+        <label class="label">Address:</label>
+        <div class="field is-grouped is-grouped-multiline">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.streetNumber }}"
+              readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.streetName }}"
+              readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.city }}"
+              readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              style="width: 60px"
+              type="text"
+              placeholder="{{ selectedApplication?.state }}"
+              readonly
+            />
+          </div>
+
+          <div class="control">
+            <input
+              class="input"
+              style="width: 133px"
+              type="text"
+              placeholder="{{ selectedApplication?.zipCode }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="field">
+          <label class="label">Phone Number:</label>
+          <div class="control">
+            <input
+              class="input"
+              type="tel"
+              placeholder="{{ selectedApplication?.phoneNumber }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              class="input"
+              type="email"
+              placeholder="{{ selectedApplication?.email }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <label
+          class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+          style="margin: 50px"
+          >Household Information</label
+        >
+
+        <!-- Residence Radio Buttons -->
+        <div style="margin-top: 30px">
+          <label class="label">Type of Residence:</label>
+          <div class="field is-grouped">
+            <div class="control is-flex is-align-items-center">
+              <!--  <label class="radio">
+                <input
+                  type="radio"
+                  value="House"
+                  [defaultChecked]="selectedApplication?.housingType === 'House'"
+                />
+                House
+              </label>
+              <label class="radio">
+                <input
+                  type="radio"
+                  value="Apartment"
+                  [defaultChecked]="selectedApplication?.housingType === 'Apartment'"
+                />
+                Apartment
+              </label>
+              <label class="radio">
+                <input
+                  type="radio"
+                  value="Duplex"
+                  [defaultChecked]="selectedApplication?.housingType === 'Duplex'"
+                />
+                Duplex
+              </label>
+              <label class="radio">
+                <input
+                  type="radio"
+                  value="Other"
+                  [defaultChecked]="selectedApplication?.housingType === 'Other'"
+                />
+                Other
+              </label> -->
+              <input
+                class="input"
+                style="width: 265px; margin-left: 15px"
+                type="text"
+                placeholder="{{ selectedApplication?.housingType }}"
+                readonly
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Home Life Questions -->
+
+        <!-- Household members -->
+        <label class="label" style="margin-top: 25px"
+          >Name and age of all household members:</label
+        >
+
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhName1 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhAge1 }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhName2 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhAge2 }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhName3 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhAge3 }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhName4 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhAge4 }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhName5 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhAge5 }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhName6 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhAge6 }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Animals In Home -->
+        <label class="label" style="margin-top: 25px"
+          >Name, type, and age of all pets in the home:</label
+        >
+
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhPet1 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petType1 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petAge1 }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhPet2 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petType2 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petAge2 }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.hhPet3 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petType3 }}"
+              readonly
+            />
+          </div>
+          <div class="control">
+            <input
+              style="width: 70px"
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.petAge3 }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Care for pet questions -->
+        <div class="field is-grouped" style="margin-top: 30px">
+          <label class="label is-flex is-align-items-center"
+            >Where will you keep this pet when you are home?</label
+          >
+          <div class="control" disabled>
+            <div class="select" style="margin-left: 15px" disabled>
+              <!-- <select style="width: 300px">
+                <option disabled>Select</option>
+                <option disabled>Inside residence only</option>
+                <option disabled>Outside only</option>
+                <option disabled>Inside and outside</option>
+              </select> -->
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="{{ selectedApplication?.whenHome }}"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <label class="label is-flex is-align-items-center"
+            >Where will you keep this pet when you are not home?</label
+          >
+          <div class="control">
+            <div class="select" style="margin-left: 15px">
+              <!--  <select style="width: 300px">
+                <option disabled>Select</option>
+                <option disabled>Inside residence only</option>
+                <option disabled>In fenced yard</option>
+                <option disabled>Outside on chain/tether/lead</option>
+                <option disabled>Boarded/Pet Daycare</option>
+                <option disabled>Family/Friends</option>
+              </select> -->
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="{{ selectedApplication?.whenNotHome }}"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Questions -->
+
+        <label
+          class="label has-text-centered has-text-weight-bold is-size-4 has-text-info"
+          style="margin: 50px"
+          >Additional Information</label
+        >
+        <div>
+          <label class="label">Are you employed?</label>
+          <!-- <label class="radio">
+            <input
+              type="radio"
+              value="Full-time"
+              disabled
+            />
+            Full-time
+          </label>
+          <label class="radio">
+            <input
+              type="radio"
+              value="Part-time"
+              disabled
+            />
+            Part-time
+          </label>
+          <label class="radio">
+            <input
+              type="radio"
+              value="Retired"
+              disabled
+            />
+            Retired
+          </label>
+          <label class="radio">
+            <input
+            type="radio"
+            value="No"
+            disabled
+            />
+            No
+          </label> -->
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.employment }}"
+              readonly
+            />
+          </div>
+        </div>
+        <div>
+          <label class="label" style="margin-top: 10px"
+            >Can you commit to taking care of this pet for the entirety of its
+            life span?</label
+          >
+          <!-- <label class="radio">
+            <input type="radio" value="Yes" disabled/>
+            Yes
+          </label>
+          <label class="radio">
+            <input type="radio" value="No" disabled/>
+            No
+          </label>
+        </div>
+        <div>
+          <label class="label" style="margin-top: 10px"
+            >Have you ever surrendered a pet?</label
+          >
+          <label class="radio">
+            <input type="radio" value="Yes" disabled/>
+            Yes
+          </label>
+          <label class="radio">
+            <input type="radio" value="No" disabled/>
+            No
+          </label> -->
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="{{ selectedApplication?.commitment }}"
+              readonly
+            />
+          </div>
+        </div>
+
+        <!-- Message/Question Box -->
+        <div class="field" style="margin-top: 30px">
+          <label class="label">Message</label>
+          <div class="control">
+            <textarea
+              class="textarea"
+              placeholder="{{ selectedApplication?.message }}"
+              readonly
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Terms Checkboxes -->
+        <div class="field" style="margin-top: 30px">
+          <div class="control">
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                [defaultChecked]="selectedApplication?.ageCheck"
+                disabled
+              />
+              I am 18 years old or older.
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <label class="checkbox">
+              <input
+                type="checkbox"
+                [defaultChecked]="selectedApplication?.ageCheck"
+                disabled
+              />
+              I agree to the <a>Pet Pursuit Terms and Conditions.</a>
+            </label>
+          </div>
+        </div>
+      </form>
+      <!-- Form end -->
+    </section>
+    <footer class="modal-card-foot has-background-info">
+      <div class="field is-grouped">
+        <div class="control field is-grouped">
+          <button type="submit" class="button is-success" (click)="onApprove()">
+            Approve
+          </button>
+        </div>
+        <div class="control">
+          <button
+            class="button is-danger"
+            (click)="onDeny(this.selectedApplication?.applicationId)"
+          >
+            Deny
+          </button>
+        </div>
+        <div class="control">
+          <button class="button is-primary" (click)="onClose()">Close</button>
+        </div>
+      </div>
+    </footer>
+  </div>
 </div>

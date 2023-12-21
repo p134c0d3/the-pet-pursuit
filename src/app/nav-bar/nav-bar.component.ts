@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { localStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,11 +16,12 @@ export class NavBarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private sub: Subscription;
 
-  constructor (private authService: AuthService) {}
+  constructor (private authService: AuthService, private localStorage:localStorageService) {}
 
   //user object is not null when user is logged in
 
 
+ user = this.localStorage.getData('username')
 
 
 
@@ -30,7 +32,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userSub= this.authService.user.subscribe(user =>{
-     this.isAuthenticated= !!user
+     this.isAuthenticated = !!user
     })
   }
 

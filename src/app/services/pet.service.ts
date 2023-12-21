@@ -1,50 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Pet } from '../models/pet-model';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
+import { NewPost } from '../models/new-post.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PetService {
+  petChanged = new Subject<NewPost[]>();
 
-  petChanged = new Subject<Pet[]>();
+  private pets: NewPost[] = [];
 
-  private pets: Pet[] = [
-    new Pet(
-      'Cowboy',
-      'Dog',
-      'Cattle Dog',
-      'Male',
-      '3',
-      'Yes',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit dolores totam pariatur deleniti',
-      "../../assets/img/cattle_dog.jpg"
-    ),
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private petService: PetService
+  ) {}
 
-    new Pet(
-      'Lila',
-      'Dog',
-      'Great Dane',
-      'Female',
-      '6',
-      'Yes',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit dolores totam pariatur deleniti',
-      "../../assets/img/great_dane.jpg"
-    ),
 
-    new Pet(
-      'Brutus',
-      'Dog',
-      'Rottweiler',
-      'Male',
-      '2',
-      'No',
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil velit dolores totam pariatur deleniti',
-      "../../assets/img/rottweiler.jpg"
-    ),
-  ];
-
-  constructor() { }
+  setPets(pets: NewPost[]) {
+    this.pets = pets;
+    this.petChanged.next(this.pets.slice());
+  }
 
   // to get a list of all pets
   getPets() {
@@ -57,13 +33,15 @@ export class PetService {
   }
 
   // to add a new pet
-  addPet(pet: Pet) {
-    this.pets.push(pet)
+  addPet(pet: NewPost) {
+
+    this.pets.push(pet);
+
     this.petChanged.next(this.pets.slice());
   }
 
   // to update pet information
-  updatePet(index: number, newPet: Pet) {
+  updatePet(index: number, newPet: NewPost) {
     this.pets[index] = newPet;
     this.petChanged.next(this.pets.slice());
   }

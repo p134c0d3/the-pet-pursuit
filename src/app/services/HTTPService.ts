@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AdoptionApplicationService } from './adoption-application.service';
 import { adoptionApplication } from '../models/adoption-application.model';
-import { Subject, map, tap } from 'rxjs';
+import { Subject, map, tap, throwError, catchError, Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment.prod';
-
 
 @Injectable({
   providedIn: 'root',
@@ -13,89 +11,59 @@ import { environment } from 'src/environments/environment.prod';
 export class HTTPService {
   firebaseRootURL = environment.firebaseRootURL;
   firebaseApplicationsURL = `${this.firebaseRootURL}/Applications.json`;
+  applicationArraySubject = new Subject<adoptionApplication[]>();
 
-  applicationArraySubject = new Subject<adoptionApplication[]>()
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-  constructor(
-    private applicationService: AdoptionApplicationService,
-    private http: HttpClient,
-    private auth: AuthService
-  ) {}
-
-    saveApplicationsToFirebase(data) {
-      const authToken = this.auth.getToken();
-      if (!authToken) {
-        console.error('No auth token found');
-        return;
-     }
-     const urlWithAuth = `${this.firebaseApplicationsURL}?auth=${authToken}`;
-
-     this.http.post(urlWithAuth, data).subscribe(
-       (res) => console.log('Application submitted:', res),
-        (error) => console.error('Error submitting application:', error)
-     );
+  saveApplicationsToFirebase(data) {
+    const applicationId = data.applicationId;
+    const authToken = this.auth.getToken();
+    if (!authToken) {
+      console.error('No auth token found');
+      return;
     }
+    const urlWithAuth = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications/${applicationId}.json?auth=${authToken}`;
 
-
-    fetchApplicationsFromFirebase() {
-      const authToken = this.auth.getToken();
-      if (!authToken) {
-        console.error('No auth token found');
-        return;
-      }
-      const urlWithAuth = `${this.firebaseApplicationsURL}?auth=${authToken}`;
-      return this.http.get(urlWithAuth).pipe(
-        map((app) => {
-
-          return Object.values(app)
-
-
-        })
-      )
-
-    }
-
-    /* fetchApplicationsFromFirebase() {
-
-      const authToken = this.auth.getToken();
-      if (!authToken) {
-        console.error('No auth token found');
-        return;
-      }
-      const urlWithAuth = `${this.firebaseApplicationsURL}?auth=${authToken}`;
-
-      this.http.get(urlWithAuth).subscribe(
-        (data) => { this.applicationData = Object.values(data);
-          console.log(this.applicationData);
-          // Handle the fetched data as needed
-        },
-        (error) => {
-          console.error('Error fetching applications:', error);
-        }
-      );
-    } */
-    /* return this.http
-      .get(this.firebaseApplicationsURL, {})
-        .subscribe((res) => {
-          console.log("app results", res)
-          this.applicationData = res;
-          console.log("applicationData", this.applicationData)
-        }
-        ); */
-    /*  return this.http.get(this.firebaseApplicationsURL, {}) */
-
-   /*  return this.http.get(this.firebaseApplicationsURL, {}).pipe(
-      tap((res: adoptionApplication) => {
-        console.log(res, 'res');
-        this.applicationService.setApplications();
-      })
-    ); */
+    this.http.put(urlWithAuth, data).subscribe(
+      (res) => console.log('Application submitted:', res),
+      (error) => console.error('Error submitting application:', error)
+    );
   }
 
- /*  storeApplications(results) {
-    results.map((result) => {
-      console.log('result', result);
-    });
+
+
+  fetchApplicationsFromFirebase() {
+    const authToken = this.auth.getToken();
+    if (!authToken) {
+      console.error('No auth token found');
+      return;
+    }
+    const urlWithAuth = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications.json?auth=${authToken}`;
+    return this.http.get(urlWithAuth).pipe(
+      map((app) => {
+        if (app === null) {
+          return [];
+        }
+        return Object.values(app);
+      })
+    );
+  }
+
+
+  deleteApplicationsFromFirebase(id: number): Observable<void> {
+    console.log('Request Started:', id);
+    const authToken = this.auth.getToken();
+    if (!authToken) {
+      console.error('No auth token found');
+      return throwError('No auth token found');
+    }
+    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/applications/${id}.json?auth=${authToken}`;
+    return this.http.delete<void>(deleteUrl).pipe(
+      tap(() => console.log(`Deleted post id: ${id}`)),
+      catchError((error) => {
+        console.error('Error deleting application:', error);
+        return throwError(error);
+      })
+    );
   }
 }
- */

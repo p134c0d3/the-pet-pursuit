@@ -16,6 +16,8 @@
   border-radius: 10px;
   flex: 0 0 30%;
   margin: 1%;
+  border: 2px solid black;
+
 }
 
 .clickedPetImage {
@@ -29,7 +31,6 @@ form .ng-invalid.ng-touched {
 
  /* Buttons right align */
  .modal-card-foot {
-  background-color: #a2d6f9;
   display: flex;
   justify-content: flex-end;
 }
@@ -39,46 +40,33 @@ form .ng-invalid.ng-touched {
   color: black;
 }
 
-.pet-details-button {
-  background-color: #2b3a67;
-  color: #fff;
+
+
+.gap{
+gap: 5%;
 }
 
-.pet-details-button:hover {
-  background-color: #162245;
+
+
+
+img{
+  background-color: black;
+  padding: 3px;
 }
 
 .modal-card-head {
   background-color: #a2d6f9;
 }
 
-#onSubmit {
+.modal-card-foot{
+  background-color: #a2d6f9;
+}
+
+#pet-details-button {
   background-color: #2b3a67;
+  color: #fff;
 }
 
-#onSubmit:hover {
+#pet-details-button:hover {
   background-color: #162245;
-}
-
-#adoptButton {
-  color: #fff;
-  background-color: #94bfa7;
-}
-
-#adoptButton:hover {
-  background-color: #5e8b6a;
-}
-
-#faveButton {
-  color: #fff;
-  background-color: #2b3a67;
-}
-
-#faveButton:hover {
-  background-color: #162245;
-}
-
-#closeButton {
-  color: #fff;
-  background-color: #5c677d;
 }

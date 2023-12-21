@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="title-header">
+    <h1 class="is-size-1 has-text-centered is-family-code">
+      Purr-sonal Favorites
+      <div class="cat" style="width:60%;height:10%;padding-bottom:8%;position:relative;"><iframe src="https://giphy.com/embed/9xarGMi45RQXEIirLB" width="75%" height="75%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><a href="https://giphy.com/stickers/animation-cat-9xarGMi45RQXEIirLB"></a>
+    </h1>
+  </div>
+  <hr />
+
+
+
+  <div class="columns is-justify-content-space-evenly">
+    <div class="card is-one-third column" *ngFor="let fav of favorites">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{ fav.imagePath}}" alt="Placeholder image; let i=index" />
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-size-1">{{ fav.petName }}</p>
+            <p class="subtitle is-6">{{ fav.petBreed }}</p>
+          </div>
+
+
+        ⭐
+        </div>
+
+        <div class=" gap container is-flex is-justify-content-center">
+
+
+          <button
+          id="pet-details-button"
+          class="button is-info pet-details-button"
+          (click)="openPetDetails(fav)"
+
+          >
+          Details
+        </button>
+        <button
+          class="button is-danger pet-details-button"
+          (click)="deleteFav(fav)"
+
+          >
+          Delete
+        </button>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal" [ngClass]="openModal ? 'is-active' : ''">
+  <div class="modal-background">
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title has-text-weight-bold is-size-3">{{ selectedPet?.petName }}</p>
+        <button
+          class="delete"
+          aria-label="close"
+          (click)="openModal = false"
+        ></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="modal-content content">
+          <figure class="media-left">
+            <p class="image">
+              <img
+                src="{{ selectedPet?.imagePath }}"
+                class="clickedPetImage"
+              />
+            </p>
+          </figure>
+          <h1>
+            <strong>A little bit about {{ selectedPet?.petName }}</strong>
+          </h1>
+          <!-- <h3><strong>Cattle Dog Mix</strong></h3> -->
+          <div>
+            {{ selectedPet?.message }}
+          </div>
+        </div>
+        <div class="column">
+          <div class="block">
+            Age
+
+            <span class="tag is-pulled-right is-info has-text-weight-bold">{{
+              selectedPet?.petAge
+            }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Sex
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
+              selectedPet?.petGender
+            }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Spayed/neutered?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{
+              selectedPet?.spayedNeutered
+            }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Good with children?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithChildren ? "Yes" : "No" }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Housetrained?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.housetrained ? "Yes" : "No" }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Good with other dogs?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithDogs ? "Yes" : "No" }}</span>
+          </div>
+          <hr />
+          <div class="block">
+            Good with cats?
+            <span class="tag is-pulled-right is-info is-info has-text-weight-bold">{{ selectedPet?.goodWithCats ? "Yes" : "No" }}</span>
+          </div>
+        </div>
+      </section>
+      <footer class="modal-card-foot">
+        <!-- <h1 class="mr-7" *ngIf="!isAuthenticated">Please Log in to Fav or Apply</h1> -->
+        <button class="button is-danger" (click)="openModal = false">
+          Close
+        </button>
+      </footer>
+    </div>
+  </div>
+</div>
+

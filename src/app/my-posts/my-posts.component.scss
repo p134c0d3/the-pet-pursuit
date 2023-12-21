@@ -1,3 +1,7 @@
+.card {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
 .container {
   margin-top: 3rem;
 }
@@ -29,7 +33,6 @@ form .ng-invalid.ng-touched {
 
  /* Buttons right align */
  .modal-card-foot {
-  background-color: #a2d6f9;
   display: flex;
   justify-content: flex-end;
 }
@@ -39,46 +42,42 @@ form .ng-invalid.ng-touched {
   color: black;
 }
 
-.pet-details-button {
-  background-color: #2b3a67;
-  color: #fff;
-}
-
-.pet-details-button:hover {
-  background-color: #162245;
-}
-
-.modal-card-head {
+header {
   background-color: #a2d6f9;
 }
 
-#onSubmit {
+p.modal-card-title {
+  color: #2b3a67;
+}
+
+footer {
+  background-color: #a2d6f9;
+}
+
+#submitEditedPost {
   background-color: #2b3a67;
 }
 
-#onSubmit:hover {
+#submitEditedPost:hover {
   background-color: #162245;
 }
 
-#adoptButton {
-  color: #fff;
-  background-color: #94bfa7;
+#cancelEditedPost {
+  color: #2b3a67;
+}
+#cancelEditedPost:hover {
+  color: #162245;
 }
 
-#adoptButton:hover {
-  background-color: #5e8b6a;
+a.my-post-delete:hover {
+  background-color: red;
+  color: white;
+}
+a.my-post-edit:hover {
+  background-color: #5288ac;
+  color: white;
 }
 
-#faveButton {
-  color: #fff;
-  background-color: #2b3a67;
-}
-
-#faveButton:hover {
-  background-color: #162245;
-}
-
-#closeButton {
-  color: #fff;
-  background-color: #5c677d;
-}
+.gap {
+  gap: 5%;
+  }
