@@ -244,7 +244,10 @@
     name="message"
     class="textarea"
     formControlName="message"
-    placeholder="e.g. Bruno loves to play with his tennis ball. - (optional)"></textarea>
+    placeholder="e.g. Bruno loves to play with his tennis ball."></textarea>
+    <span
+        class="help is-danger"
+        *ngIf="!newPostForm.get('message').valid && newPostForm.get('message').touched">Please enter some details about your pet.</span>
   </div>
 </div>
 <br>
@@ -350,3 +353,4 @@
 </footer>
 </form>
 </section>
+<hr>

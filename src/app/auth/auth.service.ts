@@ -11,16 +11,31 @@ interface AuthResponseData {
   idToken: string;
   email: string;
   refreshToken: string;
-  expiresIn: string;
+  expiresIn: Date;
   localId: string;
   registered?: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
+
 export class AuthService {
   user = new BehaviorSubject<User>(null);
   API_KEY = environment.API_KEY;
   constructor(private http: HttpClient, private router: Router) {}
+
+  autoLogin() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      userData._tokenExpirationDate
+    );
+    this.user.next(loadedUser);
+  }
 
   getToken() {
     const userData = JSON.parse(localStorage.getItem('userData'));
@@ -52,7 +67,8 @@ export class AuthService {
           this.handleAuthentication(
             resData.email,
             resData.localId,
-            resData.idToken
+            resData.idToken,
+            resData.expiresIn
           );
         })
       );
@@ -70,14 +86,17 @@ export class AuthService {
           this.handleAuthentication(
             resData.email,
             resData.localId,
-            resData.idToken
+            resData.idToken,
+            resData.expiresIn
           );
         })
       );
   }
 
-  private handleAuthentication(email: string, userId: string, token: string) {
-    const user = new User(email, userId, token);
+  private handleAuthentication(email: string, userId: string, token: string, tokenExpirationDate: Date) {
+    const expDate = new Date(new Date().getTime() + +tokenExpirationDate * 1000);
+
+    const user = new User(email, userId, token, expDate);
 
     this.user.next(user);
     localStorage.setItem('userData', JSON.stringify(user));

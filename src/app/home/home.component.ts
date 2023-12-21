@@ -1,8 +1,9 @@
 import { DataStorageService } from './../services/data-storage.service';
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
+import { localStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -17,15 +18,18 @@ export class HomeComponent {
   selectedPet: NewPost = null;
 
   pets: NewPost[] = [];
+  @ViewChild(FormGroupDirective) adoptionFormRef;
+
 
   constructor(
     private httpService: HTTPService,
-    private dataStorage: DataStorageService
+    private dataStorage: DataStorageService,
+    private localStorage:localStorageService
   ) {}
 
   ngOnInit() {
     this.adoptionRequestForm = new FormGroup({
-      petName: new FormControl(null, Validators.required),
+      petName: new FormControl(null),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
       streetNumber: new FormControl(null, Validators.required),
@@ -34,10 +38,7 @@ export class HomeComponent {
       state: new FormControl(null, Validators.required),
       zipCode: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
-      email: new FormControl(
-        null,
-        Validators.compose([Validators.required, Validators.email])
-      ),
+      email: new FormControl(null,Validators.compose([Validators.required, Validators.email])),
       housingType: new FormControl(null, Validators.required),
       hhName: new FormControl(null),
       hhAge: new FormControl(null),
@@ -50,8 +51,8 @@ export class HomeComponent {
       commitment: new FormControl(null, Validators.required),
       surrender: new FormControl(null, Validators.required),
       message: new FormControl(null),
-      ageCheck: new FormControl(null, Validators.required),
-      termsConditions: new FormControl(null, Validators.required),
+      ageCheck: new FormControl(null, Validators.requiredTrue),
+      termsConditions: new FormControl(null, Validators.requiredTrue),
     });
 
     this.fetchPets();
@@ -80,7 +81,7 @@ export class HomeComponent {
         goodWithDogs: pet.goodWithDogs,
         goodWithCats: pet.goodWithCats,
       }));
-      console.log('Fetch Pets', petResults);
+      // console.log('Fetch Pets', petResults);
     });
   }
 
@@ -93,16 +94,14 @@ export class HomeComponent {
   openPetDetails(pet: any) {
     this.openModal = true;
     this.selectedPet = pet;
+    this.adoptionRequestForm.patchValue({petName: this.selectedPet.petName});
+
   }
 
   onSubmit() {
     this.onSubmitClicked = true;
-    if (
-      this.adoptionRequestForm.valid
-      ) {
-      this.httpService.saveApplicationsToFirebase(
-        this.adoptionRequestForm.value
-      );
+    if (this.adoptionRequestForm.valid) {
+      this.httpService.saveApplicationsToFirebase(this.adoptionRequestForm.value);
       this.adoptionRequestForm.reset();
       this.isApplyClicked = false;
       this.openModal = true;
@@ -118,9 +117,19 @@ export class HomeComponent {
 
   }
 
+  addFav(){
+    //Working but will aloow same pet twice
+    if(this.selectedPet){
+      this.localStorage.addFavorite(this.selectedPet)
+      console.log('Pet added to favorites:', this.selectedPet);
+    }
+
+  }
+
+
   onCancel() {
+    this.onSubmitClicked = false;
     this.isApplyClicked =false;
     this.adoptionRequestForm.reset();
-    debugger
-  }
+ }
 }

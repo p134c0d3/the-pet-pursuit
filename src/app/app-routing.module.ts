@@ -7,6 +7,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { AuthGuard } from './auth/auth.guard';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 const routes: Routes = [
 
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'log-in', component: LogInComponent},
   { path: 'new-post', component: NewPostComponent },
-  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent }
+  { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent },
+  {path: 'favorites', canActivate:[AuthGuard], component:FavoritesComponent}
 ];
 
 @NgModule({
