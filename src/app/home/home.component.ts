@@ -115,7 +115,6 @@ export class HomeComponent {
   applyButtonClicked(): void {
     this.isApplyClicked = true;
     this.openModal = false;
-    this.openTermsModal = false;
   }
 
 
@@ -137,8 +136,7 @@ export class HomeComponent {
  }
 
   openTermsConditions() {
-   this.openTermsModal = true;
-   this.isApplyClicked = false;
- }
+    this.openTermsModal = true;
+  }
 
 }

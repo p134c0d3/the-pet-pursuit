@@ -29,6 +29,7 @@ form .ng-invalid.ng-touched {
 
  /* Buttons right align */
  .modal-card-foot {
+  background-color: #a2d6f9;
   display: flex;
   justify-content: flex-end;
 }
@@ -36,5 +37,40 @@ form .ng-invalid.ng-touched {
 .formWarning {
   padding-right: 40px;
   color: black;
+}
+
+.pet-details-button {
+  background-color: #2b3a67;
+  color: #fff;
+}
+
+.modal-card-head {
+  background-color: #a2d6f9;
+}
+
+#onSubmit {
+  background-color: #2b3a67;
+}
+
+#onSubmit:hover {
+  background-color: #162245;
+}
+
+#applyButton {
+  color: #fff;
+  background-color: #94bfa7;
+}
+
+#applyButton:hover {
+  background-color: #5e8b6a;
+}
+
+#favButton {
+  color: #fff;
+  background-color: #2b3a67;
+}
+
+#favButton:hover {
+  background-color: #162245;
 }
 

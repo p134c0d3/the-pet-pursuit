@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'log-in', component: LogInComponent},
   { path: 'new-post', component: NewPostComponent },
   { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent },
-  {path: 'favorites', canActivate:[AuthGuard], component:FavoritesComponent},
+  { path: 'favorites', canActivate:[AuthGuard], component:FavoritesComponent},
   { path: "terms-and-conditions", component: TermsAndConditionsComponent }
 ];
 
