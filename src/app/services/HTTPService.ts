@@ -47,10 +47,6 @@ export class HTTPService {
   }
 
 
-  deleteApplicationFromFirebase(id: number) {
-    if (!id) {
-
-
  /*  deleteApplicationsFromFirebase() {
     const authToken = this.auth.getToken();
     if(!authToken) {
@@ -62,31 +58,52 @@ export class HTTPService {
   } */
 
 
-  deleteApplicationsFromFirebase(appID: number) {
-    if (!appID) {
+  // deleteApplicationsFromFirebase(appID: number) {
+  //   if (!appID) {
 
-      console.error('No id provided');
-      return throwError('No id provided');
-    }
-    const authToken = this.auth.getToken();
-    if (!authToken) {
-      console.error('No auth token found');
-      return;
-    }
+  //     console.error('No id provided');
+  //     return throwError('No id provided');
+  //   }
+  //   const authToken = this.auth.getToken();
+  //   if (!authToken) {
+  //     console.error('No auth token found');
+  //     return;
+  //   }
 
-    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${id}.json?auth=${authToken}`;
-    return this.http.delete(deleteUrl).pipe(
-      catchError((error) => {
+  //             const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${id}.json?auth=${authToken}`;
+  //             return this.http.delete(deleteUrl).pipe(
+  //               catchError((error) => {
 
-    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${appID}.json?auth=${authToken}`;
-    return this.http.delete(deleteUrl).pipe(
-      catchError((error) => {
-        debugger
-        console.error('Error deleting application:', error);
-        return throwError(error);
-      })
-    );
+  //             const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${appID}.json?auth=${authToken}`;
+  //             return this.http.delete(deleteUrl).pipe(
+  //               catchError((error) => {
+  //                 debugger
+  //                 console.error('Error deleting application:', error);
+  //                 return throwError(error);
+  //               })
+  //             );
+  //           })
+  //         );
+  //       }
+
+
+deleteApplicationsFromFirebase(appID: number) {
+  if (!appID) {
+    console.error('No id provided');
+    return throwError('No id provided');
   }
+  const authToken = this.auth.getToken();
+  if (!authToken) {
+    console.error('No auth token found');
+    return;
+  }
+
+  const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${appID}.json?auth=${authToken}`;
+  return this.http.delete(deleteUrl).pipe(
+    catchError((error) => {
+      console.error('Error deleting application:', error);
+      return throwError(error);
+    })
+  );
 }
-
-
+}
