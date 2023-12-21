@@ -1,6 +1,12 @@
 import { DataStorageService } from './../services/data-storage.service';
 import { Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { HTTPService } from '../services/HTTPService';
 import { NewPost } from '../models/new-post.model';
 import { localStorageService } from '../services/local-storage.service';
@@ -21,7 +27,6 @@ export class HomeComponent {
   pets: NewPost[] = [];
   @ViewChild(FormGroupDirective) adoptionFormRef;
 
-
   constructor(
     private httpService: HTTPService,
     private dataStorage: DataStorageService,
@@ -39,7 +44,10 @@ export class HomeComponent {
       state: new FormControl(null, Validators.required),
       zipCode: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
-      email: new FormControl(null,Validators.compose([Validators.required, Validators.email])),
+      email: new FormControl(
+        null,
+        Validators.compose([Validators.required, Validators.email])
+      ),
       housingType: new FormControl(null, Validators.required),
       hhName: new FormControl(null),
       hhAge: new FormControl(null),
@@ -76,13 +84,15 @@ export class HomeComponent {
         lastName: pet.lastName,
         email: pet.email,
         phoneNumber: pet.phoneNumber,
-        imagePath: `http://source.unsplash.com/200x200/?${pet.petType},${pet.petBreed}`,
+        imagePath: `http://source.unsplash.com/200x200/?${
+          pet.petType
+        },${pet.petBreed.replaceAll(' ', '+')}`,
         goodWithChildren: pet.goodWithChildren,
         housetrained: pet.housetrained,
         goodWithDogs: pet.goodWithDogs,
         goodWithCats: pet.goodWithCats,
       }));
-      // console.log('Fetch Pets', petResults);
+      return this.pets;
     });
   }
 
@@ -95,14 +105,15 @@ export class HomeComponent {
   openPetDetails(pet: any) {
     this.openModal = true;
     this.selectedPet = pet;
-    this.adoptionRequestForm.patchValue({petName: this.selectedPet.petName});
-
+    this.adoptionRequestForm.patchValue({ petName: this.selectedPet.petName });
   }
 
   onSubmit() {
     this.onSubmitClicked = true;
     if (this.adoptionRequestForm.valid) {
-      this.httpService.saveApplicationsToFirebase(this.adoptionRequestForm.value);
+      this.httpService.saveApplicationsToFirebase(
+        this.adoptionRequestForm.value
+      );
       this.adoptionRequestForm.reset();
       this.isApplyClicked = false;
       this.openModal = true;
@@ -117,8 +128,6 @@ export class HomeComponent {
     this.openModal = false;
   }
 
-
-
   addFav(){
     //Working but will allow same pet twice
     if(this.selectedPet){
@@ -128,10 +137,9 @@ export class HomeComponent {
 
   }
 
-
   onCancel() {
     this.onSubmitClicked = false;
-    this.isApplyClicked =false;
+    this.isApplyClicked = false;
     this.adoptionRequestForm.reset();
  }
 

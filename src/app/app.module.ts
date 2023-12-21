@@ -18,6 +18,8 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { PetService } from './services/pet.service';
 import { DataStorageService } from './services/data-storage.service';
 import { AuthService } from './auth/auth.service';
+import { MyPostsComponent } from './my-posts/my-posts.component';
+import { MyPostsEditComponent } from './my-posts-edit/my-posts-edit.component';
 import { FooterComponent } from './footer/footer.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
@@ -34,6 +36,8 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
     LogInComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    MyPostsComponent,
+    MyPostsEditComponent,
     FooterComponent,
     FavoritesComponent,
     TermsAndConditionsComponent,
