@@ -64,9 +64,9 @@
           <a *ngIf="!isAuthenticated" routerLink="/log-in" class="button is-grey-dark">
             <strong>Log In</strong>
           </a>
-          <a *ngIf="isAuthenticated" routerLink="/new-post" class="button is-grey-dark">
+          <a *ngIf="isAuthenticated" routerLink="/new-post" class="button" id="newPostButton">
             Create New Post</a>
-          <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="button is-grey-dark">
+          <a *ngIf="isAuthenticated" (click)="onLogout()"  routerLink="/home" class="button" id="logOutButton">
 
             <strong>Log Out</strong>
           </a>
