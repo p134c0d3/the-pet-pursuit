@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'new-post', component: NewPostComponent },
   { path: 'incomingApplications', canActivate:[AuthGuard], component: AdoptionApplicationListComponent },
   { path: 'favorites', canActivate:[AuthGuard], component:FavoritesComponent},
-  { path: "terms-and-conditions", component: TermsAndConditionsComponent }
+  { path: "terms-and-conditions", component: TermsAndConditionsComponent },
   { path: 'my-posts', canActivate:[AuthGuard], component: MyPostsComponent },
 ];
 
