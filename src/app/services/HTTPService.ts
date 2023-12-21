@@ -46,8 +46,25 @@ export class HTTPService {
     );
   }
 
+
   deleteApplicationFromFirebase(id: number) {
     if (!id) {
+
+
+ /*  deleteApplicationsFromFirebase() {
+    const authToken = this.auth.getToken();
+    if(!authToken) {
+      return;
+      debugger
+    }
+    const deleteUrl = `${this.firebaseApplicationsURL}?auth=${authToken}`;
+    return this.http.delete(deleteUrl);
+  } */
+
+
+  deleteApplicationsFromFirebase(appID: number) {
+    if (!appID) {
+
       console.error('No id provided');
       return throwError('No id provided');
     }
@@ -56,12 +73,20 @@ export class HTTPService {
       console.error('No auth token found');
       return;
     }
+
     const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${id}.json?auth=${authToken}`;
     return this.http.delete(deleteUrl).pipe(
       catchError((error) => {
+
+    const deleteUrl = `https://the-pet-pursuit-default-rtdb.firebaseio.com/Applications/${appID}.json?auth=${authToken}`;
+    return this.http.delete(deleteUrl).pipe(
+      catchError((error) => {
+        debugger
         console.error('Error deleting application:', error);
         return throwError(error);
       })
     );
   }
 }
+
+

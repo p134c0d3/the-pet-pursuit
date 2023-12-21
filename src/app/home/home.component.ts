@@ -1,5 +1,4 @@
 import { DataStorageService } from './../services/data-storage.service';
-
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
@@ -9,6 +8,8 @@ import { NewPost } from '../models/new-post.model';
 import { localStorageService } from '../services/local-storage.service';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
+import { formatCurrency } from '@angular/common';
+
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
 
   pets: NewPost[] = [];
-  @ViewChild(FormGroupDirective) adoptionFormRef;
 
   constructor(
     private httpService: HTTPService,
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy  {
 
   ngOnInit() {
     this.adoptionRequestForm = new FormGroup({
+      appID: new FormControl(),
       petName: new FormControl(null),
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
@@ -151,8 +152,6 @@ export class HomeComponent implements OnInit, OnDestroy  {
  }
 
 
-
-
  ngOnDestroy(): void {
   this.userSub.unsubscribe()
 }
@@ -161,5 +160,10 @@ export class HomeComponent implements OnInit, OnDestroy  {
     this.openTermsModal = true;
   }
 
+
+
+ generateAppID(): number {
+  return Math.floor(Math.random() * 9000) + 1000;
+}
 
 }

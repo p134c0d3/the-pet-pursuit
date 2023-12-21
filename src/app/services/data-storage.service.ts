@@ -39,13 +39,13 @@ export class DataStorageService {
   }
 
   // need to create modify adoptionApplication model and call this function
-  storeAdoptionApplication(adoptionApplication) {
+/*   storeAdoptionApplication(adoptionApplication) {
     this.http
       .put(this.firebaseURL, adoptionApplication)
       .subscribe((response) => {
         console.log(response);
       });
-  }
+  } */
 
   // deletePostFromFirebase(id: number) {
   //   console.log('Request Started:', id);

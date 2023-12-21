@@ -112,8 +112,13 @@ export class NewPostComponent {
     location.reload();
   }
 
+
   trimPetBreed(breed) {
     return breed.replaceAll(' ', '');
+
+  generateID(): number {
+    return Math.floor(Math.random() * 9000) + 1000;
+
   }
 
   onCancel() {
